@@ -1,0 +1,18 @@
+unit udraftModel;
+
+interface
+
+uses uMess, SysUtils, MIDASLIB;
+
+    type TdraftModel = class
+      private
+
+      public
+
+      published
+
+    end;
+
+implementation
+
+end.

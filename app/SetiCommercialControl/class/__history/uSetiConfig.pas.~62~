@@ -1,0 +1,257 @@
+unit uSetiConfig;
+
+interface
+
+uses ADODB, Dialogs, SysUtils, Forms, MIDASLIB, uFSDialogs, WinInet, Winapi.Windows,
+Graphics;
+Const
+    SConfigProjectPath = 'C:\SetiSistemas\app\SetiCommercialControl';
+    SConfigExePath = 'C:\SetiSistemas\app\SetiCommercialControl\bin';
+    SConfigSoftwareCaption = 'Seti Sistemas - Controle Comercial';
+    SConfigReducedSoftwareName = 'SCC';
+    SConfigSoftwareExeName = 'SetiCommercialControl.exe';
+    SConfigProjectID = 2;
+    SConfigClientTitle = 'Seti Sistemas';
+    SConfigPathSql = 'C:\SetiSistemas\sql\code.sql';
+    SConfigNullValueStringFields = 'NÃO INFORMADO';
+    SConfigNullValueIntFields = 0;
+    SConfigNullValueFloatFields = 0.00;
+    SConfigForTextField = 30;
+    SConfigForNumberField = 15;
+    SConfigForDateField = 20;
+    SConfigForSmallText = 8;
+    SConfigEnabledDefaultLoin = True;
+    SConfigDefaultLogin = 'admin';
+    SConfigDefaultKey = 'admin';
+    SConfigLimitedForm = False;
+    SConfigNoTag = 99;
+    SConfigTagNotSearchField = 99;
+    SConfigTagNotSearchCompo = 99;
+    SConfigTagNotControlComp = 99;
+    SConfigTagClearCount = 1000;
+    SConfigfrmToLocateName  = 'Localizar - ';
+    SConfigMSandOther = False;
+    SConfigDirWay = 'C:\';
+    SConfigExcType = '.xlsx';
+    SConfigExDateTimeFile = True;
+    SConfigExcHearderColor = clSkyBlue;
+    SConfigExcHeaderFontColor = clBlack;
+    SConfigExcLinesColor1 = clSilver;
+    SConfigExcLinesColor2 = clWindow;
+    SConfigExcLinesFontColor = clBlack;
+    SConfigDocLandscape = True;
+    SConfigFieldSep = '_';
+    SConfigFrmToLocateIniSearch = False;
+    SConfigParam1_Ex_Vlr_Unitario_Grid_Vendas = True;
+    SconfigParam1_Calc_Vlr_Estoque = 1;
+    SConfigParam1_Tp_Exc_Prod_Nao_Movimentado = True;
+    SConfig_Ex_CbxTecnico = False;
+    SConfig_Ex_TabParametros = False;
+    SConfigTypeDB = 'TSQL';
+    SConfigFBFrameworkDBName = 'SFDB.FDB';
+    SConfigFBFrameworkDBUserName = 'SYSDBA';
+    SConfigFBFrameworkDBPassword = 'masterkey';
+    SConfigFBFrameworkDBFilePath = 'C:\SetiSistemas\drep\sf\' +
+    SConfigFBFrameworkDBName;
+    SConfigFBClientDBName = 'SCM';
+    SConfigFBClientDBUserName = 'SYSDBA';
+    SConfigFBClientDBPassword = 'masterkey';
+    SConfigFBClientDBFilePath =
+      'C:\SetiSistemas\app\SetiCommercialControl\bin\' + SConfigFBClientDBName;
+    SConfigSqlServerConectionString = 'Provider=SQLOLEDB.1;'                  +
+                                      'Integrated Security=SSPI;'             +
+                                      'Persist Security Info=False;'          +
+                                      'Initial Catalog=sfdb;'                 +
+                                      'Data Source=setisistemas\sqlexpress;   ';
+    SConfigFireSMALLINT          = 'SHORT';
+    SConfigFireINTEGER           = 'LONG';
+    SConfigFireBIGINT            = 'INT64';
+    SConfigFireFLOAT             = 'FLOAT';
+    SConfigFireDOUBLEPRECISION   = 'DOUBLE';
+    SConfigFireNUMERIC           = 'INT64';
+    SConfigFireDECIMAL           = 'INT64';
+    SConfigFireDATE              = 'DATE';
+    SConfigFireTIME              = 'TIME';
+    SConfigFireTIMESTAMP         = 'TIMESTAMP';
+    SConfigFireCHAR              = 'TEXT';
+    SConfigFireVARCHAR           = 'VARYING';
+    SConfigServerPath = '';
+    SConfigCheckServer = False;
+    SConfigInitialFileName = 'eis.ini';
+    SConfigInitialTagValue = '1';
+    SConfigInitialParam1Name = 'aspino';
+    SConfigDeveloperMode = True;
+    DirSQLQry = 'C:\SetiSistemas\SQL_TESTE\qry.sql';
+    SConfigFrmCadClientes          = True;
+    SConfigFrmCadCompras           = False;
+    SConfigFrmCadEmpresa           = True;
+    SConfigFrmCadFornecedores      = false;
+    SConfigFrmCadFuncionarios      = True;
+    SConfigFrmCadOrdemServicos     = False;
+    sConfigFrmCadProdutos          = True;
+    //SConfigFrmCadProdutoDefeito    = False;
+    SConfigFrmCadProdutoMarca      = False;
+    SConfigFrmCadProdutoModelo     = False;
+    SConfigfrmVendaManual          = True;
+    SConfigFrmCadUsuarios          = True;
+    SConfigFaturamentoPainel       = False;
+    SConfigVendas                  = False;
+    SConfigFrmCadRotas             = True;
+    SConfigFrmCadRegioes           = True;
+    SConfigFrmCadSetores           = True;
+    sConfigFrmControleVendaManual  = True;
+    sConfigfrmCadFormaPagto        = True;
+    sConfigRepVendaManual          = True;
+    sConfigEnabledValidate     = True;
+    sConfigVisibleValidade     = True;
+    sConfigColorLabelValidate  = False;
+
+    {**************************************************************************}
+    {>>>>>>>>>>>>>>>>>>>>>>>>>>>>> PARAMETROS  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<}
+    {**************************************************************************}
+    //Permitir a exclusão do cliente: Consumidor final
+    sConfigDeleteConsumidorFinal = False;
+    sConfigUpdateConsumidorFinal = False;
+
+    {**************************************************************************}
+    {>>>>>>>>>>>>>>>>>>>>>>>>>>>>> METHODS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<}
+    {**************************************************************************}
+    function SConfigGetDataBase : string;
+    function SConfigDatabaseFileExists(Framework:Boolean) : Boolean;
+    function SConfigInternetConnection(Mess:Boolean=False) : Boolean;
+    function SConfigServerConnection : Boolean;
+    function SConfigCorrectFolderStructures : Boolean;
+    function SConfigGetReduceFieldType(pTypeField:string) : string;
+
+
+
+var
+    SFConfigAdoConnection_ : TADOConnection;
+
+implementation
+
+function SConfigGetDataBase: string;
+begin
+    try
+      Result := SConfigFBClientDBFilePath;
+    except on e : exception do
+        SetiMens(e.Message,0);
+    end;
+end;
+
+function SConfigDatabaseFileExists(Framework: Boolean): Boolean;
+var
+  way : string;
+begin
+      Result := False;
+    try
+      if (Framework) then
+        way := SConfigFBFrameworkDBFilePath
+      else
+        way := SConfigFBClientDBFilePath;
+      if FileExists(way) then
+        Result := True;
+    except on e : exception do
+        SetiMens(e.Message,0);
+    end;
+end;
+
+function SConfigInternetConnection(Mess:Boolean=False): Boolean;
+var
+  i : DWORD;
+begin
+    Result := False;
+    try
+        if (InternetGetConnectedState(@I,0)) then
+        begin
+          if Mess then
+            MessageDlg(Mess14,mtInformation,[mbOK],0);
+          Result := True;
+        end else
+        begin
+          if Mess then
+            MessageDlg(Mess15,mtInformation,[mbOK],0);
+        end;
+    except on e : exception do
+        SetiMens(e.Message,0);
+    end;
+end;
+
+function SConfigServerConnection : Boolean;
+begin
+      Result := False;
+    try
+      if SConfigCheckServer then
+      begin
+         Result := True;
+         Exit;
+      end else
+      begin
+        // Em desenvolvimento...
+      end;
+    except on e : exception do
+        SetiMens(e.Message,0);
+    end;
+end;
+
+function SConfigCorrectFolderStructures : Boolean;
+begin
+      Result := False;
+    try
+      if (DirectoryExists(SConfigProjectPath)) and
+            (DirectoryExists(SConfigExePath)) then
+      begin
+          Result := True;
+      end;
+    except on e : exception do
+        SetiMens(e.Message,0);
+    end;
+end;
+
+function SConfigGetReduceFieldType(pTypeField:string) : string;
+begin
+{
+    SConfigFireSMALLINT          = 'SHORT';       //SMALLINT
+    SConfigFireINTEGER           = 'LONG';        //INTEGER
+    SConfigFireBIGINT            = 'INT64';       //BIGINT
+    SConfigFireFLOAT             = 'FLOAT';       //FLOAT
+    SConfigFireDOUBLEPRECISION   = 'DOUBLE';      //DOUBLEPRECISION
+    SConfigFireNUMERIC           = 'INT64';       //NUMERIC
+    SConfigFireDECIMAL           = 'INT64';       //DECIMAL
+    SConfigFireDATE              = 'DATE';        //DATE
+    SConfigFireTIME              = 'TIME';        //TIME
+    SConfigFireTIMESTAMP         = 'TIMESTAMP';   //TIMESTAMP
+    SConfigFireCHAR              = 'TEXT';        //CHAR
+    SConfigFireVARCHAR           = 'VARYING';     //VARCHAR
+}
+  Result := '';
+  try
+    if (pTypeField <> '') then
+    begin
+      if (pTypeField = 'SHORT') then
+        Result := 'INT' else
+      if (pTypeField = 'LONG') then
+        Result := 'INT' else
+      if (pTypeField = 'INT64') then
+        Result := 'NUM' else
+      if (pTypeField = 'FLOAT') then
+        Result := 'DOU' else
+      if (pTypeField = 'DOUBLE') then
+        Result := 'DOU' else
+      if (pTypeField = 'DATE') then
+        Result := 'DAT' else
+      if (pTypeField = 'TIME') then
+        Result := 'TIM' else
+      if (pTypeField = 'TIMESTAMP') then
+        Result := 'TMP' else
+      if (pTypeField = 'TEXT') then
+        Result := 'STR' else
+      if (pTypeField = 'VARYING') then
+        Result := 'STR';
+    end;
+  finally
+
+  end;
+end;
+
+end.

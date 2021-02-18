@@ -1,0 +1,70 @@
+unit ufrmSplash;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ComCtrls;
+
+type
+  TfrmSplash = class(TForm)
+    Panel2: TPanel;
+    Image1: TImage;
+    Panel1: TPanel;
+    Panel3: TPanel;
+    Panel4: TPanel;
+    Label1: TLabel;
+    Label2: TLabel;
+    lbOtim: TLabel;
+    ProgressBar1: TProgressBar;
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+    procedure TrimAppMemorySize;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmSplash: TfrmSplash;
+
+implementation
+
+{$R *.dfm}
+
+uses uSetiConfig;
+
+{ TfrmSplash }
+
+procedure TfrmSplash.FormShow(Sender: TObject);
+begin
+  TrimAppMemorySize;
+end;
+
+procedure TfrmSplash.TrimAppMemorySize;
+var
+  MainHandle : THandle;
+  vCount : Integer;
+  i : Integer;
+begin
+    try
+      vCount := SConfigTagClearCount;
+      Sleep(1000);
+      ProgressBar1.Max := vCount;
+      ProgressBar1.Position := 0;
+      for I := 1 to vCount do
+      begin
+        ProgressBar1.Position := ProgressBar1.Position + 1;
+      end;
+      MainHandle := OpenProcess(PROCESS_ALL_ACCESS,False,GetCurrentProcessId);
+      SetProcessWorkingSetSize(MainHandle,$FFFFFFFF, $FFFFFFFF);
+      CloseHandle(MainHandle);
+      Application.ProcessMessages;
+    finally
+      Application.ProcessMessages;
+      Sleep(1000);
+    end;
+end;
+
+end.

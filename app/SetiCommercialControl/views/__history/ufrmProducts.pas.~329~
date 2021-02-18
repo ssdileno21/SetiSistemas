@@ -1,0 +1,711 @@
+unit ufrmProducts;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.ComCtrls,
+  Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Mask, Vcl.Buttons, Data.DB, IBDatabase, DBXCommon,
+  Midas, Datasnap.DBClient, uLocate, Vcl.Menus;
+
+type TDynamicstringArray = array of string;
+
+
+type
+  TfrmProducts = class(TForm)
+    Panel1: TPanel;
+    Panel4: TPanel;
+    sbAbrir: TSpeedButton;
+    dsPadrao: TDataSource;
+    sbInsert: TSpeedButton;
+    sbUpdate: TSpeedButton;
+    sbDel: TSpeedButton;
+    sbSave: TSpeedButton;
+    sbCancel: TSpeedButton;
+    Panel5: TPanel;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    dbeCodigo: TDBEdit;
+    dbeNome: TDBEdit;
+    dbcbxAtivo: TDBCheckBox;
+    dbeCodInterno: TDBEdit;
+    dbeCodigoBarras: TDBEdit;
+    dbmDescricao: TDBMemo;
+    TabSheet2: TTabSheet;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label17: TLabel;
+    dbeVlrCusto: TDBEdit;
+    dbeVlrDespesas: TDBEdit;
+    dbeVlrOutrasDespesas: TDBEdit;
+    dbeVlrCustoFinal: TDBEdit;
+    dbePercLucroRequerido: TDBEdit;
+    dbeVlrVendaSugerido: TDBEdit;
+    dbeVlrVendaUtilizado: TDBEdit;
+    dbePercComissao: TDBEdit;
+    TabSheet3: TTabSheet;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
+    Label18: TLabel;
+    dbePeso: TDBEdit;
+    dbeLargura: TDBEdit;
+    dbeAltura: TDBEdit;
+    dbeCumprimento: TDBEdit;
+    dbeUnidadeVendaUtilizada: TDBEdit;
+    TabSheet4: TTabSheet;
+    Label19: TLabel;
+    dbcbxMovEstoque: TDBCheckBox;
+    dbcbxAlteraPrecoDurantVenda: TDBCheckBox;
+    dbeEstoqueInicial: TDBEdit;
+    Panel2: TPanel;
+    DBNavigator1: TDBNavigator;
+    Panel6: TPanel;
+    Image1: TImage;
+    PopupMenu1: TPopupMenu;
+    ESTE1: TMenuItem;
+    ESTE21: TMenuItem;
+    procedure FormCreate(Sender: TObject);
+    procedure sbAbrirClick(Sender: TObject);
+    procedure sbInsertClick(Sender: TObject);
+    procedure sbUpdateClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure sbSaveClick(Sender: TObject);
+    procedure sbCancelClick(Sender: TObject);
+    procedure sbDelClick(Sender: TObject);
+    procedure dbeVlrCustoExit(Sender: TObject);
+    procedure dbeVlrDespesasExit(Sender: TObject);
+    procedure dbeVlrOutrasDespesasExit(Sender: TObject);
+    procedure dbeVlrCustoFinalChange(Sender: TObject);
+    procedure dbeVlrVendaSugeridoChange(Sender: TObject);
+    procedure dbeVlrVendaUtilizadoExit(Sender: TObject);
+  private
+    { Private declarations }
+    FStatus : string;
+    FLocate : TLocate;
+    FArray : TDynamicstringArray;
+    FCdsArray : TClientDataSet;
+    function GetStatus : string;
+    procedure SetStatus(Const Value : string);
+    procedure ProviderFlags;
+    procedure FormataValorDbedit(pDbEdit:TDBEdit);
+    procedure PreencheCdsArray;
+  public
+    { Public declarations }
+    procedure Abrir;
+    procedure Inserir;
+    procedure Editar;
+    procedure Deletar;
+    procedure Gravar;
+    procedure CompControle;
+    procedure Criar;
+  property qStatus : string read GetStatus write SetStatus;
+  property cLocate : TLocate read FLocate write FLocate;
+  property qCdsArray : TClientDataSet read FCdsArray write FCdsArray;
+
+  end;
+
+var
+  frmProducts: TfrmProducts;
+  TD : TDBXTransaction;
+
+const
+      csQry = 'SELECT                         '+
+              '   ID                          '+
+              '   ,NOME                       '+
+              '   ,CODIGOINTERNO              '+
+              '   ,IDFORNECEDOR               '+
+              '   ,IDPRODUTOGRUPO             '+
+              '   ,IDPRODUTOSUBGRUPO          '+
+              '   ,CODIGOBARRAS               '+
+              '   ,IDPRODUTOMARCA             '+
+              '   ,IDPRODUTOMODELO            '+
+              '   ,DESCRICAO                  '+
+              '   ,VLRCUSTO                   '+
+              '   ,VLRDESPESAS                '+
+              '   ,VLRDESPESASOUTROS          '+
+              '   ,VLRCUSTOFINAL              '+
+              '   ,VLRLUCROREQUERIDO          '+
+              '   ,VLRVENDASUGERIDO           '+
+              '   ,VLRVENDAUTILIZADO          '+
+              '   ,PESO                       '+
+              '   ,LARGURA                    '+
+              '   ,ALTURA                     '+
+              '   ,COMPRIMENTO                '+
+              '   ,COMISSAO                   '+
+              '   ,UNIDADEVENDA               '+
+              '   ,STATUS                     '+
+              '   ,MOVIMENTAESTOQUE           '+
+              '   ,ALTERAPRECONAVENDA         '+
+              '   ,QTDESTOQUEINICIAL          '+
+              ' FROM TBCADPRODUTOS            '+
+              ' WHERE 1 = 1                   ';
+
+      csTable = 'TBCADPRODUTOS';
+      csGen = 'GEN_ID_PRODUTO';
+      cdFieldKey_1 = 'ID';
+
+      csArrayForGridQtd = 10;
+      csArrayForGrid: array[1..csArrayForGridQtd] of string =
+        (
+          'ID',
+          'NOME',
+          'DATCADASTRO',
+          'VLRCUSTO',
+          'VLRDESPESAS',
+          'VLRDESPESASOUTROS',
+          'VLRCUSTOFINAL',
+          'VLRLUCROREQUERIDO',
+          'VLRVENDASUGERIDO',
+          'VLRVENDAUTILIZADO'
+      );
+
+
+implementation
+
+{$R *.dfm}
+
+uses udmMasterDataModule, uMess, uSetiConfig, udmGen, uSetiUseful;
+
+procedure TfrmProducts.Criar;
+var
+  i : Integer;
+begin
+    try
+      try
+         with (dmMasterDataModule) do
+          begin
+              UseComponentsDmSeti(1);
+              with (SetiSqlQuery) do
+               begin
+                SQL.Add(csQry);
+                dsPadrao.DataSet := SetiCds;
+               end
+          end;
+    finally
+
+    end;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TfrmProducts.dbeVlrCustoExit(Sender: TObject);
+begin
+  FormataValorDbedit(dbeVlrCusto);
+end;
+
+procedure TfrmProducts.dbeVlrCustoFinalChange(Sender: TObject);
+begin
+  FormataValorDbedit(dbeVlrCustoFinal);
+end;
+
+procedure TfrmProducts.dbeVlrDespesasExit(Sender: TObject);
+begin
+  FormataValorDbedit(dbeVlrDespesas);
+end;
+
+procedure TfrmProducts.dbeVlrOutrasDespesasExit(Sender: TObject);
+begin
+  FormataValorDbedit(dbeVlrOutrasDespesas);
+end;
+
+procedure TfrmProducts.dbeVlrVendaSugeridoChange(Sender: TObject);
+begin
+  FormataValorDbedit(dbeVlrVendaSugerido);
+end;
+
+procedure TfrmProducts.dbeVlrVendaUtilizadoExit(Sender: TObject);
+begin
+  FormataValorDbedit(dbeVlrVendaUtilizado);
+end;
+
+procedure TfrmProducts.Deletar;
+var
+  vRec : Integer;
+begin
+    try
+      if MessageDlg('Confirmar exclusão do registro?',mtConfirmation,
+      [mbYes,mbNo],0) = mrYes then
+      begin
+          dmMasterDataModule.SetiCds.Delete;
+          dmMasterDataModule.SetiCds.ApplyUpdates(0);
+          dmMasterDataModule.SetiCds.Refresh;
+          SetiMens(1,'Registro excluído com sucesso.');
+          vRec := dmMasterDataModule.SetiCds.RecordCount;
+          if vRec > 0 then
+            SetStatus('ABERTO') else
+          SetStatus('INICIAL');
+          CompControle;
+      end;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+procedure TfrmProducts.Editar;
+begin
+    try
+      dmMasterDataModule.SetiCds.Edit;
+      SetStatus('UPDATE');
+      CompControle;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+procedure TfrmProducts.FormataValorDbedit(pDbEdit: TDBEdit);
+begin
+    {TDBEdit(pDbEdit).Text := FormatFloat('R$ ###,##0.00',
+    StrToFloatDef(TDBEdit(pDbEdit).Text,0));}
+end;
+
+procedure TfrmProducts.FormCreate(Sender: TObject);
+begin
+    try
+      dmMasterDataModule := TdmMasterDataModule.Create(Nil);
+      Criar;
+      dmMasterDataModule.fnTableInforFS8F1(csTable);
+
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+procedure TfrmProducts.FormShow(Sender: TObject);
+begin
+    SetStatus('INICIAL');
+    CompControle;
+end;
+
+function TfrmProducts.GetStatus: string;
+begin
+    Result := FStatus;
+end;
+
+procedure TfrmProducts.Gravar;
+begin
+    try
+      try
+        if (dbeNome.Text = '') then
+        begin
+          SetiMens(2,'Informação no campo nome é obrigatório');
+          dbeNome.SetFocus;
+          Exit;
+        end;
+        if (qStatus = 'INSERT') or (qStatus = 'UPDATE') then
+        begin
+          if (qStatus = 'INSERT') then
+          begin
+            if (dbcbxAtivo.Checked = True) then
+              dmMasterDataModule.SetiCds.FieldByName('STATUS').Value := 'S' else
+            dmMasterDataModule.SetiCds.FieldByName('STATUS').Value := 'N';
+          end;
+          dmMasterDataModule.SetiCds.Post;
+          dmMasterDataModule.SetiCds.ApplyUpdates(0);
+          SetiMens(1,'Procedimento concluído');
+          dmMasterDataModule.SetiCds.Close;
+        end;
+        SetStatus('INICIAL');
+        CompControle;
+      finally
+
+      end;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+procedure TfrmProducts.CompControle;
+var
+  iStatus : Integer;
+  reg : Boolean;
+  i : Integer;
+begin
+    try
+      if (dmMasterDataModule.SetiCds.IsEmpty) then
+        reg := False else reg := True;
+      if (qStatus = 'INICIAL') then iStatus := 1 else
+      if (qStatus = 'ABERTO') then iStatus := 2 else
+      if (qStatus = 'INSERT') then iStatus := 3 else
+      if (qStatus = 'UPDATE') then iStatus := 4;
+      if (iStatus in [2]) and (reg = False) then iStatus := 0;
+
+      for I := 0 to ComponentCount -1 do
+      begin
+        if iStatus = 0 then
+        begin
+          if Components[i] is TDBEdit then
+            TDBEDIT(Components[i]).ReadOnly := True else
+          if Components[i] is TMaskEdit then
+            TMaskEdit(Components[i]).ReadOnly := True else
+          if Components[i] is TDBRadioGroup then
+            TDBRadioGroup(Components[i]).ReadOnly := True else
+          if Components[i] is TDBMemo then
+            TDBMemo(Components[i]).ReadOnly := True else
+          if Components[i] is TDBComboBox then
+            TDBComboBox(Components[i]).ReadOnly := True else
+          if Components[i] is TDBLookupComboBox then
+            TDBLookupComboBox(Components[i]).ReadOnly := True else
+          if Components[i] is TDBCheckBox then
+            TDBCheckBox(Components[i]).ReadOnly := True;
+          if Components[i] is TMaskEdit then
+          begin
+            TMaskEdit(Components[i]).Clear;
+            TMaskEdit(Components[i]).ReadOnly := True;
+          end;
+        end else
+        if iStatus = 1 then
+        begin
+          if Components[i] is TDBEdit then
+            TDBEDIT(Components[i]).ReadOnly := True else
+          if Components[i] is TMaskEdit then
+            TMaskEdit(Components[i]).ReadOnly := True else
+          if Components[i] is TDBRadioGroup then
+            TDBRadioGroup(Components[i]).ReadOnly := True else
+          if Components[i] is TDBMemo then
+            TDBMemo(Components[i]).ReadOnly := True else
+          if Components[i] is TDBComboBox then
+            TDBComboBox(Components[i]).ReadOnly := True else
+          if Components[i] is TDBLookupComboBox then
+            TDBLookupComboBox(Components[i]).ReadOnly := True else
+          if Components[i] is TDBCheckBox then
+            TDBCheckBox(Components[i]).ReadOnly := True;
+          if Components[i] is TMaskEdit then
+          begin
+            TMaskEdit(Components[i]).Clear;
+            TMaskEdit(Components[i]).ReadOnly := True;
+          end;
+        end else
+        if iStatus = 2 then
+        begin
+          if Components[i] is TDBEdit then
+            TDBEDIT(Components[i]).ReadOnly := True else
+          if Components[i] is TMaskEdit then
+            TMaskEdit(Components[i]).ReadOnly := True else
+          if Components[i] is TDBRadioGroup then
+            TDBRadioGroup(Components[i]).ReadOnly := True else
+          if Components[i] is TDBMemo then
+            TDBMemo(Components[i]).ReadOnly := True else
+          if Components[i] is TDBComboBox then
+            TDBComboBox(Components[i]).ReadOnly := True else
+          if Components[i] is TDBLookupComboBox then
+            TDBLookupComboBox(Components[i]).ReadOnly := True else
+          if Components[i] is TDBCheckBox then
+            TDBCheckBox(Components[i]).ReadOnly := True;
+          if Components[i] is TMaskEdit then
+          begin
+            TMaskEdit(Components[i]).ReadOnly := True;
+          end;
+        end else
+        if iStatus = 3 then
+        begin
+          if Components[i] is TDBEdit then
+            TDBEDIT(Components[i]).ReadOnly := False else
+          if Components[i] is TMaskEdit then
+            TMaskEdit(Components[i]).ReadOnly := False else
+          if Components[i] is TDBRadioGroup then
+            TDBRadioGroup(Components[i]).ReadOnly := False else
+          if Components[i] is TDBMemo then
+            TDBMemo(Components[i]).ReadOnly := False else
+          if Components[i] is TDBComboBox then
+            TDBComboBox(Components[i]).ReadOnly := False else
+          if Components[i] is TDBLookupComboBox then
+            TDBLookupComboBox(Components[i]).ReadOnly := False else
+          if Components[i] is TDBCheckBox then
+            TDBCheckBox(Components[i]).ReadOnly := False;
+          if Components[i] is TMaskEdit then
+          begin
+            TMaskEdit(Components[i]).ReadOnly := False;
+          end;
+        end else
+        if iStatus = 4 then
+        begin
+          if Components[i] is TDBEdit then
+            TDBEDIT(Components[i]).ReadOnly := False else
+          if Components[i] is TMaskEdit then
+            TMaskEdit(Components[i]).ReadOnly := False else
+          if Components[i] is TDBRadioGroup then
+            TDBRadioGroup(Components[i]).ReadOnly := False else
+          if Components[i] is TDBMemo then
+            TDBMemo(Components[i]).ReadOnly := False else
+          if Components[i] is TDBComboBox then
+            TDBComboBox(Components[i]).ReadOnly := False else
+          if Components[i] is TDBLookupComboBox then
+            TDBLookupComboBox(Components[i]).ReadOnly := False else
+          if Components[i] is TDBCheckBox then
+            TDBCheckBox(Components[i]).ReadOnly := False;
+          if Components[i] is TMaskEdit then
+          begin
+            TMaskEdit(Components[i]).ReadOnly := False;
+          end;
+        end;
+      end;
+
+      if (iStatus in [0]) then  //INICIAL - SEM REGISTRO
+      begin
+        sbAbrir.Enabled := False;
+        sbInsert.Enabled := True;
+        sbUpdate.Enabled := False;
+        sbDel.Enabled := False;
+        sbSave.Enabled := False;
+        sbCancel.Enabled := True;
+        PageControl1.ActivePageIndex := 0;
+        DBNavigator1.Enabled := False;
+      end else
+      if (iStatus in [1]) then  //INICIAL
+      begin
+        sbAbrir.Enabled := True;
+        sbInsert.Enabled := True;
+        sbUpdate.Enabled := False;
+        sbDel.Enabled := False;
+        sbSave.Enabled := False;
+        sbCancel.Enabled := False;
+        PageControl1.ActivePageIndex := 0;
+        DBNavigator1.Enabled := False;
+      end else
+      if (iStatus in [2]) then //ABERTO
+      begin
+        sbAbrir.Enabled := False;
+        sbInsert.Enabled := True;
+        sbUpdate.Enabled := True;
+        sbDel.Enabled := True;
+        sbSave.Enabled := False;
+        sbCancel.Enabled := True;
+        DBNavigator1.Enabled := True;
+      end else
+      if (iStatus in [3]) then //INSERT
+      begin
+        sbAbrir.Enabled := False;
+        sbInsert.Enabled := False;
+        sbUpdate.Enabled := False;
+        sbDel.Enabled := False;
+        sbSave.Enabled := True;
+        sbCancel.Enabled := True;
+        DBNavigator1.Enabled := False;
+        PageControl1.ActivePageIndex := 0;
+        dbeNome.SetFocus;
+      end else
+      if (iStatus in [4]) then //UPDATE
+      begin
+        sbAbrir.Enabled := False;
+        sbInsert.Enabled := False;
+        sbUpdate.Enabled := False;
+        sbDel.Enabled := False;
+        sbSave.Enabled := True;
+        sbCancel.Enabled := True;
+        DBNavigator1.Enabled := False;
+        PageControl1.ActivePageIndex := 0;
+        dbeNome.SetFocus;
+      end;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+procedure TfrmProducts.Abrir;
+var
+  i : Integer;
+begin
+    try
+      PreencheCdsArray;
+      cLocate := TLocate.Create;
+      dsPadrao.DataSet :=
+        cLocate.GetSearchDataSetProvider(
+                                1,
+                                dmMasterDataModule.SetiCds,
+                                csTable,
+                                cdFieldKey_1,
+                                cdFieldKey_1,
+                                'Consulta de cliente por nome do form',
+                                csQry,
+                                qCdsArray);
+      DBNavigator1.DataSource := dsPadrao;
+      SetStatus('ABERTO');
+      CompControle;
+
+      {
+
+      dmMasterDataModule.SetiCds.Close;
+      dmMasterDataModule.SetiCds.Open;
+      dmMasterDataModule.SetiCds.IndexFieldNames := cdFieldKey_1;
+      dmMasterDataModule.SetiCds.First;     }
+     { ProviderFlags;
+      DBNavigator1.DataSource := dsPadrao;
+      SetStatus('ABERTO');
+      CompControle;       }
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TfrmProducts.Inserir;
+begin
+    try
+      dmMasterDataModule.SetiCds.Open;
+      dmMasterDataModule.SetiCds.Append;
+      dmGen := TdmGen.Create(Nil);
+      dmMasterDataModule.SetiCds.FieldByName('ID').Value :=
+        dmGen.ProximoId(csGen);
+      dmGen.Free;
+      dbcbxAtivo.Checked := True;
+      dbcbxMovEstoque.Checked := True;
+      dbcbxAlteraPrecoDurantVenda.Checked := False;
+      SetStatus('INSERT');
+      CompControle;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+procedure TfrmProducts.PreencheCdsArray;
+var
+  i : Integer;
+  vNameArray : string;
+begin
+   qCdsArray := TClientDataSet.Create(Self);
+   qCdsArray.Close;
+   qCdsArray.FieldDefs.Clear;
+   qCdsArray.FieldDefs.add('DESCRIPTION',ftString,50);
+   qCdsArray.CreateDataSet;
+
+      for i := 1 to Length(csArrayForGrid) do
+      begin
+        vNameArray := csArrayForGrid[i];
+        qCdsArray.Append;
+        qCdsArray.FieldByName('DESCRIPTION').AsString := vNameArray;
+        qCdsArray.Post;
+      end;
+
+
+
+
+end;
+
+procedure TfrmProducts.ProviderFlags;
+var
+  i, i2 : Integer;
+  vTab : string;
+  vteste : Variant;
+  vCont : Integer;
+  vNameField : string;
+  vNameArray : string;
+  vval : Boolean;
+begin
+  vTab := csTable;
+  with (dmMasterDataModule) do
+  begin
+    for I := 0 to Pred(SetiCds.FieldCount) do
+    begin
+      //RETORNAR CAPTION
+      SetiCds.Fields[i].DisplayLabel :=
+        fnTableInforFS8F1(vTab,SetiCds.Fields[i].FieldName,3);
+      if (SetiCds.Fields[i].DataType = ftSingle) then //FLOAT
+        TFloatField(SetiCds.Fields[i]).DisplayFormat := '#,##0.00';
+      if (SetiCds.Fields[i].DataType = ftFMTBcd) then //NUMERIC(15,2)
+        TFloatField(SetiCds.Fields[i]).currency := True;
+
+      vCont := 0;
+      vval := False;
+      //VERIFICAR SE ESTA NO ARRAY
+      for i2 := 1 to csArrayForGridQtd do
+      begin
+        vNameField := '';
+        vNameArray := csArrayForGrid[i2];
+        vNameField := SetiCds.Fields[i].FieldName;
+        if (vNameField = vNameArray) then
+        begin
+          vval := True;
+          SetiCds.Fields[i].Visible := True;
+          if SetiCds.Fields[i].DataType = ftString then
+            SetiCds.Fields[i].DisplayWidth := 20
+          else
+          begin
+            SetiCds.Fields[i].DisplayWidth := 10;
+          end;
+          if SetiCds.Fields[i].FieldName = 'NOME' then
+            SetiCds.Fields[i].DisplayWidth := 40;
+          Break;
+        end;
+        vCont := vCont +1;
+        if (vCont = csArrayForGridQtd)  then
+        begin
+          if (vval = False) then
+            SetiCds.Fields[i].Visible := False;
+          Break;
+        end;
+      end;
+    end;
+  end;
+end;
+
+procedure TfrmProducts.SetStatus(const Value: string);
+begin
+    FStatus := Value;
+end;
+
+procedure TfrmProducts.sbAbrirClick(Sender: TObject);
+begin
+    try
+      Abrir;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+procedure TfrmProducts.sbCancelClick(Sender: TObject);
+begin
+    try
+      dmMasterDataModule.SetiCds.Cancel;
+      dmMasterDataModule.SetiCds.Close;
+      SetStatus('INICIAL');
+      CompControle;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+procedure TfrmProducts.sbDelClick(Sender: TObject);
+begin
+    try
+      Deletar;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+procedure TfrmProducts.sbInsertClick(Sender: TObject);
+begin
+    try
+      Inserir;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+procedure TfrmProducts.sbSaveClick(Sender: TObject);
+begin
+    Gravar;
+end;
+
+procedure TfrmProducts.sbUpdateClick(Sender: TObject);
+begin
+    try
+      Editar;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+end.

@@ -1,0 +1,39 @@
+unit uConstantesDB;
+
+interface
+
+Const
+      scADOFormsDeclare =
+                          '   USE [sfdb]                                '#13+
+                          '   DECLARE @ID INT;                          '#13+
+                          '   DECLARE @FORMNAME VARCHAR(100);           '#13+
+                          '   DECLARE @FORMCAPTION VARCHAR(10);         '#13+
+                          '   DECLARE @FORMTAG INT;                     '#13+
+                          '   DECLARE @FORMSTATUS CHAR(1)               ';
+
+      scADOFormsParam1 =  '   SET @ID = :ID ';
+      scADOFormsParam2 =  '   SET @FORMNAME = :FORMNAME ';
+      scADOFormsParam3 =  '   SET @FORMCAPTION = :FORMCAPTION ';
+      scADOFormsParam4 =  '   SET @FORMTAG = :FORMTAG ';
+      scADOFormsParam5 =  '   SET @FORMSTATUS = :FORMSTATUS ';
+
+      scADOFormsQry =
+                          '   SELECT [ID]                               '#13+
+                          '      ,[FORMNAME]                            '#13+
+                          '      ,[FORMCAPTION]                         '#13+
+                          '      ,[FORMTAG]                             '#13+
+                          '      ,[FORMSTATUS]                          '#13+
+                          '   FROM [dbo].[TBFORMS] WITH(NOLOCK)         '#13+
+                          '   WHERE 1 = 1                               ';
+
+      scSQLFormsQry =       ' SELECT ID                                 '#13+
+                            '      ,FORMNAME                            '#13+
+                            '      ,FORMCAPTION                         '#13+
+                            '      ,FORMTAG                             '#13+
+                            '      ,FORMSTATUS                          '#13+
+                            '  FROM TBFORMS                             ';
+
+
+implementation
+
+end.

@@ -1,0 +1,61 @@
+unit frmccnCadEmpresa;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrmStanRec, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Vcl.DBCtrls, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Mask;
+
+type
+  TfrmStanRec1 = class(TfrmStanRec)
+    lbCodUnico: TLabel;
+    dbeCodUnico: TDBEdit;
+    lbNomFantasia: TLabel;
+    dbeNomeFantasia: TDBEdit;
+    lbRazaoSocial: TLabel;
+    dbeRazaoSocial: TDBEdit;
+    lbNumCnpj: TLabel;
+    dbeCnpj: TDBEdit;
+    lbInscricaoEs: TLabel;
+    dbeInscricaoEstadual: TDBEdit;
+    lbInscricaoMunicipal: TLabel;
+    dbeInscricaoMunicipal: TDBEdit;
+    lbIE: TLabel;
+    dbeIEST: TDBEdit;
+    lbCep: TLabel;
+    dbeCep: TDBEdit;
+    lbLogradouro: TLabel;
+    dbeLogradouro: TDBEdit;
+    lbNum: TLabel;
+    dbeNumero: TDBEdit;
+    lbComplemento: TLabel;
+    dbeComplemento: TDBEdit;
+    lbBairro: TLabel;
+    dbeBairro: TDBEdit;
+    lbCidade: TLabel;
+    dbeCidade: TDBEdit;
+    lbUf: TLabel;
+    dbeUF: TDBEdit;
+    lbEmail: TLabel;
+    dbeEmail: TDBEdit;
+    lbTelefone1: TLabel;
+    dbeTel1: TDBEdit;
+    lbTelefone2: TLabel;
+    dbeTel2: TDBEdit;
+    Label1: TLabel;
+    dbeFax: TDBEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmStanRec1: TfrmStanRec1;
+
+implementation
+
+{$R *.dfm}
+
+end.

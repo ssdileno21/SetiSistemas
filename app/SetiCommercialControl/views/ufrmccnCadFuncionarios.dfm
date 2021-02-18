@@ -1,0 +1,393 @@
+inherited frmccnCadFuncionarios: TfrmccnCadFuncionarios
+  Tag = 5
+  Caption = 'Cadastro de funcion'#225'rios'
+  ClientHeight = 612
+  ClientWidth = 939
+  ExplicitWidth = 955
+  ExplicitHeight = 651
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    Width = 939
+    Height = 400
+    ExplicitWidth = 939
+    ExplicitHeight = 400
+    object Label1: TLabel
+      Left = 15
+      Top = 29
+      Width = 33
+      Height = 13
+      Caption = 'C'#243'digo'
+    end
+    object Label2: TLabel
+      Left = 145
+      Top = 29
+      Width = 27
+      Height = 13
+      Caption = 'Nome'
+    end
+    object Label3: TLabel
+      Left = 565
+      Top = 29
+      Width = 70
+      Height = 13
+      Anchors = [akTop, akRight]
+      Caption = 'C'#243'digo interno'
+    end
+    object Label16: TLabel
+      Left = 684
+      Top = 29
+      Width = 85
+      Height = 13
+      Anchors = [akTop, akRight]
+      Caption = 'Data do Cadastro'
+    end
+    object Label18: TLabel
+      Left = 803
+      Top = 29
+      Width = 95
+      Height = 13
+      Anchors = [akTop, akRight]
+      Caption = 'Data movimenta'#231#227'o'
+    end
+    object Label5: TLabel
+      Left = 14
+      Top = 217
+      Width = 58
+      Height = 13
+      Caption = 'Observa'#231#227'o'
+    end
+    object Label4: TLabel
+      Left = 15
+      Top = 80
+      Width = 24
+      Height = 13
+      Caption = 'Email'
+    end
+    object Label13: TLabel
+      Left = 445
+      Top = 80
+      Width = 48
+      Height = 13
+      Caption = 'CPF/CNPJ'
+    end
+    object Label14: TLabel
+      Left = 564
+      Top = 80
+      Width = 42
+      Height = 13
+      Caption = 'Telefone'
+    end
+    object Label15: TLabel
+      Left = 683
+      Top = 80
+      Width = 33
+      Height = 13
+      Caption = 'Celular'
+    end
+    object Label17: TLabel
+      Left = 803
+      Top = 80
+      Width = 79
+      Height = 13
+      Caption = 'Data anivers'#225'rio'
+    end
+    object Label6: TLabel
+      Left = 14
+      Top = 125
+      Width = 19
+      Height = 13
+      Caption = 'CEP'
+    end
+    object Label7: TLabel
+      Left = 133
+      Top = 125
+      Width = 55
+      Height = 13
+      Caption = 'Logradouro'
+    end
+    object Label8: TLabel
+      Left = 577
+      Top = 125
+      Width = 12
+      Height = 13
+      Anchors = [akTop, akRight]
+      Caption = 'N'#186
+    end
+    object Label9: TLabel
+      Left = 698
+      Top = 125
+      Width = 65
+      Height = 13
+      Caption = 'Complemento'
+    end
+    object Label10: TLabel
+      Left = 14
+      Top = 169
+      Width = 28
+      Height = 13
+      Caption = 'Bairro'
+    end
+    object Label11: TLabel
+      Left = 389
+      Top = 169
+      Width = 33
+      Height = 13
+      Caption = 'Cidade'
+    end
+    object Label12: TLabel
+      Left = 854
+      Top = 169
+      Width = 13
+      Height = 13
+      Anchors = [akTop, akRight]
+      Caption = 'UF'
+    end
+    object dbeCodigo: TDBEdit
+      Left = 14
+      Top = 48
+      Width = 123
+      Height = 21
+      Color = clInfoBk
+      DataField = 'ID'
+      DataSource = dsStandard
+      Enabled = False
+      ReadOnly = True
+      TabOrder = 0
+    end
+    object dbeNome: TDBEdit
+      Left = 145
+      Top = 48
+      Width = 412
+      Height = 21
+      Anchors = [akLeft, akTop, akRight]
+      DataField = 'NOME'
+      DataSource = dsStandard
+      TabOrder = 1
+    end
+    object dbeCodInterno: TDBEdit
+      Left = 565
+      Top = 48
+      Width = 111
+      Height = 21
+      Anchors = [akTop, akRight]
+      DataField = 'CODIGOINTERNO'
+      DataSource = dsStandard
+      TabOrder = 2
+    end
+    object DBEdit1: TDBEdit
+      Left = 684
+      Top = 48
+      Width = 111
+      Height = 21
+      Anchors = [akTop, akRight]
+      Color = clInfoBk
+      DataField = 'DATCADASTRO'
+      DataSource = dsStandard
+      Enabled = False
+      TabOrder = 3
+    end
+    object DBEdit3: TDBEdit
+      Left = 803
+      Top = 48
+      Width = 112
+      Height = 21
+      Anchors = [akTop, akRight]
+      Color = clInfoBk
+      DataField = 'DATULTMOVIMENTACAO'
+      DataSource = dsStandard
+      Enabled = False
+      TabOrder = 4
+    end
+    object dbeObservacao: TDBMemo
+      Left = 14
+      Top = 236
+      Width = 901
+      Height = 149
+      Anchors = [akLeft, akTop, akRight, akBottom]
+      DataField = 'OBSERVACAO'
+      DataSource = dsStandard
+      TabOrder = 17
+    end
+    object dbeEmail: TDBEdit
+      Left = 14
+      Top = 96
+      Width = 423
+      Height = 21
+      Anchors = [akLeft, akTop, akRight]
+      DataField = 'EMAIL'
+      DataSource = dsStandard
+      TabOrder = 5
+    end
+    object dbeCpfCnpj: TDBEdit
+      Left = 445
+      Top = 96
+      Width = 111
+      Height = 21
+      Anchors = [akTop, akRight]
+      DataField = 'CPFCNPJ'
+      DataSource = dsStandard
+      MaxLength = 11
+      TabOrder = 6
+    end
+    object dbeTelefone: TDBEdit
+      Left = 564
+      Top = 96
+      Width = 111
+      Height = 21
+      Anchors = [akTop, akRight]
+      DataField = 'NUMTELEFONE'
+      DataSource = dsStandard
+      MaxLength = 11
+      TabOrder = 7
+    end
+    object dbeCelular: TDBEdit
+      Left = 683
+      Top = 96
+      Width = 112
+      Height = 21
+      Anchors = [akTop, akRight]
+      DataField = 'NUMCELULAR'
+      DataSource = dsStandard
+      MaxLength = 11
+      TabOrder = 8
+    end
+    object dbeAniversario: TDBEdit
+      Left = 803
+      Top = 96
+      Width = 112
+      Height = 21
+      Hint = 'Deixar a data neste formato: ex: 01/01/2001'
+      Anchors = [akTop, akRight]
+      DataField = 'DATANIVERSARIO'
+      DataSource = dsStandard
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 9
+    end
+    object dbeCep: TDBEdit
+      Left = 14
+      Top = 142
+      Width = 111
+      Height = 21
+      DataField = 'LOGRADOUROCEP'
+      DataSource = dsStandard
+      MaxLength = 8
+      TabOrder = 10
+    end
+    object dbeLogradouro: TDBEdit
+      Left = 133
+      Top = 142
+      Width = 437
+      Height = 21
+      Anchors = [akLeft, akTop, akRight]
+      DataField = 'LOGRADOURO'
+      DataSource = dsStandard
+      TabOrder = 11
+    end
+    object dbeNum: TDBEdit
+      Left = 578
+      Top = 142
+      Width = 111
+      Height = 21
+      Anchors = [akTop, akRight]
+      DataField = 'LOGRADOURONUM'
+      DataSource = dsStandard
+      MaxLength = 8
+      TabOrder = 12
+    end
+    object dbeComp: TDBEdit
+      Left = 697
+      Top = 142
+      Width = 218
+      Height = 21
+      Anchors = [akTop, akRight]
+      DataField = 'LOGRADOUROCOMP'
+      DataSource = dsStandard
+      TabOrder = 13
+    end
+    object dbeBairro: TDBEdit
+      Left = 14
+      Top = 188
+      Width = 367
+      Height = 21
+      DataField = 'LOGRADOUROBAIRRO'
+      DataSource = dsStandard
+      TabOrder = 14
+    end
+    object dbeCidade: TDBEdit
+      Left = 389
+      Top = 188
+      Width = 457
+      Height = 21
+      Anchors = [akLeft, akTop, akRight]
+      DataField = 'LOGRADOUROCIDADE'
+      DataSource = dsStandard
+      TabOrder = 15
+    end
+    object dbeUf: TDBEdit
+      Left = 854
+      Top = 188
+      Width = 61
+      Height = 21
+      Anchors = [akTop, akRight]
+      DataField = 'LOGRADOUROUF'
+      DataSource = dsStandard
+      TabOrder = 16
+    end
+  end
+  inherited Panel4: TPanel
+    Width = 939
+    ExplicitWidth = 939
+    inherited DBNavigator1: TDBNavigator
+      Width = 931
+      Hints.Strings = ()
+      ExplicitWidth = 931
+    end
+  end
+  inherited SFPanel1: TSFPanel
+    Top = 581
+    Width = 939
+    ExplicitTop = 581
+    ExplicitWidth = 939
+  end
+  inherited Panel2: TPanel
+    Top = 445
+    Width = 939
+    Height = 136
+    ExplicitTop = 445
+    ExplicitWidth = 939
+    ExplicitHeight = 136
+    inherited DBGrid1: TDBGrid
+      Width = 933
+      Height = 130
+    end
+  end
+  inherited dsStandard: TDataSource
+    Left = 608
+    Top = 296
+  end
+  inherited sqlStandard: TSQLQuery
+    SQL.Strings = (
+      'SELECT * FROM TBCADFUNCIONARIOS'
+      'ORDER BY ID DESC')
+    Left = 352
+    Top = 296
+  end
+  inherited dspStandard: TDataSetProvider
+    Left = 440
+    Top = 296
+  end
+  inherited cdsStandard: TClientDataSet
+    Left = 520
+    Top = 296
+  end
+  inherited ConnStandard: TSQLConnection
+    Left = 272
+    Top = 296
+  end
+  inherited dsAux: TDataSource
+    Left = 144
+    Top = 296
+  end
+end

@@ -1,0 +1,153 @@
+unit uSetiFormModel;
+
+interface
+
+uses uMess, SysUtils;
+
+    type TSetiFormModel = class
+      private
+        FId : Integer;
+        FName : string;
+        FCaption : string;
+        FTag : string;
+        FStatus : string;
+        FState : Integer;
+      public
+        function GetId : Integer;
+        function GetName : string;
+        function GetCaption : string;
+        function GetTag : string;
+        function GetStatus : string;
+        function GetState : Integer;
+
+        procedure SetId(Const Value : Integer);
+        procedure SetName(Const Value : string);
+        procedure SetCaption(Const Value : string);
+        procedure SetTag(Const Value : string);
+        procedure SetStatus(Const Value : string);
+        procedure SetState(Const Value : Integer);
+
+      published
+        property qId : Integer read GetId write SetId;
+        property qName : string read GetName write SetName;
+        property qCaption : string read GetCaption write SetCaption;
+        property qTag : string read GetTag write SetTag;
+        property qStatus : string read GetStatus write SetStatus;
+        property qState : Integer read GetState write SetState;
+
+
+    end;
+
+implementation
+
+{ TSetiFormModel }
+
+function TSetiFormModel.GetCaption: string;
+begin
+    try
+        Result := FCaption;
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+function TSetiFormModel.GetId: Integer;
+begin
+    try
+        Result := FId;
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+function TSetiFormModel.GetName: string;
+begin
+    try
+        Result := FName;
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+function TSetiFormModel.GetState: Integer;
+begin
+    try
+        Result := FState;
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+function TSetiFormModel.GetStatus: string;
+begin
+    try
+        Result := FStatus;
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+function TSetiFormModel.GetTag: string;
+begin
+    try
+        Result := FTag;
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+procedure TSetiFormModel.SetCaption(const Value: string);
+begin
+    try
+        FCaption := UpperCase(Value);
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+procedure TSetiFormModel.SetId(const Value: Integer);
+begin
+    try
+        FId := Value;
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+procedure TSetiFormModel.SetName(const Value: string);
+begin
+    try
+      FName := UpperCase(Value);
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+procedure TSetiFormModel.SetState(const Value: Integer;
+begin
+    try
+      FState := UpperCase(Value);
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+procedure TSetiFormModel.SetStatus(const Value: string);
+begin
+    try
+      FStatus := Value;
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+procedure TSetiFormModel.SetTag(const Value: string);
+begin
+    try
+      FTag := Value;
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+end.

@@ -1,0 +1,6 @@
+inherited frmCadPadraoReduzido1: TfrmCadPadraoReduzido1
+  Caption = 'frmCadPadraoReduzido1'
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+end

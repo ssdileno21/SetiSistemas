@@ -1,0 +1,87 @@
+INSERT INTO TBFORMCOMPONENTS 
+(
+     ID                     
+    ,PROJECTID              
+    ,FORMID                 
+    ,COMPONENTNAME          
+    ,IDCOMPONENTSTYPE
+    --,COMPONENTTAG
+    --,COMPONENTCHILD
+    --,COMPONENTDADID
+    ,DBDATABASENAME
+    ,DBTABLENAME
+    ,DBFIELDNAME
+    ,IDFIELDTYPESDB
+    ,DEFAULTHAS             
+    ,DEFAULTVALUES          
+    --,REQUIRED
+    --,GENERATORHAS           
+    --,GENERATORNAME          
+    --,ENABLEALLSTATES
+    --,ENABLEINITIALSTATE
+    --,ENABLESEARCHSTATE      
+    --,ENABLEINSERTSTATE
+    --,ENABLEUPDATESTATE      
+    --,ENABLEDELETESTATE      
+    --,ENABLEOTHERSTATE       
+    --,CHECKALLSTATES         
+    --,CHECKINITIALSTATE      
+    --,CHECKSEARCHSTATE       
+    --,CHECKINSERTSTATE       
+    --,CHECKUPDATESTATE       
+    --,CHECKDELETESTATE       
+    --,CHECKOTHERSTATE        
+    --,ITEMINDEXALLSTATES     
+    --,ITEMINDEXINITIALSTATE  
+    --,ITEMINDEXSEARCHSTATE   
+    --,ITEMINDEXINSERTSTATE   
+    --,ITEMINDEXUPDATESTATE   
+    --,ITEMINDEXDELETESTATE   
+    --,ITEMINDEXOTHERSTATAE   
+    --,DATRECORD              
+    --,DATUPDATE              
+    --,DESCRIPTION
+) VALUES
+(
+     1                              /*ID INTEGER NOT NULL,*/
+    ,2                              /*PROJECTID INTEGER NOT NULL,*/
+    ,1                              /*FORMID INTEGER NOT NULL,*/
+    ,'DTP_DTACADASTRO'              /*COMPONENTNAME VARCHAR(50),*/
+    ,5                              /*IDCOMPONENTSTYPE INTEGER,*/
+    --,/*COMPONENTTAG INTEGER DEFAULT 0*/
+    --,/*COMPONENTCHILD CHAR(1) DEFAULT 'S',*/
+    --,/*COMPONENTDADID INTEGER,*/
+    ,'scm'                          /*DBDATABASENAME VARCHAR(50),*/
+    ,'TBCADPRODUTOS'                /*DBTABLENAME VARCHAR(50),*/
+    ,'DTACADASTRO'                  /*DBFIELDNAME VARCHAR(50),*/
+    ,8                              /*IDFIELDTYPESDB INTEGER,*/
+    ,'S'                            /*DEFAULTHAS CHAR(1) DEFAULT 'N',*/
+    ,'current_timestamp'            /*DEFAULTVALUES VARCHAR(255),*/
+    --,/*REQUIRED CHAR(1) DEFAULT 'N',*/
+    --,/*GENERATORHAS CHAR(1) DEFAULT 'N',*/
+    --,/*GENERATORNAME VARCHAR(50),*/
+    --,/*ENABLEALLSTATES CHAR(1) DEFAULT 'N',*/
+    --,/*ENABLEINITIALSTATE CHAR(1) DEFAULT 'N',*/
+    --,/*ENABLESEARCHSTATE CHAR(1) DEFAULT 'N',*/
+    --,/*ENABLEINSERTSTATE CHAR(1) DEFAULT 'N',*/
+    --,/*ENABLEUPDATESTATE CHAR(1) DEFAULT 'N',*/
+    --,/*ENABLEDELETESTATE CHAR(1) DEFAULT 'N',*/
+    --,/*ENABLEOTHERSTATE       CHAR(1) DEFAULT 'N',*/
+    --,/*CHECKALLSTATES         CHAR(1) DEFAULT 'N',*/
+    --,/*CHECKINITIALSTATE      CHAR(1) DEFAULT 'N',*/
+    --,/*CHECKSEARCHSTATE       CHAR(1) DEFAULT 'N',*/
+    --,/*CHECKINSERTSTATE       CHAR(1) DEFAULT 'N',*/
+    --,/*CHECKUPDATESTATE       CHAR(1) DEFAULT 'N',*/
+    --,/*CHECKDELETESTATE       CHAR(1) DEFAULT 'N',*/
+    --,/*CHECKOTHERSTATE        CHAR(1) DEFAULT 'N',*/
+    --,/*ITEMINDEXALLSTATES     INTEGER DEFAULT -1,*/
+    --,/*ITEMINDEXINITIALSTATE  INTEGER DEFAULT -1,*/
+    --,/*ITEMINDEXSEARCHSTATE   INTEGER DEFAULT -1,*/
+    --,/*ITEMINDEXINSERTSTATE   INTEGER DEFAULT -1,*/
+    --,/*ITEMINDEXUPDATESTATE   INTEGER DEFAULT -1,*/
+    --,/*ITEMINDEXDELETESTATE   INTEGER DEFAULT -1,*/
+    --,/*ITEMINDEXOTHERSTATAE   INTEGER DEFAULT -1,*/
+    --,/*DATRECORD              TIMESTAMP DEFAULT current_timestamp,*/
+    --,/*DATUPDATE              TIMESTAMP,*/
+    --,/*DESCRIPTION            VARCHAR(255)*/
+)

@@ -1,0 +1,5 @@
+inherited frmCadProdutoModelo: TfrmCadProdutoModelo
+  Caption = 'frmCadProdutoModelo'
+  PixelsPerInch = 96
+  TextHeight = 13
+end

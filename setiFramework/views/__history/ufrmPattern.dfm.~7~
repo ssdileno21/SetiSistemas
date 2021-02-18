@@ -1,0 +1,54 @@
+object frmPattern: TfrmPattern
+  Left = 0
+  Top = 0
+  BorderStyle = bsNone
+  Caption = 'frmPattern'
+  ClientHeight = 588
+  ClientWidth = 948
+  Color = clWhite
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 157
+    Height = 588
+    Align = alLeft
+    Color = clInactiveBorder
+    ParentBackground = False
+    TabOrder = 0
+  end
+  object PageControl1: TPageControl
+    AlignWithMargins = True
+    Left = 160
+    Top = 3
+    Width = 785
+    Height = 582
+    ActivePage = TabSheet1
+    Align = alClient
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    object TabSheet1: TTabSheet
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ExplicitTop = 24
+      ExplicitHeight = 554
+    end
+  end
+end

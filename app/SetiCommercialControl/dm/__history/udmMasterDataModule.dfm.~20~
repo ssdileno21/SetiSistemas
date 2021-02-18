@@ -1,0 +1,66 @@
+object dmMasterDataModule: TdmMasterDataModule
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
+  Height = 352
+  Width = 355
+  object SetiSqlConnection: TSQLConnection
+    Left = 40
+    Top = 16
+  end
+  object SetiSqlQuery: TSQLQuery
+    Params = <>
+    Left = 33
+    Top = 89
+  end
+  object SetiCds: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'SetiDsp'
+    Left = 33
+    Top = 196
+  end
+  object SetiDsp: TDataSetProvider
+    UpdateMode = upWhereKeyOnly
+    Left = 32
+    Top = 148
+  end
+  object SetiSqlHelp: TSQLQuery
+    Params = <>
+    Left = 131
+    Top = 88
+  end
+  object SetiCdsHelp: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'SetiDspHelp'
+    Left = 132
+    Top = 200
+  end
+  object SetiDspHelp: TDataSetProvider
+    DataSet = SetiSqlHelp
+    Left = 129
+    Top = 150
+  end
+  object SetiSqlStoredProc: TSQLStoredProc
+    Params = <>
+    Left = 144
+    Top = 16
+  end
+  object SetiSqlInfo: TSQLQuery
+    Params = <>
+    Left = 224
+    Top = 88
+  end
+  object SetiDspInfo: TDataSetProvider
+    Left = 224
+    Top = 148
+  end
+  object SetiCdsInfo: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'SetiDspInfo'
+    Left = 224
+    Top = 200
+  end
+end

@@ -1,0 +1,406 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{4D48A3CF-73B7-40E1-8929-FDA32BEC7129}</ProjectGuid>
+			<ProjectVersion>13.4</ProjectVersion>
+			<FrameworkType>VCL</FrameworkType>
+			<MainSource>SetiCommercialManager.dpr</MainSource>
+			<Base>True</Base>
+			<Config Condition="'$(Config)'==''">Debug</Config>
+			<Platform Condition="'$(Platform)'==''">Win32</Platform>
+			<TargetedPlatforms>1</TargetedPlatforms>
+			<AppType>Application</AppType>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Base)'=='true') or '$(Base_Win64)'!=''">
+			<Base_Win64>true</Base_Win64>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Base)'=='true') or '$(Base_Win32)'!=''">
+			<Base_Win32>true</Base_Win32>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win32)'!=''">
+			<Cfg_1_Win32>true</Cfg_1_Win32>
+			<CfgParent>Cfg_1</CfgParent>
+			<Cfg_1>true</Cfg_1>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_UsePackage>bindcompfmx;fmx;rtl;dbrtl;IndySystem;DbxClientDriver;bindcomp;inetdb;DBXInterBaseDriver;DataSnapCommon;DataSnapClient;DataSnapServer;DataSnapProviderClient;xmlrtl;DbxCommonDriver;IndyProtocols;DBXMySQLDriver;dbxcds;soaprtl;bindengine;DBXOracleDriver;CustomIPTransport;dsnap;DBXInformixDriver;fmxase;IndyCore;DBXFirebirdDriver;inet;fmxobj;inetdbxpress;DBXSybaseASADriver;fmxdae;IPIndyImpl;dbexpress;DataSnapIndy10ServerTransport;$(DCC_UsePackage)</DCC_UsePackage>
+			<Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
+			<DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
+			<DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
+			<DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
+			<DCC_E>false</DCC_E>
+			<DCC_N>false</DCC_N>
+			<DCC_S>false</DCC_S>
+			<DCC_F>false</DCC_F>
+			<DCC_K>false</DCC_K>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base_Win64)'!=''">
+			<DCC_UsePackage>DBXOdbcDriver;DBXSybaseASEDriver;vclimg;vcldb;vclactnband;bindcompvcl;vcldsnap;vclie;vcltouch;DBXDb2Driver;websnap;VclSmp;vcl;DBXMSSQLDriver;dsnapcon;vclx;webdsnap;$(DCC_UsePackage)</DCC_UsePackage>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base_Win32)'!=''">
+			<DCC_UsePackage>vcldbx;frx16;TeeDB;SetiTabSheet;Rave100VCL;vclib;Tee;inetdbbde;DBXOdbcDriver;svnui;ibxpress;DBXSybaseASEDriver;vclimg;fmi;intrawebdb_120_160;frxDB16;fs16;TeeUI;FMXTee;vcldb;vclactnband;bindcompvcl;vcldsnap;vclie;vcltouch;Intraweb_120_160;DBXDb2Driver;websnap;vclribbon;VclSmp;fsDB16;frxe16;vcl;DataSnapConnectors;DBXMSSQLDriver;CloudService;FmxTeeUI;dsnapcon;vclx;webdsnap;svn;bdertl;adortl;$(DCC_UsePackage)</DCC_UsePackage>
+			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+			<DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
+			<VerInfo_Locale>1033</VerInfo_Locale>
+			<Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+			<VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+			<DCC_Optimize>false</DCC_Optimize>
+			<DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
+			<DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
+			<DCC_RemoteDebug>true</DCC_RemoteDebug>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+			<DCC_ExeOutput>C:\SetiSistemas\projects\SetiCommercialManager\bin\</DCC_ExeOutput>
+			<DCC_DcuOutput>C:\SetiSistemas\projects\setiFramework\dcu\</DCC_DcuOutput>
+			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+			<VerInfo_Locale>1033</VerInfo_Locale>
+			<DCC_RemoteDebug>false</DCC_RemoteDebug>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<DCC_DebugInformation>false</DCC_DebugInformation>
+		</PropertyGroup>
+		<ItemGroup>
+			<DelphiCompile Include="$(MainSource)">
+				<MainSource>MainSource</MainSource>
+			</DelphiCompile>
+			<DCCReference Include="frameworkFiles\views\ufrmForms.pas">
+				<Form>frmForms</Form>
+			</DCCReference>
+			<DCCReference Include="frameworkFiles\views\ufrmLogin.pas">
+				<Form>frmLogin</Form>
+			</DCCReference>
+			<DCCReference Include="frameworkFiles\views\ufrmMain.pas">
+				<Form>frmMain</Form>
+			</DCCReference>
+			<DCCReference Include="frameworkFiles\views\ufrmPattern.pas">
+				<Form>frmPattern</Form>
+			</DCCReference>
+			<DCCReference Include="frameworkFiles\views\ufrmSplash.pas">
+				<Form>frmSplash</Form>
+			</DCCReference>
+			<DCCReference Include="frameworkFiles\views\ufrmStandardReg.pas">
+				<Form>frmStandardReg</Form>
+			</DCCReference>
+			<DCCReference Include="frameworkFiles\views\ufrmTesteHeranca.pas">
+				<Form>frmTesteHeranca</Form>
+			</DCCReference>
+			<DCCReference Include="frameworkFiles\views\ufrmTestePesquisa.pas">
+				<Form>frmTestePesquisa</Form>
+			</DCCReference>
+			<DCCReference Include="frameworkFiles\views\ufrmTestePesquisa2.pas">
+				<Form>frmTestePesquisa2</Form>
+			</DCCReference>
+			<DCCReference Include="frameworkFiles\views\ufrmToLocate.pas">
+				<Form>frmToLocate</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmCadClientes.pas">
+				<Form>frmCadClientes</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmCadFornecedor.pas">
+				<Form>frmCadFornecedor</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmCadGrupoProdutos.pas">
+				<Form>frmCadGrupoProdutos</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmCadMarcasProdutos.pas">
+				<Form>frmCadMarcasProdutos</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmCadModeloProdutos.pas">
+				<Form>frmCadModeloProdutos</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmCadProdutos.pas">
+				<Form>frmCadProdutos</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmCadServicos.pas">
+				<Form>frmCadServicos</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmCadTransportadoras.pas">
+				<Form>frmCadTransportadoras</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmFinContasPagar.pas">
+				<Form>frmFinContasPagar</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmFinContasReceber.pas">
+				<Form>frmFinContasReceber</Form>
+			</DCCReference>
+			<DCCReference Include="frameworkFiles\class\uLocate.pas"/>
+			<DCCReference Include="frameworkFiles\class\uMess.pas"/>
+			<DCCReference Include="frameworkFiles\class\uSetiConfig.pas"/>
+			<DCCReference Include="frameworkFiles\class\uSetiConnects.pas"/>
+			<DCCReference Include="frameworkFiles\class\uSetiFrameworHelp.pas"/>
+			<DCCReference Include="frameworkFiles\class\uSetiFramework.pas"/>
+			<DCCReference Include="frameworkFiles\class\uSetiSearchType.pas"/>
+			<DCCReference Include="frameworkFiles\class\uSetiUseful.pas"/>
+			<DCCReference Include="views\ufrmFinFluxoCaixa.pas">
+				<Form>frmFinFluxoCaixa</Form>
+			</DCCReference>
+			<DCCReference Include="frameworkFiles\views\ufrmStandardItemReg.pas">
+				<Form>frmStandardItemReg</Form>
+			</DCCReference>
+			<DCCReference Include="frameworkFiles\views\ufrmFinBancos.pas">
+				<Form>frmFinBancos</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmFinContasBancarias.pas">
+				<Form>frmFinContasBancarias</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmFinFormasPagto.pas">
+				<Form>frmFinFormasPagto</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmFinContas.pas">
+				<Form>frmFinContas</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmGerConfiguracoesGerais.pas">
+				<Form>frmGerConfiguracoesGerais</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmGerCadGrupos.pas">
+				<Form>frmGerCadGrupos</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmGerCadUsuarios.pas">
+				<Form>frmGerCadUsuarios</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmDpCadFuncionario.pas">
+				<Form>frmDpCadFuncionario</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmDpCadCargos.pas">
+				<Form>frmDpCadCargos</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmDpCadFuncoes.pas">
+				<Form>frmDpCadFuncoes</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmDpCadComissoes.pas">
+				<Form>frmDpCadComissoes</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmInitialSetting.pas">
+				<Form>frmInitialSetting</Form>
+			</DCCReference>
+			<DCCReference Include="Dao\uClassDAO.pas"/>
+			<DCCReference Include="Dao\uClientesDao.pas"/>
+			<DCCReference Include="Dao\uConfiguracoesGeraisDao.pas"/>
+			<DCCReference Include="Dao\uContasBancariasDao.pas"/>
+			<DCCReference Include="Dao\uContasDao.pas"/>
+			<DCCReference Include="Dao\uContasPagarDao.pas"/>
+			<DCCReference Include="Dao\uContasReceberDao.pas"/>
+			<DCCReference Include="Dao\uEmpresasDao.pas"/>
+			<DCCReference Include="Dao\uFluxoCaixaDao.pas"/>
+			<DCCReference Include="Dao\uFormasPagamentoDao.pas"/>
+			<DCCReference Include="Dao\uFornecedoresDao.pas"/>
+			<DCCReference Include="Dao\uInitialSettingDao.pas"/>
+			<DCCReference Include="Dao\uOrcamentosDao.pas"/>
+			<DCCReference Include="Dao\uPedidoCompraDao.pas"/>
+			<DCCReference Include="Dao\uPedidoVendaDao.pas"/>
+			<DCCReference Include="Dao\uProdutoGruposDao.pas"/>
+			<DCCReference Include="Dao\uProdutoMarcasDao.pas"/>
+			<DCCReference Include="Dao\uProdutoModelosDao.pas"/>
+			<DCCReference Include="Dao\uProdutosDao.pas"/>
+			<DCCReference Include="Dao\uServicosDao.pas"/>
+			<DCCReference Include="Dao\uTransportadoresDao.pas"/>
+			<DCCReference Include="Dao\uUsuariosDao.pas"/>
+			<DCCReference Include="controller\uClassControl.pas"/>
+			<DCCReference Include="controller\uClientesControl.pas"/>
+			<DCCReference Include="controller\uConfiguracoesGeraisControl.pas"/>
+			<DCCReference Include="controller\uContasBancariasControl.pas"/>
+			<DCCReference Include="controller\uContasControl.pas"/>
+			<DCCReference Include="controller\uContasPagarControl.pas"/>
+			<DCCReference Include="controller\uContasReceberControl.pas"/>
+			<DCCReference Include="controller\uEmpresasControl.pas"/>
+			<DCCReference Include="controller\uFluxoCaixaControl.pas"/>
+			<DCCReference Include="controller\uFormasPagamentoControl.pas"/>
+			<DCCReference Include="controller\uFornecedoresControl.pas"/>
+			<DCCReference Include="controller\uInitialSettingControl.pas"/>
+			<DCCReference Include="controller\uOrcamentosControl.pas"/>
+			<DCCReference Include="controller\uPedidoCompraControl.pas"/>
+			<DCCReference Include="controller\uPedidoVendaControl.pas"/>
+			<DCCReference Include="controller\uProdutoGruposControl.pas"/>
+			<DCCReference Include="controller\uProdutoMarcasControl.pas"/>
+			<DCCReference Include="controller\uProdutoModelosControl.pas"/>
+			<DCCReference Include="controller\uProdutosControl.pas"/>
+			<DCCReference Include="controller\uServicosControl.pas"/>
+			<DCCReference Include="controller\uTransportadoresControl.pas"/>
+			<DCCReference Include="controller\uUsuariosControl.pas"/>
+			<DCCReference Include="model\uClassModel.pas"/>
+			<DCCReference Include="model\uClientesModel.pas"/>
+			<DCCReference Include="model\uConfiguracoesGeraisModel.pas"/>
+			<DCCReference Include="model\uContasBancariasModel.pas"/>
+			<DCCReference Include="model\uContasModel.pas"/>
+			<DCCReference Include="model\uContasPagarModel.pas"/>
+			<DCCReference Include="model\uContasReceberModel.pas"/>
+			<DCCReference Include="model\uEmpresasModel.pas"/>
+			<DCCReference Include="model\uFluxoCaixaModel.pas"/>
+			<DCCReference Include="model\uFormasPagamentoModel.pas"/>
+			<DCCReference Include="model\uFornecedoresModel.pas"/>
+			<DCCReference Include="model\uInitialSettingModel.pas"/>
+			<DCCReference Include="model\uOrcamentosModel.pas"/>
+			<DCCReference Include="model\uPedidoCompraModel.pas"/>
+			<DCCReference Include="model\uPedidoVendaModel.pas"/>
+			<DCCReference Include="model\uProdutoGruposModel.pas"/>
+			<DCCReference Include="model\uProdutoMarcasModel.pas"/>
+			<DCCReference Include="model\uProdutoModelosModel.pas"/>
+			<DCCReference Include="model\uProdutosModel.pas"/>
+			<DCCReference Include="model\uServicosModel.pas"/>
+			<DCCReference Include="model\uTransportadoresModel.pas"/>
+			<DCCReference Include="model\uUsuariosModel.pas"/>
+			<DCCReference Include="frameworkFiles\controller\uSetiFormControl.pas"/>
+			<DCCReference Include="frameworkFiles\model\uSetiFormModel.pas"/>
+			<DCCReference Include="frameworkFiles\class\uConstant.pas"/>
+			<DCCReference Include="frameworkFiles\class\uSetiConstantesDB.pas"/>
+			<DCCReference Include="Dao\uBancosDao.pas"/>
+			<DCCReference Include="controller\uBancosControl.pas"/>
+			<DCCReference Include="model\uBancosModel.pas"/>
+			<DCCReference Include="controller\uEstoqueAjustesControl.pas"/>
+			<DCCReference Include="model\uEstoqueAjustesModel.pas"/>
+			<DCCReference Include="Dao\uEstoqueAjustesDao.pas"/>
+			<DCCReference Include="Dao\uUsuarioGruposDao.pas"/>
+			<DCCReference Include="model\uUsuarioGruposModel.pas"/>
+			<DCCReference Include="controller\uUsuarioGruposControl.pas"/>
+			<DCCReference Include="views\ufrmEstoqueAjuste.pas">
+				<Form>frmEstoqueAjuste</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmOrcamentos.pas">
+				<Form>frmOrcamentos</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmOrdemServicos.pas">
+				<Form>frmOrdemServicos</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmPedidoCompra.pas">
+				<Form>frmPedidoCompra</Form>
+			</DCCReference>
+			<DCCReference Include="views\ufrmPedidoVenda.pas">
+				<Form>frmPedidoVenda</Form>
+			</DCCReference>
+			<DCCReference Include="c:\program files (x86)\embarcadero\rad studio\9.0\ObjRepos\EN\DelphiWin32\OKCANCL1.PAS">
+				<Form>OKBottomDlg</Form>
+			</DCCReference>
+			<DCCReference Include="dm\udmInitialSetting.pas">
+				<Form>dmInitialSetting</Form>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="dm\udmGen.pas">
+				<Form>dmGen</Form>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="controller\uMainControl.pas"/>
+			<DCCReference Include="model\uMainModel.pas"/>
+			<DCCReference Include="Dao\uMainDao.pas"/>
+			<DCCReference Include="dm\udmLogin.pas">
+				<Form>dmLogin</Form>
+				<FormType>dfm</FormType>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="dm\udmComponentsDao.pas">
+				<Form>dmComponentsDao</Form>
+				<FormType>dfm</FormType>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="views\ufrmGerCadEmpresa.pas">
+				<Form>frmGerCadEmpresa</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="frameworkFiles\model\uFormControlModel.pas"/>
+			<DCCReference Include="views\ufrmGerLogomarca.pas">
+				<Form>frmGerLogomarca</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="frameworkFiles\dao\uSetiFormDao.pas"/>
+			<DCCReference Include="frameworkFiles\draft\udraftControl.pas"/>
+			<DCCReference Include="frameworkFiles\draft\udraftModel.pas"/>
+			<DCCReference Include="frameworkFiles\draft\udraftDao.pas"/>
+			<DCCReference Include="frameworkFiles\views\ufrmMasterSearchScreen.pas">
+				<Form>frmMasterSearchScreen</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="frameworkFiles\class\uMasterSearchScreen.pas"/>
+			<DCCReference Include="frameworkFiles\class\uSetiMasterClass.pas"/>
+			<DCCReference Include="class\uRegions.pas"/>
+			<DCCReference Include="frameworkFiles\class\uHelp.pas"/>
+			<DCCReference Include="frameworkFiles\controller\uMasterControl.pas"/>
+			<DCCReference Include="frameworkFiles\dao\uMasterDao.pas"/>
+			<DCCReference Include="frameworkFiles\dm\udmMasterDataModule.pas">
+				<Form>dmMasterDataModule</Form>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Delphi.Personality>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">False</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
+						<VersionInfo Name="MajorVer">1</VersionInfo>
+						<VersionInfo Name="MinorVer">0</VersionInfo>
+						<VersionInfo Name="Release">0</VersionInfo>
+						<VersionInfo Name="Build">0</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">1046</VersionInfo>
+						<VersionInfo Name="CodePage">1252</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName"/>
+						<VersionInfoKeys Name="FileDescription"/>
+						<VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName"/>
+						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename"/>
+						<VersionInfoKeys Name="ProductName"/>
+						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+					<Source>
+						<Source Name="MainSource">SetiCommercialManager.dpr</Source>
+					</Source>
+					<Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\dcloffice2k160.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\dclofficexp160.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+					</Excluded_Packages>
+				</Delphi.Personality>
+				<Deployment/>
+				<Platforms>
+					<Platform value="Win64">False</Platform>
+					<Platform value="Win32">True</Platform>
+				</Platforms>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')" Project="$(BDS)\Bin\CodeGear.Delphi.Targets"/>
+		<Import Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')" Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj"/>
+	</Project>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2020/01/15 23:45:30.000.440,=rtl.dcp</Transaction>
+    <Transaction>2020/01/15 23:46:31.000.581,C:\Users\Dileno\Documents\RAD Studio\Projects\Package2.dproj=C:\SetiSistemas\app\sfPk\SetiFramework.dproj</Transaction>
+    <Transaction>2020/01/15 23:47:39.000.864,=vcl.dcp</Transaction>
+    <Transaction>2020/01/15 23:47:39.000.799,=C:\SetiSistemas\app\sfPk\uFSPanel.pas</Transaction>
+    <Transaction>2020/01/16 00:09:12.000.926,=C:\SetiSistemas\app\sfPk\uFSMens.pas</Transaction>
+    <Transaction>2020/01/16 00:15:29.000.185,C:\SetiSistemas\app\sfPk\uFSMens.pas=</Transaction>
+    <Transaction>2020/01/16 00:20:44.000.480,=C:\SetiSistemas\app\sfPk\uFSMens.pas</Transaction>
+    <Transaction>2020/01/19 21:37:06.000.129,=C:\SetiSistemas\app\sfPk\Unit1.pas</Transaction>
+    <Transaction>2020/01/19 21:37:55.000.332,C:\SetiSistemas\app\sfPk\Unit1.pas=C:\SetiSistemas\app\sfPk\uFSDialogs.pas</Transaction>
+    <Transaction>2020/01/19 21:40:18.000.797,C:\SetiSistemas\app\sfPk\uFSMens.pas=</Transaction>
+    <Transaction>2020/01/19 21:41:18.000.221,=dbrtl.dcp</Transaction>
+    <Transaction>2020/01/19 21:41:18.000.200,=dsnap.dcp</Transaction>
+    <Transaction>2020/01/19 22:08:44.000.272,=C:\SetiSistemas\app\sfPk\Unit1.pas</Transaction>
+    <Transaction>2020/01/19 22:09:01.000.740,C:\SetiSistemas\app\sfPk\Unit1.pas=C:\SetiSistemas\app\sfPk\uFSC.pas</Transaction>
+    <Transaction>2020/01/19 22:14:13.000.106,=C:\SetiSistemas\app\sfPk\Unit1.pas</Transaction>
+    <Transaction>2020/01/19 22:14:55.000.326,C:\SetiSistemas\app\sfPk\Unit1.pas=C:\SetiSistemas\app\sfPk\uFSUF.pas</Transaction>
+    <Transaction>2020/01/19 23:28:04.000.169,=IndyCore.dcp</Transaction>
+    <Transaction>2020/01/19 23:28:04.000.054,=xmlrtl.dcp</Transaction>
+    <Transaction>2020/01/19 23:28:04.000.113,=dbexpress.dcp</Transaction>
+    <Transaction>2020/01/19 23:28:04.000.141,=vcldb.dcp</Transaction>
+    <Transaction>2020/01/19 23:28:04.000.228,=IndyProtocols.dcp</Transaction>
+    <Transaction>2020/01/19 23:28:04.000.084,=DbxCommonDriver.dcp</Transaction>
+    <Transaction>2020/01/19 23:28:04.000.199,=IndySystem.dcp</Transaction>
+    <Transaction>2020/01/24 17:12:36.000.641,=vclimg.dcp</Transaction>
+    <Transaction>2020/01/26 21:13:38.000.049,=C:\SetiSistemas\app\sfPk\Unit1.pas</Transaction>
+    <Transaction>2020/01/26 21:14:44.000.349,C:\SetiSistemas\Nova pasta\uFSC_.pas=C:\SetiSistemas\app\sfPk\Unit1.pas</Transaction>
+    <Transaction>2020/01/26 21:14:49.000.301,C:\SetiSistemas\Nova pasta\uFSC_.pas=</Transaction>
+    <Transaction>2020/01/31 22:54:01.000.610,C:\SetiSistemas\Nova pasta\new\uFSUF.pas=C:\SetiSistemas\app\sfPk\uFSUF.pas</Transaction>
+    <Transaction>2020/01/31 23:09:01.000.763,C:\SetiSistemas\Nova pasta\new\uFSUF.pas=</Transaction>
+    <Transaction>2020/01/31 23:09:11.000.100,C:\SetiSistemas\app\sfPk\uFSC.pas=</Transaction>
+    <Transaction>2020/01/31 23:09:18.000.899,=C:\SetiSistemas\app\sfPk\uFSC.pas</Transaction>
+    <Transaction>2020/01/31 23:09:22.000.378,=C:\SetiSistemas\app\sfPk\uFSUF.pas</Transaction>
+  </Transactions>
+</BorlandProject>

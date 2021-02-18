@@ -1,0 +1,38 @@
+unit uSetiMasterClass;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
+  Data.DB, Datasnap.DBClient, uMess, MIDASLIB, uSetiConfig, Vcl.ComCtrls,
+  Datasnap.Provider, udmMasterModuleDate, Data.FMTBcd, Data.SqlExpr,
+  uSetiConnects, Vcl.ImgList, VCLTee.TeCanvas, VCLTee.TeePenDlg, FileCtrl;
+
+  type
+    TSetiMasterClass = class
+    public
+      function SetiFileOpen(FilePath:string) : Boolean;
+
+  end;
+
+
+implementation
+
+{ TSetiMasterClass }
+
+function TSetiMasterClass.SetiFileOpen(FilePath: string): Boolean;
+begin
+    try
+      Result := False;
+      if (FilePath <> '') then
+      begin
+        Result := (FileOpen(FilePath,fmOpenReadWrite) > 0);
+      end;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+end.

@@ -1,0 +1,30 @@
+unit uSetiConstantesDB;
+
+interface
+
+Const
+      {* FRMFORMS}
+      {SQLSERVER}
+      ADOForms =            '   SELECT [ID]                               '#13+
+                            '      ,[FORMNAME]                            '#13+
+                            '      ,[FORMCAPTION]                         '#13+
+                            '      ,[FORMTAG]                             '#13+
+                            '      ,[FORMSTATUS]                          '#13+
+                            '   FROM [dbo].[TBFORMS] WITH(NOLOCK)         '#13+
+                            '   WHERE 1 = 1 ';
+      {FIREBIRD}
+    {  SQLForms =            ' SELECT ID                                 '#13+
+                            '      ,FORMNAME                            '#13+
+                            '      ,FORMCAPTION                         '#13+
+                            '      ,FORMTAG                             '#13+
+                            '      ,FORMSTATUS                          '#13+
+                            '  FROM TBFORMS                             '#13+
+                            '  WHERE 1 = 1                              ';}
+      SQLForms = 'SELECT * FROM SP_LISTA_FORMS';
+      //parei aqui
+
+
+
+implementation
+
+end.

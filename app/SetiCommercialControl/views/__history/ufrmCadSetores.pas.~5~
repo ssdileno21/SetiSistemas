@@ -1,0 +1,72 @@
+unit ufrmCadSetores;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, MIDASLIB,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrmCadPadraoReduzido, Data.FMTBcd,
+  Datasnap.DBClient, Datasnap.Provider, Data.DB, Data.SqlExpr, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
+
+type
+  TfrmCadSetores = class(TfrmCadPadraoReduzido)
+    procedure FormCreate(Sender: TObject);
+    procedure sbSelRegistroClick(Sender: TObject);
+  private
+    { Private declarations }
+    FqIdSelec: Integer;
+    procedure SetqIdSelec(const Value: Integer);
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadSetores: TfrmCadSetores;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmCadSetores.FormCreate(Sender: TObject);
+begin
+    //COMANDO PARA O TITULO DO FORM
+    SetqTituloForm('Setores');
+    //COMANDO PARA CONSULTA DE ITENS
+    SetqCommandCons('SELECT * FROM TBCADSETORES ');
+    //COMANDO PARA INSERT
+    SetqCommandIns('INSERT INTO TBCADSETORES      '+
+                   '(                             '+
+                   '   ID                         '+
+                   '  ,DESCRICAO                  '+
+                   '  ,OBS                        '+
+                   ') VALUES                      '+
+                   '(                             '+
+                   '   :ID                        '+
+                   '  ,:DESCRICAO                 '+
+                   '  ,:OBS                       '+
+                   ')                             ');
+    //NOME DO CAMPO CÓD.
+    SetqNomeCampoCod('ID');
+    //NOME DO CAMPO DESCRIÇÃO
+    SetqNomeCampoDesc('DESCRICAO');
+    //NOME DO CAMPO OBSERVAÇÃO
+    SetqNomeCampoObs('OBS');
+    //COMANDO PARA DELETAR
+    SetqCommandDel('DELETE FROM TBCADSETORES WHERE ID = :ID');
+  inherited;
+
+end;
+
+procedure TfrmCadSetores.sbSelRegistroClick(Sender: TObject);
+begin
+  inherited;
+    SetqIdSelec(qIdSelecionado);
+end;
+
+procedure TfrmCadSetores.SetqIdSelec(const Value: Integer);
+begin
+    FqIdSelec := Value;
+end;
+
+end.

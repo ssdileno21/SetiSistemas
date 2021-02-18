@@ -1,0 +1,154 @@
+{
+  SETI FRAMEWORK CLASSES:
+  FOLDER: CONTROLLER;
+  ID: 1;
+  NAME: uSFC1MasterControl;
+}
+
+unit uSFC1MasterControl;
+
+interface
+
+uses SysUtils, Forms, Buttons, StdCtrls, Vcl.Graphics, Windows, Messages,
+Variants, Classes, Controls, Dialogs, DBGrids, Data.DB,
+//Classes
+uMess, uFormControlModel, uSFD1MasterDao
+;
+
+  type TSFC1MasterControl = class
+    private
+      FcMDao : TSFD1MasterDao;
+      FDataSet: TDataSet;
+      FTableNameC : string;
+      //Get and Set
+      function GetTableNameC : string;
+      procedure SetTableNameC(Const Value: string);
+      //Other methods
+      function fnSave : Boolean;
+      //Property
+      property qTableNameC : string read GetTableNameC write
+        SetTableNameC;
+    public
+      constructor Create;reintroduce;
+      destructor Destroy;override;
+      function SFC1qOpForm(pTableName:string; OpType:
+      Integer) : Boolean;
+      property SFC1cMDao : TSFD1MasterDao read FcMDao write FcMDao;
+      property SFC1dDataSet : TDataSet read FDataSet write FDataSet;
+  end;
+
+implementation
+
+{ TMasterControl }
+
+
+constructor TSFC1MasterControl.Create;
+begin
+    try
+      SFC1dDataSet := TDataSet.Create(Nil);
+      SFC1dDataSet.Close;
+      SFC1dDataSet.FieldDefs.Clear;
+      SFC1dDataSet.FieldDefs.Add('ID',ftInteger);
+      SFC1dDataSet.FieldDefs.Add('TABLENAME',ftString,50);
+      SFC1dDataSet.FieldDefs.Add('FIELDNAME',ftString,50);
+      SFC1dDataSet.FieldDefs.Add('FIELDVALUE_STR',ftString,255);
+      SFC1dDataSet.FieldDefs.Add('FIELDVALUE_INT',ftInteger);
+      SFC1dDataSet.FieldDefs.Add('FIELDVALUE_FLO',ftFloat);
+      SFC1dDataSet.FieldDefs.Add('FIELDVALUE_TIM',ftDateTime);
+      SFC1dDataSet.FieldDefs.Add('FIELD_GEN',ftString,1);
+      SFC1dDataSet.FieldDefs.Add('FIELD_GEN_NAME',ftString,50);
+      SFC1dDataSet.FieldDefs.Add('FIELD_DEFAULT',ftString,1);
+      SFC1dDataSet.FieldDefs.Add('FIELDVALUE_STR_NEW',ftString,255);
+      SFC1dDataSet.FieldDefs.Add('FIELDVALUE_INT_NEW',ftInteger);
+      SFC1dDataSet.FieldDefs.Add('FIELDVALUE_FLO_NEW',ftFloat);
+      SFC1dDataSet.FieldDefs.Add('FIELDVALUE_TIM_NEW',ftDateTime);
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+destructor TSFC1MasterControl.Destroy;
+begin
+  if Assigned(SFC1dDataSet) then
+    SFC1dDataSet.Free;
+  inherited;
+end;
+
+function TSFC1MasterControl.GetTableNameC: string;
+begin
+  try
+    Result := FTableNameC;
+  except on e : exception do
+    SetiMens(0,e.Message);
+  end;
+end;
+
+
+function TSFC1MasterControl.SFC1qOpForm(pTableName: string;
+  OpType: Integer): Boolean;
+begin
+  Result := False;
+  try
+    try
+      SFC1cMDao := TSFD1MasterDao.Create;
+      //Se o Dataset não foi criado? Sair...
+      if NOT (Assigned(SFC1dDataSet)) then
+        Exit;
+      //O nome da tabela não foi informado? Sair...
+      if (pTableName = '') then
+        Exit
+      else //Se o nome da tabela foi informado...
+        SetTableNameC(pTableName);
+      //O parametro OpType não se se refere-se aos tipos abaixo:
+      //1:Insert; 2:Update; 3:Delete; 4:Cancel; 5:Save
+      if NOT (OpType in [1,2,3,4,5]) then
+        Exit;
+      SFC1cMDao.SFD1SetTableName(qTableNameC);
+      SFC1cMDao.SFD1SetOperationType(OpType);
+      if (OpType in [4,5]) then
+      begin
+        if (SFC1cMDao.SFD1FillCdsScreening(SFC1dDataSet)) then
+        begin
+          case (SFC1cMDao.SFD1qOperationType) of
+            4 : Result := SFC1cMDao.SFD1Cancel;
+            5 : Result := SFC1cMDao.SFD1Save;
+          end;
+        end;
+      end;
+    finally
+      SFC1cMDao.Free;
+    end;
+  except on e : exception do
+      SetiMens(0,e.Message);
+  end;
+end;
+
+function TSFC1MasterControl.fnSave : Boolean;
+begin
+  Result := False;
+  try
+    if (SFC1qTableNameC = '') then
+      Exit;
+    if Assigned(SFC1cMDao) then
+    begin
+      with (SFC1cMDao) do
+      begin
+        SFC1cMDao.SFD1Save;
+      end;
+    end;
+  except on e : exception do
+      SetiMens(0,e.Message);
+  end;
+end;
+
+procedure TSFC1MasterControl.SetTableNameC(const Value: string);
+begin
+  try
+    FTableNameC := Value;
+  except on e : exception do
+    SetiMens(0,e.Message);
+  end;
+end;
+
+
+end.

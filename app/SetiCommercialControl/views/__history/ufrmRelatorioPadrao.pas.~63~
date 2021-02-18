@@ -1,0 +1,332 @@
+unit ufrmRelatorioPadrao;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, MIDASLIB
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Grids,
+  Vcl.DBGrids, Vcl.Buttons, Data.FMTBcd, Data.DB, Datasnap.DBClient,
+  Datasnap.Provider, Data.SqlExpr,
+
+  Vcl.Mask, Vcl.StdCtrls, Vcl.CheckLst, Vcl.ComCtrls, Vcl.ImgList,
+
+  uSetiConnects, uLocate
+  ;
+
+type
+  TfrmRelatorioPadrao = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    Panel5: TPanel;
+    sbSair: TSpeedButton;
+    sbLimparFiltro: TSpeedButton;
+    sbCancelar: TSpeedButton;
+    sqlPadrao: TSQLQuery;
+    dspPadrao: TDataSetProvider;
+    cdsPadrao: TClientDataSet;
+    dsPadrao: TDataSource;
+    sbListar: TSpeedButton;
+    dsAux: TDataSource;
+    Panel9: TPanel;
+    sbIniciar: TSpeedButton;
+    SetiSqlStoredProc: TSQLStoredProc;
+    ImageList1: TImageList;
+    Panel4: TPanel;
+    DBNavigator1: TDBNavigator;
+    dbgPesquisa: TDBGrid;
+    procedure sbListarClick(Sender: TObject);
+    procedure sbLimparFiltroClick(Sender: TObject);
+    procedure sbIniciarClick(Sender: TObject);
+    procedure sbCancelarClick(Sender: TObject);
+    procedure sbSairClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure dbgPesquisaTitleClick(Column: TColumn);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+    FConnects : TSetiConnects;
+    FqCommandCons: string;
+    FqStatus: Integer;
+    FLocate : TLocate;
+    procedure SetqStatus(const Value: Integer);
+    procedure AtualizaEstoque;
+  public
+    { Public declarations }
+    procedure PreparaDataSet;
+    procedure AbreDataSet;
+    procedure FechaDataSet;
+    procedure Controle(pStatus:Integer);
+    procedure SetqCommandCons(const Value: string);
+    property qConnects : TSetiConnects read FConnects write FConnects;
+    property qCommandCons : string read FqCommandCons write SetqCommandCons;
+    property qStatus : Integer read FqStatus write SetqStatus;
+    property cLocate : TLocate read FLocate write FLocate;
+  end;
+
+var
+  frmRelatorioPadrao: TfrmRelatorioPadrao;
+
+implementation
+
+{$R *.dfm}
+
+uses uMess, uSetiConfig, uSetiUseful;
+
+{ TfrmRelatorioPadrao }
+
+procedure TfrmRelatorioPadrao.AbreDataSet;
+begin
+    try
+      cdsPadrao.Open;
+      if NOT (cdsPadrao.IsEmpty) then
+        dsPadrao.DataSet.First;
+      cdsPadrao.Refresh;
+    finally
+      qConnects.Free;
+      dbgPesquisa.DataSource := dsPadrao;
+      DBNavigator1.DataSource := dsPadrao;
+    end;
+end;
+
+procedure TfrmRelatorioPadrao.PreparaDataSet;
+begin
+    try
+      qConnects := TSetiConnects.Create;
+      sqlPadrao.Close;
+      sqlPadrao.SQLConnection := qConnects.ConnectsFIREBIRD(False);
+      sqlPadrao.SQL.Clear;
+    finally
+
+    end;
+end;
+
+procedure TfrmRelatorioPadrao.AtualizaEstoque;
+begin
+
+end;
+
+procedure TfrmRelatorioPadrao.Controle(pStatus: Integer);
+var
+  i : Integer;
+  x : Integer;
+begin
+    //INICIAL  = pStatus = 0;
+    //INICIAR  = pStatus = 1;
+    //PESQUISA = pStatus = 2;
+
+    for I := 0 to ComponentCount -1 do
+    begin
+      if Components[i].Tag <> 99 then
+      begin
+        if Components[i] is TMaskEdit then
+        begin
+          TMaskEdit(Components[i]).ReadOnly := (pStatus <> 2);
+          TMaskEdit(Components[i]).Enabled :=  (pStatus = 1);
+        end;
+        if Components[i] is TEdit then
+        begin
+          TEdit(Components[i]).ReadOnly := (pStatus <> 2);
+          TEdit(Components[i]).Enabled :=  (pStatus = 1);
+        end;
+        if Components[i] is TComboBox then
+        begin
+          TComboBox(Components[i]).Style := csDropDownList;
+          TComboBox(Components[i]).Enabled :=  (pStatus = 1);
+        end;
+        if Components[i] is TRadioButton then
+        begin
+          TRadioButton(Components[i]).Enabled := (pStatus = 1);
+        end;
+        if Components[i] is TRadioGroup then
+        begin
+          TRadioGroup(Components[i]).Enabled := (pStatus = 1);
+        end;
+        if Components[i] is TCheckBox then
+        begin
+          TCheckBox(Components[i]).Enabled := (pStatus = 1);
+        end;
+        if Components[i] is TCheckListBox then
+        begin
+          TCheckListBox(Components[i]).Enabled := (pStatus = 1);;
+          for x := 0 to TCheckListBox(Components[i]).Count do
+            TCheckListBox(Components[i]).Checked[X] := False;
+        end;
+        //INICIAL
+        if (pStatus = 0) then
+        begin
+          SetqStatus(0);
+          if Components[i] is TCheckBox then
+          begin
+            TCheckBox(Components[i]).Checked := False;
+          end;
+          if Components[i] is TDateTimePicker then
+          begin
+            TDateTimePicker(Components[i]).DateTime := Now;
+          end;
+          if Components[i] is TMaskEdit then
+          begin
+            TMaskEdit(Components[i]).Clear;
+            TMaskEdit(Components[i]).Color := clInfoBk;
+          end;
+          if Components[i] is TEdit then
+          begin
+            TEdit(Components[i]).Clear;
+            TEdit(Components[i]).Color := clInfoBk;
+          end;
+          if Components[i] is TRadioGroup then
+          begin
+            TRadioGroup(Components[i]).ItemIndex := 0;
+          end;
+          if Components[i] is TComboBox then
+          begin
+            TComboBox(Components[i]).ItemIndex := -1;
+            TComboBox(Components[i]).Color := clInfoBk;
+          end;
+          if Components[i] is TButton then
+          begin
+            TButton(Components[i]).Enabled := False;
+          end;
+          if Components[i] is TSpeedButton then
+          begin
+            TSpeedButton(Components[i]).Enabled := False;
+          end;
+          dbgPesquisa.DataSource := dsAux;
+          DBNavigator1.DataSource := dsAux;
+          sbIniciar.Enabled := True;
+          sbListar.Enabled := False;
+          sbLimparFiltro.Enabled := False;
+          sbCancelar.Enabled := False;
+          sbSair.Enabled := True;
+        end;
+        //INICIAR
+        if (pStatus = 1) then
+        begin
+          SetqStatus(1);
+          if Components[i] is TMaskEdit then
+          begin
+            TMaskEdit(Components[i]).Clear;
+            TMaskEdit(Components[i]).Color := clWindow;
+            TMaskEdit(Components[i]).ReadOnly := False;
+          end;
+          if Components[i] is TEdit then
+          begin
+            TEdit(Components[i]).Clear;
+            TEdit(Components[i]).Color := clWindow;
+            TEdit(Components[i]).ReadOnly := False;
+          end;
+          if Components[i] is TComboBox then
+          begin
+            TComboBox(Components[i]).Color := clWindow;
+          end;
+          if Components[i] is TButton then
+          begin
+            TButton(Components[i]).Enabled := True;
+          end;
+          if Components[i] is TSpeedButton then
+          begin
+            TSpeedButton(Components[i]).Enabled := False;
+          end;
+          dbgPesquisa.DataSource := dsAux;
+          DBNavigator1.DataSource := dsAux;
+          sbIniciar.Enabled := False;
+          sbListar.Enabled := True;
+          sbLimparFiltro.Enabled := True;
+          sbCancelar.Enabled := True;
+          sbSair.Enabled := True;
+        end;
+        if (pStatus = 2) then
+        begin
+          SetqStatus(2);
+          if Components[i] is TMaskEdit then
+          begin
+            TMaskEdit(Components[i]).Color := clInfoBk;
+          end;
+          if Components[i] is TEdit then
+          begin
+            TEdit(Components[i]).Color := clInfoBk;
+          end;
+          if Components[i] is TComboBox then
+          begin
+            TComboBox(Components[i]).Color := clInfoBk;
+          end;
+          if Components[i] is TButton then
+          begin
+            TButton(Components[i]).Enabled := False;
+          end;
+          if Components[i] is TSpeedButton then
+          begin
+            TSpeedButton(Components[i]).Enabled := True;
+          end;
+          sbIniciar.Enabled := True;
+          sbListar.Enabled := False;
+          sbLimparFiltro.Enabled := False;
+          sbCancelar.Enabled := True;
+          sbSair.Enabled := True;
+        end;
+      end;
+    end;
+end;
+
+procedure TfrmRelatorioPadrao.dbgPesquisaTitleClick(Column: TColumn);
+begin
+    SetiUsefulOrdenaGrid(dbgPesquisa,Column);
+end;
+
+procedure TfrmRelatorioPadrao.FechaDataSet;
+begin
+    if Assigned(qConnects) then
+      qConnects.Free;
+    dsPadrao.DataSet.Close;
+    dbgPesquisa.DataSource := dsAux;
+end;
+
+procedure TfrmRelatorioPadrao.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+    Action := caFree;
+end;
+
+procedure TfrmRelatorioPadrao.FormShow(Sender: TObject);
+begin
+    Controle(0);
+end;
+
+procedure TfrmRelatorioPadrao.sbCancelarClick(Sender: TObject);
+begin
+    Controle(0);
+end;
+
+procedure TfrmRelatorioPadrao.sbIniciarClick(Sender: TObject);
+begin
+    Controle(1);
+end;
+
+procedure TfrmRelatorioPadrao.sbLimparFiltroClick(Sender: TObject);
+begin
+    Controle(0);
+    sbIniciarClick(Self);
+end;
+
+procedure TfrmRelatorioPadrao.sbListarClick(Sender: TObject);
+begin
+    Controle(2);
+end;
+
+procedure TfrmRelatorioPadrao.sbSairClick(Sender: TObject);
+begin
+    Close;
+end;
+
+procedure TfrmRelatorioPadrao.SetqCommandCons(const Value: string);
+begin
+    FqCommandCons := Value;
+end;
+
+procedure TfrmRelatorioPadrao.SetqStatus(const Value: Integer);
+begin
+    FqStatus := Value;
+end;
+
+end.

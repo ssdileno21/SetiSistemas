@@ -1,0 +1,5 @@
+inherited frmCadSetores: TfrmCadSetores
+  Caption = 'Cadastro de setores'
+  PixelsPerInch = 96
+  TextHeight = 13
+end

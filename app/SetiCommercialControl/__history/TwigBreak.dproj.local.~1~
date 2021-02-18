@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/07/29 20:28:34.000.649,=C:\Users\Dileno\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/12/09 23:46:28.000.357,=C:\Users\Dileno\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/01/03 00:03:45.000.891,=C:\Users\Dileno\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/03/27 20:40:36.000.164,=C:\Users\Dileno\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/03/27 20:42:11.000.090,C:\SetiSistemas\projects\TwigBreak\views\ufrmMain.dfm=C:\Users\Dileno\Documents\RAD Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2019/03/27 20:42:11.000.090,C:\SetiSistemas\projects\TwigBreak\views\ufrmMain.pas=C:\Users\Dileno\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/03/27 20:42:22.000.805,C:\SetiSistemas\projects\TwigBreak\TwigBreak.dproj=C:\Users\Dileno\Documents\RAD Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2019/03/27 21:27:25.000.098,=C:\SetiSistemas\projects\TwigBreak\Unit2.pas</Transaction>
+    <Transaction>2019/03/27 21:28:00.000.215,C:\SetiSistemas\projects\TwigBreak\views\ufrmProducts.pas=C:\SetiSistemas\projects\TwigBreak\Unit2.pas</Transaction>
+    <Transaction>2019/03/27 21:28:00.000.215,C:\SetiSistemas\projects\TwigBreak\views\ufrmProducts.dfm=C:\SetiSistemas\projects\TwigBreak\Unit2.dfm</Transaction>
+    <Transaction>2019/03/27 22:19:35.000.358,=C:\SetiSistemas\projects\TwigBreak\Unit1.pas</Transaction>
+    <Transaction>2019/03/27 22:20:08.000.657,C:\SetiSistemas\projects\TwigBreak\dm\udmMain.dfm=C:\SetiSistemas\projects\TwigBreak\Unit1.dfm</Transaction>
+    <Transaction>2019/03/27 22:20:08.000.657,C:\SetiSistemas\projects\TwigBreak\dm\udmMain.pas=C:\SetiSistemas\projects\TwigBreak\Unit1.pas</Transaction>
+    <Transaction>2019/03/27 22:35:08.000.254,=C:\SetiSistemas\projects\setiFramework\class\uSetiUseful.pas</Transaction>
+    <Transaction>2019/03/27 22:53:14.000.688,=C:\SetiSistemas\projects\setiFramework\class\uSetiConfig.pas</Transaction>
+    <Transaction>2019/03/27 22:53:37.000.607,=C:\SetiSistemas\projects\setiFramework\class\uMess.pas</Transaction>
+    <Transaction>2019/03/27 22:55:51.000.003,=C:\SetiSistemas\projects\setiFramework\dm\udmMasterDataModule.pas</Transaction>
+    <Transaction>2019/03/27 22:56:16.000.874,=C:\SetiSistemas\projects\setiFramework\class\uSetiConnects.pas</Transaction>
+    <Transaction>2019/03/29 00:12:05.000.687,=C:\SetiSistemas\projects\TwigBreak\dm\udmGen.pas</Transaction>
+    <Transaction>2019/03/29 20:11:02.000.128,C:\SetiSistemas\projects\TwigBreak\dm\udmGen.pas=</Transaction>
+    <Transaction>2019/03/29 20:11:06.000.521,=C:\SetiSistemas\projects\TwigBreak\dm\udmGen.pas</Transaction>
+    <Transaction>2019/03/30 09:12:22.000.257,=C:\TwigBreak\class\uSetiConnects.pas</Transaction>
+    <Transaction>2019/03/30 09:12:51.000.715,=C:\TwigBreak\class\uMess.pas</Transaction>
+    <Transaction>2019/03/30 09:13:28.000.943,=C:\TwigBreak\class\uSetiConfig.pas</Transaction>
+    <Transaction>2019/03/30 09:16:39.000.780,=C:\TwigBreak\dm\udmMasterDataModule.pas</Transaction>
+    <Transaction>2019/03/30 09:17:08.000.034,C:\TwigBreak\dm\udmMasterDataModule.pas=</Transaction>
+    <Transaction>2019/03/30 09:17:19.000.791,=C:\TwigBreak\dm\udmMasterDataModule.pas</Transaction>
+    <Transaction>2019/03/30 09:20:45.000.432,=C:\TwigBreak\class\uSetiUseful.pas</Transaction>
+    <Transaction>2019/03/30 10:49:08.000.957,C:\TwigBreak\dm\udmMain.pas=</Transaction>
+    <Transaction>2019/03/31 06:24:44.000.759,=C:\TwigBreak\views\ufrmClientes.pas</Transaction>
+    <Transaction>2019/03/31 06:25:18.000.709,=C:\TwigBreak\views\ufrmCompras.pas</Transaction>
+    <Transaction>2019/03/31 06:25:43.000.713,=C:\TwigBreak\views\ufrmControleEstoque.pas</Transaction>
+    <Transaction>2019/03/31 06:26:02.000.547,=C:\TwigBreak\views\ufrmFornecedores.pas</Transaction>
+    <Transaction>2019/03/31 06:27:10.000.665,=C:\TwigBreak\views\ufrmFuncionarios.pas</Transaction>
+    <Transaction>2019/03/31 06:27:18.000.537,=C:\TwigBreak\views\ufrmOrdemServico.pas</Transaction>
+    <Transaction>2019/03/31 06:27:24.000.239,=C:\TwigBreak\views\ufrmVendas.pas</Transaction>
+    <Transaction>2019/03/31 13:23:39.000.722,=C:\TwigBreak\views\ufrmClientes_.pas</Transaction>
+    <Transaction>2019/03/31 14:04:07.000.079,C:\TwigBreak\views\ufrmClientes_.pas=</Transaction>
+    <Transaction>2019/03/31 18:05:42.000.311,C:\TwigBreak\views\ufrmFornecedores.pas=</Transaction>
+    <Transaction>2019/03/31 18:21:53.000.438,=C:\TwigBreak\views\ufrmCadFornecedore.pas</Transaction>
+    <Transaction>2019/03/31 18:25:38.000.334,C:\TwigBreak\views\ufrmCadFornecedore.pas=</Transaction>
+    <Transaction>2019/03/31 18:26:27.000.069,=C:\TwigBreak\views\ufrmCadFornecedores.pas</Transaction>
+    <Transaction>2019/03/31 19:11:30.000.126,C:\TwigBreak\views\ufrmFuncionarios.pas=</Transaction>
+    <Transaction>2019/03/31 19:35:00.000.371,=C:\TwigBreak\views\ufrmCadFuncionarios.pas</Transaction>
+    <Transaction>2019/03/31 20:19:09.000.019,C:\TwigBreak\views\ufrmCompras.pas=</Transaction>
+    <Transaction>2019/03/31 20:22:43.000.030,=C:\TwigBreak\views\ufrmPedidoCompra.pas</Transaction>
+    <Transaction>2019/04/06 11:24:03.079,C:\TwigBreak\views\ufrmPedidoCompra.pas=</Transaction>
+    <Transaction>2019/04/06 11:46:31.620,=C:\TwigBreak\views\ufrmPedidoCompras.pas</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,119 @@
+unit ufrmccnCadProdutos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrmStanRec, Data.FMTBcd, Data.DB,
+  Data.SqlExpr, Datasnap.DBClient, Datasnap.Provider, Vcl.Grids, Vcl.DBGrids,
+  uFSPanel, Vcl.DBCtrls, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Mask;
+
+type
+  TfrmccnCadProdutos = class(TfrmStanRec)
+    lbCodUnico: TLabel;
+    dbeCodUnico: TDBEdit;
+    lbNomFantasia: TLabel;
+    dbeNomeFantasia: TDBEdit;
+    Label1: TLabel;
+    DBEdit1: TDBEdit;
+    Label2: TLabel;
+    DBEdit2: TDBEdit;
+    dbmDescricao: TDBMemo;
+    Label3: TLabel;
+    GroupBox1: TGroupBox;
+    Label6: TLabel;
+    dbeVlrCusto: TDBEdit;
+    Label7: TLabel;
+    dbeVlrDespesas: TDBEdit;
+    Label8: TLabel;
+    dbeVlrOutrasDespesas: TDBEdit;
+    Label9: TLabel;
+    dbeVlrCustoFinal: TDBEdit;
+    Label10: TLabel;
+    dbePercLucroRequerido: TDBEdit;
+    Label11: TLabel;
+    dbeVlrVendaSugerido: TDBEdit;
+    Label12: TLabel;
+    dbeVlrVendaUtilizado: TDBEdit;
+    Label17: TLabel;
+    dbePercComissao: TDBEdit;
+    procedure dbeVlrCustoExit(Sender: TObject);
+    procedure dbeVlrDespesasExit(Sender: TObject);
+    procedure dbeVlrOutrasDespesasExit(Sender: TObject);
+    procedure dbePercLucroRequeridoExit(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+    procedure CalculaPreco;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmccnCadProdutos: TfrmccnCadProdutos;
+
+implementation
+
+{$R *.dfm}
+
+{ TfrmccnCadProdutos }
+
+procedure TfrmccnCadProdutos.CalculaPreco;
+var
+  vVlrCusto, vVlrDespesas, vVlrOutrasDespesas,
+  vVlrCustoFinal, vLucroRequerido : Double;
+  vVlrFinal : Double;
+begin
+    vVlrCusto :=
+      StrToFloatDef(
+        StringReplace(dbeVlrCusto.Text,'R$','',[rfReplaceAll]),0.00);
+    vVlrDespesas :=
+      StrToFloatDef(
+        StringReplace(dbeVlrDespesas.Text,'R$','',[rfReplaceAll]),0.00);
+    vVlrOutrasDespesas :=
+      StrToFloatDef(
+        StringReplace(dbeVlrOutrasDespesas.Text,'R$','',[rfReplaceAll]),0.00);
+    vLucroRequerido :=
+      StrToFloatDef(
+        StringReplace(dbePercLucroRequerido.Text,'R$','',[rfReplaceAll]),0.00);
+
+    vVlrCustoFinal := (vVlrCusto + vVlrDespesas + vVlrOutrasDespesas);
+
+    dbeVlrCustoFinal.Text := FloatToStr(vVlrCustoFinal);
+
+    vVlrFinal := vVlrCustoFinal + (vVlrCustoFinal * vLucroRequerido / 100);
+
+    dbeVlrVendaSugerido.Text := FloatToStr(vVlrFinal);
+end;
+
+procedure TfrmccnCadProdutos.dbePercLucroRequeridoExit(Sender: TObject);
+begin
+  inherited;
+    CalculaPreco;
+end;
+
+procedure TfrmccnCadProdutos.dbeVlrCustoExit(Sender: TObject);
+begin
+  inherited;
+    CalculaPreco;
+end;
+
+procedure TfrmccnCadProdutos.dbeVlrDespesasExit(Sender: TObject);
+begin
+  inherited;
+    CalculaPreco;
+end;
+
+procedure TfrmccnCadProdutos.dbeVlrOutrasDespesasExit(Sender: TObject);
+begin
+  inherited;
+    CalculaPreco;
+end;
+
+procedure TfrmccnCadProdutos.FormShow(Sender: TObject);
+begin
+    SetFormId(Self.Tag);
+  inherited;
+end;
+
+end.

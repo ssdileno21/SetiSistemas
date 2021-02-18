@@ -1,0 +1,2209 @@
+inherited frmCadReciboVenda: TfrmCadReciboVenda
+  Caption = 'frmCadReciboVenda'
+  ClientHeight = 888
+  ClientWidth = 1111
+  WindowState = wsMaximized
+  ExplicitWidth = 1127
+  ExplicitHeight = 927
+  PixelsPerInch = 96
+  TextHeight = 16
+  inherited Panel1: TPanel
+    Width = 1111
+    Height = 888
+    inherited Panel4: TPanel
+      Width = 1109
+    end
+    inherited Panel5: TPanel
+      Width = 1109
+      Height = 787
+      inherited PageControl1: TPageControl
+        Width = 1107
+        Height = 785
+        inherited TabSheet1: TTabSheet
+          Caption = 'Dados'
+          Font.Height = -11
+          ExplicitLeft = 5
+          ExplicitTop = 30
+          ExplicitWidth = 1099
+          ExplicitHeight = 468
+          inherited Label1: TLabel
+            Left = 6
+            Top = 2
+            Width = 33
+            Height = 13
+            ExplicitLeft = 6
+            ExplicitTop = 2
+            ExplicitWidth = 33
+            ExplicitHeight = 13
+          end
+          object Label2: TLabel [1]
+            Left = 630
+            Top = 602
+            Width = 91
+            Height = 13
+            Anchors = [akLeft, akRight]
+            Caption = 'Comprador / Resp.'
+          end
+          inherited dbeCodigo: TDBEdit
+            Left = 5
+            Top = 21
+            Width = 65
+            Height = 21
+            ExplicitLeft = 5
+            ExplicitTop = 21
+            ExplicitWidth = 65
+            ExplicitHeight = 21
+          end
+          object Edit1: TEdit
+            Tag = 99
+            Left = 629
+            Top = 621
+            Width = 65
+            Height = 21
+            Anchors = [akLeft, akRight]
+            TabOrder = 1
+          end
+          object Edit2: TEdit
+            Tag = 99
+            Left = 697
+            Top = 621
+            Width = 300
+            Height = 21
+            Anchors = [akLeft, akRight]
+            TabOrder = 2
+          end
+          object Panel14: TPanel
+            Left = 6
+            Top = 63
+            Width = 747
+            Height = 506
+            BevelKind = bkFlat
+            TabOrder = 3
+            object Panel10: TPanel
+              Left = 7
+              Top = 5
+              Width = 179
+              Height = 121
+              BevelKind = bkFlat
+              TabOrder = 0
+              object Panel23: TPanel
+                Left = 73
+                Top = 25
+                Width = 101
+                Height = 91
+                Align = alClient
+                TabOrder = 0
+                ExplicitLeft = 1
+                ExplicitTop = 17
+                ExplicitWidth = 72
+                ExplicitHeight = 48
+                object Edit8: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                  ExplicitWidth = 64
+                end
+                object Edit9: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                  ExplicitTop = 4
+                  ExplicitWidth = 64
+                end
+                object Edit10: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                  ExplicitTop = 4
+                  ExplicitWidth = 64
+                end
+                object Edit11: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                  ExplicitTop = 4
+                  ExplicitWidth = 64
+                end
+              end
+              object Panel24: TPanel
+                Left = 1
+                Top = 1
+                Width = 173
+                Height = 24
+                Align = alTop
+                TabOrder = 1
+                ExplicitWidth = 161
+                object Edit3: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 165
+                  Height = 16
+                  Align = alClient
+                  TabOrder = 0
+                  Text = 'Edit3'
+                  ExplicitLeft = 16
+                  ExplicitTop = 0
+                  ExplicitWidth = 121
+                  ExplicitHeight = 21
+                end
+              end
+              object Panel25: TPanel
+                Left = 1
+                Top = 25
+                Width = 72
+                Height = 91
+                Align = alLeft
+                TabOrder = 2
+                ExplicitTop = 17
+                ExplicitHeight = 48
+                object Edit4: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                  Text = #192' pagar:'
+                  ExplicitTop = 4
+                end
+                object Edit5: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                  Text = 'Venda:'
+                  ExplicitTop = 4
+                end
+                object Edit6: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                  Text = 'Contagem:'
+                  ExplicitTop = 4
+                end
+                object Edit7: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                  Text = 'Estoque:'
+                end
+              end
+            end
+            object Panel3: TPanel
+              Left = 191
+              Top = 5
+              Width = 179
+              Height = 121
+              BevelKind = bkFlat
+              TabOrder = 1
+              object Panel7: TPanel
+                Left = 73
+                Top = 25
+                Width = 101
+                Height = 91
+                Align = alClient
+                TabOrder = 0
+                object Edit12: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                end
+                object Edit13: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                end
+                object Edit14: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                end
+                object Edit15: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                end
+              end
+              object Panel8: TPanel
+                Left = 1
+                Top = 1
+                Width = 173
+                Height = 24
+                Align = alTop
+                TabOrder = 1
+                object Edit16: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 165
+                  Height = 16
+                  Align = alClient
+                  TabOrder = 0
+                  Text = 'Edit3'
+                  ExplicitHeight = 21
+                end
+              end
+              object Panel9: TPanel
+                Left = 1
+                Top = 25
+                Width = 72
+                Height = 91
+                Align = alLeft
+                TabOrder = 2
+                object Edit17: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                  Text = #192' pagar:'
+                end
+                object Edit18: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                  Text = 'Venda:'
+                end
+                object Edit19: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                  Text = 'Contagem:'
+                end
+                object Edit20: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                  Text = 'Estoque:'
+                end
+              end
+            end
+            object Panel11: TPanel
+              Left = 375
+              Top = 5
+              Width = 179
+              Height = 121
+              BevelKind = bkFlat
+              TabOrder = 2
+              object Panel12: TPanel
+                Left = 73
+                Top = 25
+                Width = 101
+                Height = 91
+                Align = alClient
+                TabOrder = 0
+                object Edit21: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                end
+                object Edit22: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                  ExplicitTop = 31
+                end
+                object Edit23: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                  ExplicitTop = 58
+                end
+                object Edit24: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                  ExplicitTop = 85
+                end
+              end
+              object Panel13: TPanel
+                Left = 1
+                Top = 1
+                Width = 173
+                Height = 24
+                Align = alTop
+                TabOrder = 1
+                object Edit25: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 165
+                  Height = 16
+                  Align = alClient
+                  TabOrder = 0
+                  Text = 'Edit3'
+                  ExplicitHeight = 21
+                end
+              end
+              object Panel15: TPanel
+                Left = 1
+                Top = 25
+                Width = 72
+                Height = 91
+                Align = alLeft
+                TabOrder = 2
+                object Edit26: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                  Text = #192' pagar:'
+                end
+                object Edit27: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                  Text = 'Venda:'
+                end
+                object Edit28: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                  Text = 'Contagem:'
+                end
+                object Edit29: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                  Text = 'Estoque:'
+                end
+              end
+            end
+            object Panel16: TPanel
+              Left = 559
+              Top = 5
+              Width = 179
+              Height = 121
+              BevelKind = bkFlat
+              TabOrder = 3
+              object Panel17: TPanel
+                Left = 73
+                Top = 25
+                Width = 101
+                Height = 91
+                Align = alClient
+                TabOrder = 0
+                object Edit30: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                end
+                object Edit31: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                end
+                object Edit32: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                end
+                object Edit33: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                end
+              end
+              object Panel18: TPanel
+                Left = 1
+                Top = 1
+                Width = 173
+                Height = 24
+                Align = alTop
+                TabOrder = 1
+                object Edit34: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 165
+                  Height = 16
+                  Align = alClient
+                  TabOrder = 0
+                  Text = 'Edit3'
+                  ExplicitHeight = 21
+                end
+              end
+              object Panel19: TPanel
+                Left = 1
+                Top = 25
+                Width = 72
+                Height = 91
+                Align = alLeft
+                TabOrder = 2
+                object Edit35: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                  Text = #192' pagar:'
+                end
+                object Edit36: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                  Text = 'Venda:'
+                end
+                object Edit37: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                  Text = 'Contagem:'
+                end
+                object Edit38: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                  Text = 'Estoque:'
+                end
+              end
+            end
+            object Panel20: TPanel
+              Left = 559
+              Top = 129
+              Width = 179
+              Height = 121
+              BevelKind = bkFlat
+              TabOrder = 4
+              object Panel21: TPanel
+                Left = 73
+                Top = 25
+                Width = 101
+                Height = 91
+                Align = alClient
+                TabOrder = 0
+                object Edit39: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                end
+                object Edit40: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                end
+                object Edit41: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                end
+                object Edit42: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                end
+              end
+              object Panel22: TPanel
+                Left = 1
+                Top = 1
+                Width = 173
+                Height = 24
+                Align = alTop
+                TabOrder = 1
+                object Edit43: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 165
+                  Height = 16
+                  Align = alClient
+                  TabOrder = 0
+                  Text = 'Edit3'
+                  ExplicitHeight = 21
+                end
+              end
+              object Panel26: TPanel
+                Left = 1
+                Top = 25
+                Width = 72
+                Height = 91
+                Align = alLeft
+                TabOrder = 2
+                object Edit44: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                  Text = #192' pagar:'
+                end
+                object Edit45: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                  Text = 'Venda:'
+                end
+                object Edit46: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                  Text = 'Contagem:'
+                end
+                object Edit47: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                  Text = 'Estoque:'
+                end
+              end
+            end
+            object Panel27: TPanel
+              Left = 375
+              Top = 129
+              Width = 179
+              Height = 121
+              BevelKind = bkFlat
+              TabOrder = 5
+              object Panel28: TPanel
+                Left = 73
+                Top = 25
+                Width = 101
+                Height = 91
+                Align = alClient
+                TabOrder = 0
+                object Edit48: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                end
+                object Edit49: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                end
+                object Edit50: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                end
+                object Edit51: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                end
+              end
+              object Panel29: TPanel
+                Left = 1
+                Top = 1
+                Width = 173
+                Height = 24
+                Align = alTop
+                TabOrder = 1
+                object Edit52: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 165
+                  Height = 16
+                  Align = alClient
+                  TabOrder = 0
+                  Text = 'Edit3'
+                  ExplicitHeight = 21
+                end
+              end
+              object Panel30: TPanel
+                Left = 1
+                Top = 25
+                Width = 72
+                Height = 91
+                Align = alLeft
+                TabOrder = 2
+                object Edit53: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                  Text = #192' pagar:'
+                end
+                object Edit54: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                  Text = 'Venda:'
+                end
+                object Edit55: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                  Text = 'Contagem:'
+                end
+                object Edit56: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                  Text = 'Estoque:'
+                end
+              end
+            end
+            object Panel31: TPanel
+              Left = 191
+              Top = 129
+              Width = 179
+              Height = 121
+              BevelKind = bkFlat
+              TabOrder = 6
+              object Panel32: TPanel
+                Left = 73
+                Top = 25
+                Width = 101
+                Height = 91
+                Align = alClient
+                TabOrder = 0
+                object Edit57: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                end
+                object Edit58: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                end
+                object Edit59: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                end
+                object Edit60: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                end
+              end
+              object Panel33: TPanel
+                Left = 1
+                Top = 1
+                Width = 173
+                Height = 24
+                Align = alTop
+                TabOrder = 1
+                object Edit61: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 165
+                  Height = 16
+                  Align = alClient
+                  TabOrder = 0
+                  Text = 'Edit3'
+                  ExplicitHeight = 21
+                end
+              end
+              object Panel34: TPanel
+                Left = 1
+                Top = 25
+                Width = 72
+                Height = 91
+                Align = alLeft
+                TabOrder = 2
+                object Edit62: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                  Text = #192' pagar:'
+                end
+                object Edit63: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                  Text = 'Venda:'
+                end
+                object Edit64: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                  Text = 'Contagem:'
+                end
+                object Edit65: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                  Text = 'Estoque:'
+                end
+              end
+            end
+            object Panel35: TPanel
+              Left = 7
+              Top = 129
+              Width = 179
+              Height = 121
+              BevelKind = bkFlat
+              TabOrder = 7
+              object Panel36: TPanel
+                Left = 73
+                Top = 25
+                Width = 101
+                Height = 91
+                Align = alClient
+                TabOrder = 0
+                object Edit66: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                end
+                object Edit67: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                end
+                object Edit68: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                end
+                object Edit69: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                end
+              end
+              object Panel37: TPanel
+                Left = 1
+                Top = 1
+                Width = 173
+                Height = 24
+                Align = alTop
+                TabOrder = 1
+                object Edit70: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 165
+                  Height = 16
+                  Align = alClient
+                  TabOrder = 0
+                  Text = 'Edit3'
+                  ExplicitHeight = 21
+                end
+              end
+              object Panel38: TPanel
+                Left = 1
+                Top = 25
+                Width = 72
+                Height = 91
+                Align = alLeft
+                TabOrder = 2
+                object Edit71: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                  Text = #192' pagar:'
+                end
+                object Edit72: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                  Text = 'Venda:'
+                end
+                object Edit73: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                  Text = 'Contagem:'
+                end
+                object Edit74: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                  Text = 'Estoque:'
+                end
+              end
+            end
+            object Panel39: TPanel
+              Left = 559
+              Top = 253
+              Width = 179
+              Height = 121
+              BevelKind = bkFlat
+              TabOrder = 8
+              object Panel40: TPanel
+                Left = 73
+                Top = 25
+                Width = 101
+                Height = 91
+                Align = alClient
+                TabOrder = 0
+                object Edit75: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                end
+                object Edit76: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                end
+                object Edit77: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                end
+                object Edit78: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                end
+              end
+              object Panel41: TPanel
+                Left = 1
+                Top = 1
+                Width = 173
+                Height = 24
+                Align = alTop
+                TabOrder = 1
+                object Edit79: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 165
+                  Height = 16
+                  Align = alClient
+                  TabOrder = 0
+                  Text = 'Edit3'
+                  ExplicitHeight = 21
+                end
+              end
+              object Panel42: TPanel
+                Left = 1
+                Top = 25
+                Width = 72
+                Height = 91
+                Align = alLeft
+                TabOrder = 2
+                object Edit80: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                  Text = #192' pagar:'
+                end
+                object Edit81: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                  Text = 'Venda:'
+                end
+                object Edit82: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                  Text = 'Contagem:'
+                end
+                object Edit83: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                  Text = 'Estoque:'
+                end
+              end
+            end
+            object Panel43: TPanel
+              Left = 375
+              Top = 253
+              Width = 179
+              Height = 121
+              BevelKind = bkFlat
+              TabOrder = 9
+              object Panel44: TPanel
+                Left = 73
+                Top = 25
+                Width = 101
+                Height = 91
+                Align = alClient
+                TabOrder = 0
+                object Edit84: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                end
+                object Edit85: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                end
+                object Edit86: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                end
+                object Edit87: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                end
+              end
+              object Panel45: TPanel
+                Left = 1
+                Top = 1
+                Width = 173
+                Height = 24
+                Align = alTop
+                TabOrder = 1
+                object Edit88: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 165
+                  Height = 16
+                  Align = alClient
+                  TabOrder = 0
+                  Text = 'Edit3'
+                  ExplicitHeight = 21
+                end
+              end
+              object Panel46: TPanel
+                Left = 1
+                Top = 25
+                Width = 72
+                Height = 91
+                Align = alLeft
+                TabOrder = 2
+                object Edit89: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                  Text = #192' pagar:'
+                end
+                object Edit90: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                  Text = 'Venda:'
+                end
+                object Edit91: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                  Text = 'Contagem:'
+                end
+                object Edit92: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                  Text = 'Estoque:'
+                end
+              end
+            end
+            object Panel47: TPanel
+              Left = 191
+              Top = 253
+              Width = 179
+              Height = 121
+              BevelKind = bkFlat
+              TabOrder = 10
+              object Panel48: TPanel
+                Left = 73
+                Top = 25
+                Width = 101
+                Height = 91
+                Align = alClient
+                TabOrder = 0
+                object Edit93: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                end
+                object Edit94: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                end
+                object Edit95: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                end
+                object Edit96: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                end
+              end
+              object Panel49: TPanel
+                Left = 1
+                Top = 1
+                Width = 173
+                Height = 24
+                Align = alTop
+                TabOrder = 1
+                object Edit97: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 165
+                  Height = 16
+                  Align = alClient
+                  TabOrder = 0
+                  Text = 'Edit3'
+                  ExplicitHeight = 21
+                end
+              end
+              object Panel50: TPanel
+                Left = 1
+                Top = 25
+                Width = 72
+                Height = 91
+                Align = alLeft
+                TabOrder = 2
+                object Edit98: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                  Text = #192' pagar:'
+                end
+                object Edit99: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                  Text = 'Venda:'
+                end
+                object Edit100: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                  Text = 'Contagem:'
+                end
+                object Edit101: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                  Text = 'Estoque:'
+                end
+              end
+            end
+            object Panel51: TPanel
+              Left = 7
+              Top = 253
+              Width = 179
+              Height = 121
+              BevelKind = bkFlat
+              TabOrder = 11
+              object Panel52: TPanel
+                Left = 73
+                Top = 25
+                Width = 101
+                Height = 91
+                Align = alClient
+                TabOrder = 0
+                object Edit102: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                end
+                object Edit103: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                end
+                object Edit104: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                end
+                object Edit105: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                end
+              end
+              object Panel53: TPanel
+                Left = 1
+                Top = 1
+                Width = 173
+                Height = 24
+                Align = alTop
+                TabOrder = 1
+                object Edit106: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 165
+                  Height = 16
+                  Align = alClient
+                  TabOrder = 0
+                  Text = 'Edit3'
+                  ExplicitHeight = 21
+                end
+              end
+              object Panel54: TPanel
+                Left = 1
+                Top = 25
+                Width = 72
+                Height = 91
+                Align = alLeft
+                TabOrder = 2
+                object Edit107: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                  Text = #192' pagar:'
+                end
+                object Edit108: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                  Text = 'Venda:'
+                end
+                object Edit109: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                  Text = 'Contagem:'
+                end
+                object Edit110: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                  Text = 'Estoque:'
+                end
+              end
+            end
+            object Panel55: TPanel
+              Left = 559
+              Top = 377
+              Width = 179
+              Height = 121
+              BevelKind = bkFlat
+              TabOrder = 12
+              object Panel56: TPanel
+                Left = 73
+                Top = 25
+                Width = 101
+                Height = 91
+                Align = alClient
+                TabOrder = 0
+                object Edit111: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                end
+                object Edit112: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                end
+                object Edit113: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                end
+                object Edit114: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                end
+              end
+              object Panel57: TPanel
+                Left = 1
+                Top = 1
+                Width = 173
+                Height = 24
+                Align = alTop
+                TabOrder = 1
+                object Edit115: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 165
+                  Height = 16
+                  Align = alClient
+                  TabOrder = 0
+                  Text = 'Edit3'
+                  ExplicitHeight = 21
+                end
+              end
+              object Panel58: TPanel
+                Left = 1
+                Top = 25
+                Width = 72
+                Height = 91
+                Align = alLeft
+                TabOrder = 2
+                object Edit116: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                  Text = #192' pagar:'
+                end
+                object Edit117: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                  Text = 'Venda:'
+                end
+                object Edit118: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                  Text = 'Contagem:'
+                end
+                object Edit119: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                  Text = 'Estoque:'
+                end
+              end
+            end
+            object Panel59: TPanel
+              Left = 375
+              Top = 377
+              Width = 179
+              Height = 121
+              BevelKind = bkFlat
+              TabOrder = 13
+              object Panel60: TPanel
+                Left = 73
+                Top = 25
+                Width = 101
+                Height = 91
+                Align = alClient
+                TabOrder = 0
+                object Edit120: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                end
+                object Edit121: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                end
+                object Edit122: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                end
+                object Edit123: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                end
+              end
+              object Panel61: TPanel
+                Left = 1
+                Top = 1
+                Width = 173
+                Height = 24
+                Align = alTop
+                TabOrder = 1
+                object Edit124: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 165
+                  Height = 16
+                  Align = alClient
+                  TabOrder = 0
+                  Text = 'Edit3'
+                  ExplicitHeight = 21
+                end
+              end
+              object Panel62: TPanel
+                Left = 1
+                Top = 25
+                Width = 72
+                Height = 91
+                Align = alLeft
+                TabOrder = 2
+                object Edit125: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                  Text = #192' pagar:'
+                end
+                object Edit126: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                  Text = 'Venda:'
+                end
+                object Edit127: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                  Text = 'Contagem:'
+                end
+                object Edit128: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                  Text = 'Estoque:'
+                end
+              end
+            end
+            object Panel63: TPanel
+              Left = 191
+              Top = 377
+              Width = 179
+              Height = 121
+              BevelKind = bkFlat
+              TabOrder = 14
+              object Panel64: TPanel
+                Left = 73
+                Top = 25
+                Width = 101
+                Height = 91
+                Align = alClient
+                TabOrder = 0
+                object Edit129: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                end
+                object Edit130: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                end
+                object Edit131: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                end
+                object Edit132: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                end
+              end
+              object Panel65: TPanel
+                Left = 1
+                Top = 1
+                Width = 173
+                Height = 24
+                Align = alTop
+                TabOrder = 1
+                object Edit133: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 165
+                  Height = 16
+                  Align = alClient
+                  TabOrder = 0
+                  Text = 'Edit3'
+                  ExplicitHeight = 21
+                end
+              end
+              object Panel66: TPanel
+                Left = 1
+                Top = 25
+                Width = 72
+                Height = 91
+                Align = alLeft
+                TabOrder = 2
+                object Edit134: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                  Text = #192' pagar:'
+                end
+                object Edit135: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                  Text = 'Venda:'
+                end
+                object Edit136: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                  Text = 'Contagem:'
+                end
+                object Edit137: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                  Text = 'Estoque:'
+                end
+              end
+            end
+            object Panel67: TPanel
+              Left = 7
+              Top = 377
+              Width = 179
+              Height = 121
+              BevelKind = bkFlat
+              TabOrder = 15
+              object Panel68: TPanel
+                Left = 73
+                Top = 25
+                Width = 101
+                Height = 91
+                Align = alClient
+                TabOrder = 0
+                object Edit138: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                end
+                object Edit139: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                end
+                object Edit140: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                end
+                object Edit141: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 93
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                end
+              end
+              object Panel69: TPanel
+                Left = 1
+                Top = 1
+                Width = 173
+                Height = 24
+                Align = alTop
+                TabOrder = 1
+                object Edit142: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 165
+                  Height = 16
+                  Align = alClient
+                  TabOrder = 0
+                  Text = 'Edit3'
+                  ExplicitHeight = 21
+                end
+              end
+              object Panel70: TPanel
+                Left = 1
+                Top = 25
+                Width = 72
+                Height = 91
+                Align = alLeft
+                TabOrder = 2
+                object Edit143: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 70
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 0
+                  Text = #192' pagar:'
+                end
+                object Edit144: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 48
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 1
+                  Text = 'Venda:'
+                end
+                object Edit145: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 26
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 2
+                  Text = 'Contagem:'
+                end
+                object Edit146: TEdit
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 64
+                  Height = 16
+                  Align = alTop
+                  TabOrder = 3
+                  Text = 'Estoque:'
+                end
+              end
+            end
+          end
+          object GroupBox1: TGroupBox
+            Left = 90
+            Top = 0
+            Width = 431
+            Height = 49
+            Caption = 'C'#243'd. Cliente (Ficha)'
+            TabOrder = 4
+            DesignSize = (
+              431
+              49)
+            object edtComprasCodFornecedor: TEdit
+              Tag = 99
+              Left = 9
+              Top = 21
+              Width = 65
+              Height = 21
+              TabOrder = 0
+            end
+            object edtComprasFornecedor: TEdit
+              Tag = 99
+              Left = 76
+              Top = 21
+              Width = 316
+              Height = 21
+              Anchors = [akLeft, akTop, akRight]
+              TabOrder = 1
+              ExplicitWidth = 300
+            end
+          end
+        end
+      end
+    end
+    inherited Panel2: TPanel
+      Top = 819
+      Width = 1109
+      inherited DBNavigator1: TDBNavigator
+        Width = 1101
+        Hints.Strings = ()
+      end
+    end
+    inherited Panel6: TPanel
+      Top = 852
+      Width = 1109
+      inherited Image1: TImage
+        Left = 1020
+      end
+    end
+  end
+  inherited dsPadrao: TDataSource
+    Left = 1040
+    Top = 80
+  end
+  inherited pmSearch: TPopupMenu
+    Left = 912
+    Top = 80
+  end
+  inherited ImageList1: TImageList
+    Left = 976
+    Top = 80
+    Bitmap = {
+      494C010101002400980010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      0000000000003600000028000000400000001000000001002000000000000010
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000000000000000BF75
+      1800BF75180000000000F7F0DC00F2EAD500EBE1CD00E2D7C200DBCDB900D3C3
+      B000CBBAA600C3B19D00BEAA9600BEAA96000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000B86B0A00E8B5
+      7800F6DA9F00BF75180000000000F2EAD500EBE1CD00E2D7C200DBCDB900D3C3
+      B000CBBAA600C3B19D00BEAA9600BEAA96000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000B86B0A00DFAB6D00DEA6
+      3E00E3AD4100F6DA9F00BF751800000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000BF751800BF751800BF751800E5AE
+      4100F3D79E00C88D3000C7852B00BD7E300000000000E2D7C200DBCDB900D3C3
+      B000CBBAA600C3B19D00BEAA9600BEAA96000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000BF751800EAB3
+      4400F6DA9F00C68B2F00000000000000000000000000E2D7C200DBCDB900D3C3
+      B000CBBAA600C3B19D00BEAA9600BEAA96000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000BF751800EEB7
+      4700F8DB9F00BD7E300000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000BF751800F0BA
+      4900F8DA9C00C7852B0000000000F2EAD500EBE1CD00E2D7C200DBCDB900D3C3
+      B000CBBAA600C3B19D00BEAA9600BEAA96000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000BF751800F1BD
+      4C00F8D99700C68B2F0000000000F2EAD500EBE1CD00E2D7C200DBCDB900D3C3
+      B000CBBAA600C3B19D00BEAA9600BEAA96000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000BF751800EAB3
+      4400F6DA9F00C68B2F0000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000BF751800EEB7
+      4700F8DB9F00BD7E300000000000F2EAD500EBE1CD00E2D7C200DBCDB900D3C3
+      B000CBBAA600C3B19D00BEAA9600BEAA96000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000BF751800F0BA
+      4900F8DA9C00C7852B0000000000F2EAD500EBE1CD00E2D7C200DBCDB900D3C3
+      B000CBBAA600C3B19D00BEAA9600BEAA96000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000BF751800F1BD
+      4C00F8D99700C68B2F0000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000BF751800F7D9
+      9A00F7D69200C68B2F0000000000F2EAD500EBE1CD00E2D7C200DBCDB900D3C3
+      B000CBBAA600C3B19D00BEAA9600BEAA96000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000BD7E3000C68B
+      2F00C38A3400BD7E300000000000F2EAD500EBE1CD00E2D7C200DBCDB900D3C3
+      B000CBBAA600C3B19D00BEAA9600BEAA96000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000424D3E000000000000003E000000
+      2800000040000000100000000100010000000000800000000000000000000000
+      000000000000000000000000FFFFFF00FFFF000000000000E400000000000000
+      C20000000000000081FF0000000000000080000000000000C380000000000000
+      C3FF000000000000C200000000000000C200000000000000C3FF000000000000
+      C200000000000000C200000000000000C3FF000000000000C200000000000000
+      C200000000000000FFFF00000000000000000000000000000000000000000000
+      000000000000}
+  end
+end

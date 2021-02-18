@@ -1,0 +1,4 @@
+Servers...
+svSetiFramework
+sfAdm2018
+NT Service\MSSQL$SVSETIFRAMEWORK

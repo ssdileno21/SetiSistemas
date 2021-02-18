@@ -1,0 +1,48 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{7DA72C37-3677-4A68-8F3F-F77C8A453A5B}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="SetiFramework.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\TestaPack\Project1.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="SetiFramework">
+			<MSBuild Projects="SetiFramework.dproj"/>
+		</Target>
+		<Target Name="SetiFramework:Clean">
+			<MSBuild Projects="SetiFramework.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="SetiFramework:Make">
+			<MSBuild Projects="SetiFramework.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Project1">
+			<MSBuild Projects="..\TestaPack\Project1.dproj"/>
+		</Target>
+		<Target Name="Project1:Clean">
+			<MSBuild Projects="..\TestaPack\Project1.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="Project1:Make">
+			<MSBuild Projects="..\TestaPack\Project1.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="SetiFramework;Project1"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="SetiFramework:Clean;Project1:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="SetiFramework:Make;Project1:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>

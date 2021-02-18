@@ -1,0 +1,17 @@
+unit uFormModel;
+
+interface
+
+    type TFormModel = class
+      private
+        F : Integer;
+      public
+
+      published
+
+
+    end;
+
+implementation
+
+end.

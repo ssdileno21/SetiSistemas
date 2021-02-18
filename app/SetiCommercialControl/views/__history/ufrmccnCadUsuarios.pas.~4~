@@ -1,0 +1,28 @@
+unit ufrmccnCadUsuarios;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrmStanRec, Data.FMTBcd, Data.DB,
+  Data.SqlExpr, Datasnap.DBClient, Datasnap.Provider, Vcl.Grids, Vcl.DBGrids,
+  Vcl.DBCtrls, Vcl.ExtCtrls;
+
+type
+  TfrmccnCadUsuarios = class(TfrmStanRec)
+    Panel3: TPanel;
+    Image1: TImage;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmccnCadUsuarios: TfrmccnCadUsuarios;
+
+implementation
+
+{$R *.dfm}
+
+end.

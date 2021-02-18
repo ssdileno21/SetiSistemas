@@ -1,0 +1,200 @@
+unit uMasterSearchScreen;
+
+interface
+
+uses uMess, SysUtils, Data.DB, MIDASLIB, Datasnap.Provider, Vcl.Controls, ADODB,
+SqlExpr, DBClient, Dialogs;
+
+    type TMasterSearchScreen = class(TProvider)
+      private
+        FCds : TClientDataSet;
+        FMasterRetField : Variant;
+        FMasterRetDataSet : TDataSet;
+        function GetMasterRetField : Variant;
+        function GetMasterRetDataSet : TDataSet;
+        procedure SetMasterRetField(Const Value : Variant);
+        procedure SetMasterRetDataSet(Const Value : TDataSet);
+      public
+        constructor Create;reintroduce
+        destructor Destroy;override;
+        procedure ReturnSearch(
+          pTitle : string = '';
+          pType:Integer=0; {0:for table; 1:for query}
+          pTableName : string = '';
+          pReturnType : Integer = 0; {0:DataSet; 1:Field}
+          pReturnFieldName : string = '';
+          pCds : TClientDataSet = nil;
+          pQuery : string = '');
+        {Params: Title,Type,ReturnType,TableName,KeyField,ReturnField,Query}
+        procedure SelectedSearch(pTableName:string='';
+                                 pKeyField:string='';
+                                 pTitle:string='';
+                                 pType:Integer=0;
+                                 pReturnField:string='';
+                                 pQuery:string='');
+      published
+        property qCds : TClientDataSet read FCds write FCds;
+        property qMasterRetField : Variant read GetMasterRetField
+          write SetMasterRetField;
+        property qMasterRetDataSet : TDataSet read GetMasterRetDataSet
+          write SetMasterRetDataSet;
+
+
+    end;
+
+implementation
+
+{ TMasterSearchScreen }
+
+uses ufrmMasterSearchScreen;
+
+constructor TMasterSearchScreen.Create;
+begin
+    try
+      qMasterRetDataSet := TDataSet.Create(NIL);
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+destructor TMasterSearchScreen.Destroy;
+begin
+
+end;
+
+function TMasterSearchScreen.GetMasterRetDataSet: TDataSet;
+begin
+    try
+      Result := FMasterRetDataSet;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+function TMasterSearchScreen.GetMasterRetField: Variant;
+begin
+    try
+      Result := FMasterRetField;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TMasterSearchScreen.ReturnSearch(pTitle: string; pType: Integer;
+  pTableName: string; pReturnType: Integer; pReturnFieldName: string;
+  pCds: TClientDataSet; pQuery: string);
+begin
+{Params: Title,Type,TableName,ReturnType,ReturnFieldName, TClientDataSet,Query}
+    try
+      try
+          frmMasterSearchScreen := TfrmMasterSearchScreen.Create(Self);
+          with (frmMasterSearchScreen) do
+          begin
+              SetTitle(pTitle);
+              SetType(pType);  {0:for table; 1:for query}
+              SetTableName(pTableName);
+              SetReturnType(pReturnType); {0:DataSet; 1:Field}
+              SetReturnFieldName(pReturnFieldName);
+              SetCds(pCds);
+              SetQuery(pQuery);
+              if (pType = 0) then
+              begin
+                  if (frmMasterSearchScreen.ShowModal = mrOk) then
+                  begin
+                      if (qReturnType = 0) then
+                      begin
+                        //qDtSet := qReturnDataSet;
+                        SetMasterRetDataSet(qReturnDataSet);
+                      end
+                      else
+                      if (qReturnType = 1) then
+                        SetMasterRetField(qReturnFieldValue);
+                  end;
+              end;
+         end;
+      finally
+        frmMasterSearchScreen.Free;
+
+      end;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TMasterSearchScreen.SelectedSearch(pTableName, pKeyField,
+  pTitle: string; pType: Integer; pReturnField, pQuery: string);
+begin
+{Params: TableName,KeyField,Title,Type,ReturnField,Query}
+    try
+      frmMasterSearchScreen := TfrmMasterSearchScreen.Create(Self);
+      with (frmMasterSearchScreen) do
+      begin
+          {0 : FOR TABLENAME+RETURNDATASET - TABLENAME,KEYFIELD}
+          if ((pType in [0]) and (pTableName='') and (pKeyField=''))
+            then Exit;
+          {1 : FOR TABLENAME+RETURNFIELD - TABLENAME,RETURNFIELD,KEYFIELD}
+          if ((pType in [1]) and (pTableName='') and (pReturnField='')
+            and (pKeyField='')) then Exit;
+          {2 : FOR QUERY+RETURNDATASET - QUERY+KEYFIELD}
+          if ((pType in [2]) and (pQuery='') and (pKeyField=''))
+            then Exit;
+          {3 : FOR QUERY+RETURNFIELD - QUERY+RETURNFIELD+KEYFIELD}
+          if ((pType in [3]) and (pQuery='') and (pReturnField='')
+            and (pKeyField=''))
+              then Exit;
+
+          SetTableName(pTableName);
+          SetKeyFieldName(pKeyField);
+          SetTitle(pTitle);
+          {TYPE: 0 : FOR TABLENAME; 1: FOR QUERY}
+          if (pType in [0,1]) then
+            SetType(0) else
+          if (pType in [2,3]) then
+            SetType(1);
+
+          {RETURNTYPE: 0 : FOR DATASET; 1: FOR FIELDRETURN}
+          if (pType in [0,2]) then
+            SetReturnType(0) else
+          if (pType in [1,3]) then
+            SetReturnType(1);
+
+          SetReturnFieldName(pReturnField);
+          SetQuery(pQuery);
+
+          //SetCds(pCds);
+
+          if (frmMasterSearchScreen.ShowModal = mrOk) then
+          begin
+            if (qReturnType = 0) then
+              SetMasterRetDataSet(qReturnDataSet)
+            else
+            if (qReturnType = 1) then
+              SetMasterRetField(qReturnFieldValue);
+          end;
+      end;
+    finally
+
+    end;
+end;
+
+procedure TMasterSearchScreen.SetMasterRetDataSet(const Value: TDataSet);
+begin
+    try
+      FMasterRetDataSet := Value;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TMasterSearchScreen.SetMasterRetField(const Value: Variant);
+begin
+    try
+      FMasterRetField := Value;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+{ TMasterSearchScreen }
+
+end.

@@ -1,0 +1,94 @@
+unit ufrmTesteHeranca;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  ufrmStandardReg, Data.DB, Vcl.ImgList, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls,
+  Vcl.ComCtrls, Vcl.Buttons, VCLTee.TeCanvas, VCLTee.TeePenDlg, Vcl.ExtCtrls,
+  Data.Win.ADODB, Vcl.DBCtrls, Datasnap.DBClient, Datasnap.Provider, Vcl.Menus;
+
+type
+  TfrmTesteHeranca = class(TfrmStandardReg)
+    ADOConnection1: TADOConnection;
+    adoTeste: TADOQuery;
+    dsTeste: TDataSource;
+    cdsTeste: TClientDataSet;
+    dspTeste: TDataSetProvider;
+    edtid: TEdit;
+    edtdescr: TEdit;
+    cbxstatus: TCheckBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    procedure bpSearchClick(Sender: TObject);
+    procedure sbFormConfClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmTesteHeranca: TfrmTesteHeranca;
+
+implementation
+
+{$R *.dfm}
+
+uses {ufrmDefaultSearch,} ufrmForms, uMess;
+
+procedure TfrmTesteHeranca.bpSearchClick(Sender: TObject);
+begin
+    //SendSearchParameters(Self, 'SELECT * FROM TESTE','','',cdsFieldsInfo,
+    //ADOConnection1);
+  inherited;
+end;
+
+procedure TfrmTesteHeranca.sbFormConfClick(Sender: TObject);
+begin
+    try
+{    frmForms := TfrmForms.Create(Nil);
+    frmForms.FSetFormName(frmTesteHeranca.Name);
+    frmForms.Show;}
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+end.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/07/29 20:28:34.000.649,=C:\Users\Dileno\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/12/09 23:46:28.000.357,=C:\Users\Dileno\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/01/03 00:03:45.000.891,=C:\Users\Dileno\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/05/02 00:01:22.000.003,=C:\Users\Dileno\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/11/23 17:27:55.000.047,=C:\Users\Dileno\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/01/04 10:21:45.000.955,=C:\Users\Dileno\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/01/04 10:27:18.000.143,=C:\Users\Dileno\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/01/07 23:29:53.000.572,=C:\Users\Dileno\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/01/07 23:31:04.000.297,C:\SetiSistemas\app\SetiConfig\views\ufrmMain.pas=C:\Users\Dileno\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/01/07 23:31:04.000.297,C:\SetiSistemas\app\SetiConfig\views\ufrmMain.dfm=C:\Users\Dileno\Documents\RAD Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2020/01/07 23:31:59.000.146,C:\SetiSistemas\app\SetiConfig\SetiIni.dproj=C:\Users\Dileno\Documents\RAD Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2020/01/07 23:32:55.000.567,=C:\SetiSistemas\app\SetiConfig\dm\dmMain.pas</Transaction>
+    <Transaction>2020/01/07 23:33:06.000.394,C:\SetiSistemas\app\SetiConfig\dm\dmMain.pas=</Transaction>
+    <Transaction>2020/01/07 23:34:54.000.344,=C:\SetiSistemas\app\SetiConfig\dm\udmMain.pas</Transaction>
+    <Transaction>2020/01/08 01:18:00.000.559,=C:\SetiSistemas\app\sfCls\uSetiConnects.pas</Transaction>
+    <Transaction>2020/01/08 01:18:00.000.536,=C:\SetiSistemas\app\sfCls\uFormConfig.pas</Transaction>
+    <Transaction>2020/01/08 01:18:00.000.543,=C:\SetiSistemas\app\sfCls\uMess.pas</Transaction>
+    <Transaction>2020/01/08 01:18:00.000.584,=C:\SetiSistemas\app\sfCls\uSetiUseful.pas</Transaction>
+    <Transaction>2020/01/08 01:18:00.000.552,=C:\SetiSistemas\app\sfCls\uSetiConfig.pas</Transaction>
+    <Transaction>2020/01/08 01:18:25.000.726,C:\SetiSistemas\app\sfCls\uSetiUseful.pas=</Transaction>
+    <Transaction>2020/01/08 01:18:29.000.677,C:\SetiSistemas\app\sfCls\uFormConfig.pas=</Transaction>
+    <Transaction>2020/01/08 01:18:40.000.220,C:\SetiSistemas\app\sfCls\uMess.pas=</Transaction>
+    <Transaction>2020/01/08 01:18:46.000.518,C:\SetiSistemas\app\sfCls\uSetiConfig.pas=</Transaction>
+    <Transaction>2020/01/08 01:18:53.000.703,C:\SetiSistemas\app\sfCfg\views\ufrmMain.pas=</Transaction>
+    <Transaction>2020/01/08 01:19:19.685,=C:\SetiSistemas\app\sfCfg\views\ufrmMain.pas</Transaction>
+    <Transaction>2020/01/08 01:26:32.454,=C:\SetiSistemas\app\sfCls\uLocate.pas</Transaction>
+    <Transaction>2020/01/08 01:26:32.464,=C:\SetiSistemas\app\sfCls\uLocateDAO.pas</Transaction>
+    <Transaction>2020/01/08 01:26:32.478,=C:\SetiSistemas\app\sfCls\uMess.pas</Transaction>
+    <Transaction>2020/01/08 01:26:32.501,=C:\SetiSistemas\app\sfCls\uSetiConfig.pas</Transaction>
+    <Transaction>2020/01/08 01:26:32.558,=C:\SetiSistemas\app\sfCls\uSetiUseful.pas</Transaction>
+    <Transaction>2020/01/08 01:30:51.456,=C:\SetiSistemas\app\sfVw\ufrmToLocate.pas</Transaction>
+    <Transaction>2020/01/08 01:34:05.315,=C:\SetiSistemas\app\sfVw\ufrmGetDate.pas</Transaction>
+    <Transaction>2020/01/08 01:36:12.053,=C:\SetiSistemas\app\sfDm\udmControleVendaManual.pas</Transaction>
+    <Transaction>2020/01/08 01:37:11.983,C:\SetiSistemas\app\sfDm\udmControleVendaManual.pas=</Transaction>
+    <Transaction>2020/01/08 01:38:11.511,=C:\SetiSistemas\app\sfDm\udmMasterDataModule.pas</Transaction>
+    <Transaction>2020/01/08 01:39:44.911,=C:\SetiSistemas\app\sfDm\udmLocate.pas</Transaction>
+  </Transactions>
+</BorlandProject>

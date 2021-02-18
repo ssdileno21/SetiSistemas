@@ -1,0 +1,412 @@
+inherited frmccnCadEmpresa: TfrmccnCadEmpresa
+  Tag = 1
+  BorderIcons = [biSystemMenu]
+  ClientHeight = 601
+  ClientWidth = 666
+  Color = clWindow
+  ExplicitTop = -29
+  ExplicitWidth = 682
+  ExplicitHeight = 640
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    Width = 666
+    Height = 464
+    ExplicitWidth = 670
+    ExplicitHeight = 439
+    object lbCodUnico: TLabel [0]
+      Left = 12
+      Top = 38
+      Width = 48
+      Height = 13
+      Caption = 'C'#243'd.'#250'nico'
+    end
+    object lbNomFantasia: TLabel [1]
+      Left = 12
+      Top = 84
+      Width = 69
+      Height = 13
+      Caption = 'Nome fantasia'
+    end
+    object lbRazaoSocial: TLabel [2]
+      Left = 11
+      Top = 131
+      Width = 59
+      Height = 13
+      Caption = 'Raz'#227'o social'
+    end
+    object lbNumCnpj: TLabel [3]
+      Left = 12
+      Top = 178
+      Width = 37
+      Height = 13
+      Caption = 'N'#186' Cnpj'
+    end
+    object lbInscricaoEs: TLabel [4]
+      Left = 183
+      Top = 178
+      Width = 87
+      Height = 13
+      Caption = 'Inscri'#231#227'o estadual'
+    end
+    object lbInscricaoMunicipal: TLabel [5]
+      Left = 354
+      Top = 178
+      Width = 89
+      Height = 13
+      Caption = 'Inscri'#231#227'o municipal'
+    end
+    object lbIE: TLabel [6]
+      Left = 525
+      Top = 178
+      Width = 25
+      Height = 13
+      Caption = 'IE ST'
+    end
+    object lbCep: TLabel [7]
+      Left = 12
+      Top = 225
+      Width = 19
+      Height = 13
+      Caption = 'Cep'
+    end
+    object lbLogradouro: TLabel [8]
+      Left = 183
+      Top = 225
+      Width = 55
+      Height = 13
+      Caption = 'Logradouro'
+    end
+    object lbNum: TLabel [9]
+      Left = 12
+      Top = 272
+      Width = 12
+      Height = 13
+      Caption = 'N'#186
+    end
+    object lbComplemento: TLabel [10]
+      Left = 183
+      Top = 272
+      Width = 65
+      Height = 13
+      Caption = 'Complemento'
+    end
+    object lbBairro: TLabel [11]
+      Left = 12
+      Top = 318
+      Width = 28
+      Height = 13
+      Caption = 'Bairro'
+    end
+    object lbCidade: TLabel [12]
+      Left = 354
+      Top = 318
+      Width = 33
+      Height = 13
+      Caption = 'Cidade'
+    end
+    object lbUf: TLabel [13]
+      Left = 11
+      Top = 365
+      Width = 13
+      Height = 13
+      Caption = 'UF'
+    end
+    object lbEmail: TLabel [14]
+      Left = 66
+      Top = 365
+      Width = 28
+      Height = 13
+      Caption = 'E-mail'
+    end
+    object lbTelefone1: TLabel [15]
+      Left = 11
+      Top = 411
+      Width = 51
+      Height = 13
+      Caption = 'Telefone 1'
+    end
+    object lbTelefone2: TLabel [16]
+      Left = 182
+      Top = 411
+      Width = 51
+      Height = 13
+      Caption = 'Telefone 2'
+    end
+    object Label1: TLabel [17]
+      Left = 353
+      Top = 411
+      Width = 22
+      Height = 13
+      Caption = 'Fax:'
+    end
+    inherited Splitter1: TSplitter
+      Top = 460
+      Width = 664
+    end
+    object dbeCodUnico: TDBEdit
+      Tag = 1
+      Left = 11
+      Top = 57
+      Width = 65
+      Height = 21
+      DataField = 'ID'
+      DataSource = dsStandard
+      TabOrder = 0
+    end
+    object dbeNomeFantasia: TDBEdit
+      Tag = 1
+      Left = 11
+      Top = 103
+      Width = 649
+      Height = 21
+      DataField = 'NOMEFANTASIA'
+      DataSource = dsStandard
+      TabOrder = 1
+    end
+    object dbeRazaoSocial: TDBEdit
+      Tag = 1
+      Left = 12
+      Top = 150
+      Width = 648
+      Height = 21
+      DataField = 'RAZAOSOCIAL'
+      DataSource = dsStandard
+      TabOrder = 2
+    end
+    object dbeCnpj: TDBEdit
+      Tag = 1
+      Left = 12
+      Top = 196
+      Width = 165
+      Height = 21
+      DataField = 'CNPJ'
+      DataSource = dsStandard
+      TabOrder = 3
+    end
+    object dbeInscricaoEstadual: TDBEdit
+      Left = 183
+      Top = 197
+      Width = 165
+      Height = 21
+      DataField = 'INSCRICAOESTADUAL'
+      DataSource = dsStandard
+      TabOrder = 4
+    end
+    object dbeInscricaoMunicipal: TDBEdit
+      Left = 354
+      Top = 196
+      Width = 135
+      Height = 21
+      DataField = 'INSCRICAOMUNICIPAL'
+      DataSource = dsStandard
+      TabOrder = 5
+    end
+    object dbeIEST: TDBEdit
+      Left = 495
+      Top = 196
+      Width = 165
+      Height = 21
+      DataField = 'IEST'
+      DataSource = dsStandard
+      TabOrder = 6
+    end
+    object dbeCep: TDBEdit
+      Left = 12
+      Top = 244
+      Width = 165
+      Height = 21
+      DataField = 'LOGRADOUROCEP'
+      DataSource = dsStandard
+      TabOrder = 7
+    end
+    object dbeLogradouro: TDBEdit
+      Left = 183
+      Top = 243
+      Width = 473
+      Height = 21
+      Anchors = [akLeft, akTop, akRight]
+      DataField = 'LOGRADOURO'
+      DataSource = dsStandard
+      TabOrder = 8
+      ExplicitWidth = 477
+    end
+    object dbeNumero: TDBEdit
+      Left = 12
+      Top = 290
+      Width = 165
+      Height = 21
+      DataField = 'LOGRADOURONUM'
+      DataSource = dsStandard
+      TabOrder = 9
+    end
+    object dbeComplemento: TDBEdit
+      Left = 183
+      Top = 290
+      Width = 473
+      Height = 21
+      Anchors = [akLeft, akTop, akRight]
+      DataField = 'LOGRADOUROCOMP'
+      DataSource = dsStandard
+      TabOrder = 10
+      ExplicitWidth = 477
+    end
+    object dbeBairro: TDBEdit
+      Left = 12
+      Top = 337
+      Width = 293
+      Height = 21
+      DataField = 'LOGRADOUROBAIRRO'
+      DataSource = dsStandard
+      TabOrder = 11
+    end
+    object dbeCidade: TDBEdit
+      Left = 324
+      Top = 336
+      Width = 336
+      Height = 21
+      DataField = 'LOGRADOUROCIDADE'
+      DataSource = dsStandard
+      TabOrder = 12
+    end
+    object dbeUF: TDBEdit
+      Left = 11
+      Top = 384
+      Width = 49
+      Height = 21
+      DataField = 'LOGRADOUROUF'
+      DataSource = dsStandard
+      TabOrder = 13
+    end
+    object dbeEmail: TDBEdit
+      Left = 66
+      Top = 384
+      Width = 594
+      Height = 21
+      DataField = 'EMAIL'
+      DataSource = dsStandard
+      TabOrder = 14
+    end
+    object dbeTel1: TDBEdit
+      Left = 11
+      Top = 429
+      Width = 165
+      Height = 21
+      DataField = 'NUMTELEFONE1'
+      DataSource = dsStandard
+      TabOrder = 16
+    end
+    object dbeTel2: TDBEdit
+      Left = 182
+      Top = 430
+      Width = 165
+      Height = 21
+      DataField = 'NUMTELEFONE2'
+      DataSource = dsStandard
+      TabOrder = 15
+    end
+    object dbeFax: TDBEdit
+      Left = 353
+      Top = 430
+      Width = 121
+      Height = 21
+      DataField = 'FAX'
+      DataSource = dsStandard
+      TabOrder = 17
+    end
+  end
+  inherited Panel4: TPanel
+    Width = 666
+    ExplicitWidth = 670
+    inherited DBNavigator1: TDBNavigator
+      Width = 658
+      Hints.Strings = ()
+      ExplicitWidth = 662
+    end
+  end
+  inherited SFPanel1: TSFPanel
+    Top = 496
+    Width = 666
+    ExplicitTop = 471
+    ExplicitWidth = 670
+  end
+  inherited Panel2: TPanel
+    Top = 527
+    Width = 666
+    Height = 74
+    Visible = False
+    ExplicitTop = 502
+    ExplicitWidth = 670
+    ExplicitHeight = 74
+    inherited DBGrid1: TDBGrid
+      Width = 660
+      Height = 68
+    end
+  end
+  inherited dsStandard: TDataSource
+    Left = 432
+    Top = 496
+  end
+  inherited sqlStandard: TSQLQuery
+    SQL.Strings = (
+      'SELECT'
+      '    ID'
+      '    ,NOMEFANTASIA'
+      '    ,RAZAOSOCIAL'
+      '    ,CNPJ'
+      '    ,INSCRICAOESTADUAL'
+      '    ,INSCRICAOMUNICIPAL'
+      '    ,IEST'
+      '    ,LOGRADOUROCEP'
+      '    ,LOGRADOURO'
+      '    ,LOGRADOURONUM'
+      '    ,LOGRADOUROCOMP'
+      '    ,LOGRADOUROBAIRRO'
+      '    ,LOGRADOUROUF'
+      '    ,LOGRADOUROCIDADE'
+      '    ,EMAIL'
+      '    ,NUMTELEFONE1'
+      '    ,NUMTELEFONE2'
+      '    ,FAX'
+      '    ,DATCADASTRO'
+      '    ,DATALTERACAO'
+      '    ,ID_USUARIOCAD'
+      '    ,ID_USUARIOALT'
+      'FROM TBCADEMPRESA'
+      '')
+    Left = 176
+    Top = 496
+  end
+  inherited dspStandard: TDataSetProvider
+    Left = 264
+    Top = 496
+  end
+  inherited cdsStandard: TClientDataSet
+    Left = 344
+    Top = 496
+  end
+  inherited ConnStandard: TSQLConnection
+    ConnectionName = 'FBConnection'
+    DriverName = 'Firebird'
+    GetDriverFunc = 'getSQLDriverINTERBASE'
+    LibraryName = 'dbxfb.dll'
+    Params.Strings = (
+      'DriverName=Firebird'
+      'Database=database.fdb'
+      'RoleName=RoleName'
+      'User_Name=sysdba'
+      'Password=masterkey'
+      'ServerCharSet='
+      'SQLDialect=3'
+      'ErrorResourceFile='
+      'LocaleCode=0000'
+      'BlobSize=-1'
+      'CommitRetain=False'
+      'WaitOnLocks=True'
+      'IsolationLevel=ReadCommitted'
+      'Trim Char=False')
+    VendorLib = 'fbclient.dll'
+    Left = 96
+    Top = 496
+  end
+end

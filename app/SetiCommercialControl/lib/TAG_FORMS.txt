@@ -1,0 +1,3 @@
+TAG	|FORM NAME
+1 	|frmControleVendaManual
+2	|uRepVendaManual

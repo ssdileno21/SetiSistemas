@@ -1,0 +1,420 @@
+{ID: F1; | CODIGO: FS8-F1;}
+unit udmMasterDataModule;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.FMTBcd, Datasnap.DBClient, SimpleDS,
+  Data.SqlExpr, Data.DB, uSetiConnects, Datasnap.Provider, Data.Win.ADODB,
+  Dialogs;
+
+type
+  TdmMasterDataModule = class(TDataModule)
+    SetiSqlConnection: TSQLConnection;
+    SetiSqlDataSet: TSQLDataSet;
+    SetiSqlQuery: TSQLQuery;
+    SetiDs: TDataSource;
+    SetiCds: TClientDataSet;
+    SetiDsp: TDataSetProvider;
+    SetiSqlHelp: TSQLQuery;
+    SetiCdsHelp: TClientDataSet;
+    SetiDspHelp: TDataSetProvider;
+    SetiSqlStoredProc: TSQLStoredProc;
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
+//------------------------------------------------------------------------------
+  private
+    { Private declarations }
+    FFileID : string;
+    FConnects : TSetiConnects;
+
+    function GetFileId : string;
+    procedure SetFileId(Const Value : string);
+    property qFileId : string read GetFileId write SetFileId;
+//------------------------------------------------------------------------------
+  public
+    { Public declarations }
+//..............................................................................
+    //FUNCTIONS
+    {FS8-F1-pu-fn-1}
+    function fnTableExistsFS8F1(pTableName:string) : Boolean;
+    {FS8-F1-pu-fn-2}
+    function fnTableInforFS8F1(pTableName:string='';pFieldName:string = '';
+    pReturn:Integer=0) : Variant;
+    {FS8-F1-pu-fn-3}
+    function fnGetInforDescrFS8F1(pTableName:string;pFieldId:string;pFieldDesc:
+    string; pFieldValue:Integer) : string;
+    {FS8-F1-pu-fn-4}
+    function fnGetFieldInforIdFS8F1(pTableName:string;pFieldId:string;
+    pFieldDesc: string;pFieldValue:String) : Integer;
+    {FS8-F1-pu-fn-5}
+    function fnFieldHasGeneratorFS8F1(pTableName:string;pFieldName:string) :
+    string;
+    {FS8-F1-pu-fn-6}
+    function fnComponentInforFS8F1(pFormId:Integer=-1;pComponentId:Integer;
+    pComponentName:string='';pComponentType:string='';pFieldTypeDb:string='';
+    pSpFieldReturn='') : Variant;
+//..............................................................................
+    //PROCEDURES
+    {FS8-F1-pu-pr-1}
+    procedure UseComponentsDmSeti(idComponent:Integer=-1;ItsFramework:
+    Boolean=False);
+
+//..............................................................................
+    //PROPERTY
+    property qConnects : TSetiConnects read FConnects write FConnects;
+//..............................................................................
+
+//------------------------------------------------------------------------------
+  end;
+
+var
+  dmMasterDataModule: TdmMasterDataModule;
+
+implementation
+
+uses uMess, uSetiConfig;
+
+{$R *.dfm}
+
+procedure TdmMasterDataModule.DataModuleCreate(Sender: TObject);
+begin
+    try
+        qConnects := TSetiConnects.Create;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TdmMasterDataModule.DataModuleDestroy(Sender: TObject);
+begin
+    try
+        qConnects.Free;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+function TdmMasterDataModule.fnComponentInforFS8F1(pFormId,
+  pComponentId: Integer; pComponentName, pComponentType, pFieldTypeDb: string;
+  pSpFieldReturn): Variant;
+{FS8-F1-PU-FN-6}
+begin
+  SetFileId('FS8-F1-PU-FN-6');
+  Result := False;
+
+end;
+
+function TdmMasterDataModule.fnFieldHasGeneratorFS8F1(pTableName,
+  pFieldName: string): string;
+{FS8-F1-pu-fn-5}
+var
+  vParam1, vParam2 : string;
+begin
+  SetFileId('FS8-F1-pr-fn-4');
+  Result := '';
+  try
+    if (SConfigTypeDB = 'TSQL') then
+    begin
+      try
+        if (pTableName <> '') and (pFieldName <> '') then
+        begin
+          UseComponentsDmSeti(1);
+          with (SetiSqlQuery) do
+          begin
+            SQL.Clear;
+            SQL.Add('SELECT FIRST 1 GENERATORNAME ');
+            SQL.Add('FROM TBGENERATORSTABLE ');
+            SQL.Add('WHERE USETABLENAME = '+QuotedStr(pTableName)+ ' ');
+            SQL.Add('AND USEFIELDNAME = '+QuotedStr(pFieldName));
+            SetiCds.Open;
+            if NOT (SetiCds.IsEmpty) then
+              Result := SetiCds.FieldByName('GENERATORNAME').Value;
+            Close;
+          end
+        end;
+      finally
+
+      end;
+    end;
+  except on e : exception do
+    SetiMens(0,e.Message+ErrorInf+qFileId);
+  end;
+
+end;
+
+function TdmMasterDataModule.fnGetFieldInforIdFS8F1(pTableName, pFieldId,
+pFieldDesc, pFieldValue: String): Integer;
+{FS8-F1-pu-fn-4}
+var
+  vParam : string;
+begin
+    SetFileId('FS8-F1-pr-fn-4');
+    Result := -1;
+    try
+      if (SConfigTypeDB = 'TSQL') then
+      begin
+        if (pTableName <> '') and (pFieldId <> '') and (pFieldDesc <> '')
+        and (pFieldValue <> '') then
+        begin
+          UseComponentsDmSeti(1);
+          with (SetiSqlQuery) do
+           begin
+            vParam := QuotedStr(pFieldValue);
+            SQL.Clear;
+            SQL.Add('SELECT FIRST 1 '+pFieldId +' ');
+            SQL.Add('FROM '+pTableName +' ');
+            //SQL.Add('WHERE '+pFieldDesc+ ' = :PDESC ');
+            SQL.Add('WHERE '+pFieldDesc+ ' = '+vParam);
+            //SetiCds.FetchParams;
+           { SetiCds.Params.CreateParam(ftString,'PDESC',ptInput);
+            Params.ParamByName('PDESC').AsString := vParam;
+            ShowMessage(sql.Text);
+            ShowMessage(Params.ParamByName('PDESC').Value);  }
+            SetiCds.Open;
+            if NOT (SetiCds.IsEmpty) then
+              Result := SetiCds.FieldByName(pFieldId).Value;
+            Close;
+           end
+        end;
+      end;
+    except on e : exception do
+      SetiMens(0,e.Message+ErrorInf+qFileId);
+    end;
+end;
+
+function TdmMasterDataModule.GetFileId: string;
+begin
+    Result := FFileID;
+end;
+
+function TdmMasterDataModule.fnGetInforDescrFS8F1(pTableName:string;pFieldId:
+string;pFieldDesc:string; pFieldValue:Integer): string;
+{FS8-F1-pu-fn-3}
+begin
+  SetFileId('FS8-F1-pr-fn-3');
+  Result := '';
+  try
+      if (SConfigTypeDB = 'TSQL') then
+      begin
+        if (pTableName <> '') and (pFieldId <> '') and (pFieldDesc <> '')
+        and (pFieldValue > -1) then
+        begin
+          UseComponentsDmSeti(1);
+          with (SetiSqlQuery) do
+           begin
+            SQL.Add('SELECT FIRST 1 '+pFieldDesc +' ');
+            SQL.Add('FROM '+pTableName +' ');
+            SQL.Add('WHERE '+pFieldId+ ' = :ID ');
+            Params.ParamByName('ID').Value := pFieldValue;
+            SetiCds.Open;
+            if NOT (SetiCds.IsEmpty) then
+              Result := SetiCds.FieldByName(pFieldDesc).Value;
+            Close;
+           end
+        end;
+      end;
+  except on e : exception do
+      SetiMens(0,e.Message+ErrorInf+qFileId);
+  end;
+end;
+
+procedure TdmMasterDataModule.SetFileId(const Value: string);
+begin
+    FFileID := UpperCase(Value);
+end;
+
+function TdmMasterDataModule.fnTableInforFS8F1(pTableName:string;pFieldName:
+string; pReturn:Integer ): Variant;
+{FS8-F1-pu-fn-2}
+var
+  vTableName, vFieldName, vFieldReturn : string;
+begin
+  SetFileId('FS8-F1-pr-fn-2');
+  Result := False;
+  {
+    Retornos:
+      0 :  TABLE        - TABELA
+      1 :  FIELD        - CAMPO
+      2 :  TYPE         - TIPO DO CAMPO
+      3 :  CAPTION      - CAPTION
+      4 :  FIXED VALUE  - VALORES FIXOS
+      5 :  MANDATORY    - CAMPO OBRIGATÓRIO
+      6 :  LENGTH       - TAMANHO DO CAMPO
+      7 :  DEFAULT      - POSSUI VALOR DEFAULT
+  }
+  case pReturn of
+    1 : Result := '';
+    2 : Result := '';
+    3 : Result := '';
+    4 : Result := '';
+    5 : Result := 'N';
+    6 : Result := -1;
+    7 : Result := '';
+  end;
+
+  if (pTableName = '') then
+    Exit;
+
+  if (pFieldName = '') and (pReturn <> 0) then
+    Exit;
+
+  vTableName := UpperCase(pTableName);
+  vFieldName := UpperCase(pFieldName);
+
+  case pReturn of
+    1 : vFieldReturn := 'FIELDNAME_';
+    2 : vFieldReturn := 'FIELDTYPE_';
+    3 : vFieldReturn := 'FIELDCAPTION_';
+    4 : vFieldReturn := 'FIELDFIXEDVALUE_';
+    5 : vFieldReturn := 'FIELDFILLINGMANDATORY_';
+    6 : vFieldReturn := 'FIELDLENGTH_';
+    7 : vFieldReturn := 'FIELDDEFAULTVALUE_';
+  end;
+
+  try
+    try
+      if (SConfigTypeDB = 'TSQL') then
+      begin
+        UseComponentsDmSeti(1);
+        with (SetiSqlQuery) do
+        begin
+          Close;
+          SQL.Clear;
+          SQL.Add('SELECT                          ');
+          SQL.Add('        FIELDNAME_,             ');
+          SQL.Add('        FIELDTYPE_,             ');
+          SQL.Add('        FIELDCAPTION_,          ');
+          SQL.Add('        FIELDFIXEDVALUE_,        ');
+          SQL.Add('        FIELDFILLINGMANDATORY_,  ');
+          SQL.Add('        FIELDLENGTH_,           ');
+          SQL.Add('        FIELDSUBTYPE_,          ');
+          SQL.Add('        FIELDSEGMENTLENGTH_,    ');
+          SQL.Add('        FIELDPRECISION_,        ');
+          SQL.Add('        FIELDSCALE_,            ');
+          SQL.Add('        FIELDDEFAULTVALUE_,     ');
+          SQL.Add('        FIELDREQUIREDFLAG_,     ');
+          SQL.Add('        FIELDDESCRIPTION_       ');
+          SQL.Add('FROM SP_TABLEINFOR              ');
+          SQL.Add('(:TABLENAME)                    ');
+          Params.ParamByName('TABLENAME').Value := pTableName;
+          SetiCds.Open;
+        end;
+        if (pReturn = 0) then
+          Result := (NOT (SetiCds.IsEmpty)) else
+        if (pReturn in [1,2,3,4,5,6,7]) then
+        begin
+          SetiCds.Close;
+          SetiCds.Filtered := False;
+          SetiCds.Filter := 'FIELDNAME_ = '+QuotedStr(vFieldName);
+          SetiCds.Filtered := True;
+          SetiCds.Open;
+          {
+            Retornos:
+              0 :  TABLE        - TABELA
+              1 :  FIELD        - CAMPO
+              2 :  TYPE         - TIPO DO CAMPO
+              3 :  CAPTION      - CAPTION
+              4 :  FIXED VALUE  - VALORES FIXOS
+              5 :  MANDATORY    - CAMPO OBRIGATÓRIO
+              6 :  LENGTH       - TAMANHO DO CAMPO
+              7 :  DEFAULT      - POSSUI VALOR DEFAULT
+          }
+          if NOT (SetiCds.IsEmpty) then
+          begin
+            if (pReturn in [1,2,3,4,5]) then
+              Result := TrimRight(SetiCds.FieldByName(vFieldReturn).AsString);
+            if (pReturn in [6]) then
+              Result := SetiCds.FieldByName(vFieldReturn).AsInteger;
+            if (pReturn in [7]) then
+              if (SetiCds.FieldByName(vFieldReturn).AsString <> '') then
+                Result := 'S' else Result := 'N';
+          end;
+          SetiCds.Filtered := False;
+        end;
+      end;
+    finally
+
+    end;
+    except on e : exception do
+        SetiMens(0,e.Message+ErrorInf+qFileId);
+    end;
+end;
+
+function TdmMasterDataModule.fnTableExistsFS8F1(pTableName: string): Boolean;
+{FS8-F1-pu-fn-1}
+begin
+    SetFileId('FS8-F1-pr-fn-1');
+    Result := False;
+    try
+      try
+          if (SConfigTypeDB = 'TSQL') then
+          begin
+            if (pTableName <> '') then
+            begin
+              UseComponentsDmSeti(1);
+              with (SetiSqlQuery) do
+               begin
+                SQL.Add('SELECT RDB$RELATION_NAME             ');
+                SQL.Add('FROM RDB$RELATIONS                   ');
+                SQL.Add('WHERE RDB$SYSTEM_FLAG = 0            ');
+                SQL.Add('AND RDB$RELATION_NAME = :TABLENAME   ');
+                Params.ParamByName('TABLENAME').Value := pTableName;
+                SetiCds.Open;
+                Result := (NOT (SetiCds.IsEmpty));
+                Close;
+               end
+            end;
+          end;
+    finally
+      if Assigned(SetiSqlConnection) then
+        SetiSqlConnection.Free;
+    end;
+    except on e : exception do
+        SetiMens(0,e.Message+ErrorInf+qFileId);
+    end;
+end;
+
+procedure TdmMasterDataModule.UseComponentsDmSeti(idComponent: Integer;
+  ItsFramework: Boolean);
+{FS8-F1-pu-pr-1}
+begin
+  SetFileId('FS8-F1-pu-pr-1');
+  try
+      if (SConfigTypeDB = 'TSQL') then
+      begin
+        SetiSqlConnection := qConnects.ConnectsFIREBIRD(ItsFramework);
+        if (idComponent in [0,1]) then  //SQLQRY AND CDS
+        begin
+            SetiSqlQuery.SQLConnection := SetiSqlConnection;
+            SetiSqlQuery.Close;
+            SetiSqlQuery.SQL.Clear;
+            if (idComponent in [1]) then //CDS
+            begin
+              SetiDsp.DataSet := SetiSqlQuery;
+              SetiCds.ProviderName := SetiDsp.Name;
+            end;
+        end;
+        if (idComponent in [3]) then //STORED PROCEDURE
+        begin
+            SetiSqlStoredProc.SQLConnection := SetiSqlConnection;
+            SetiSqlStoredProc.StoredProcName := '';
+        end;
+        if (idComponent in [4,5]) then  //SQLQRY AND CDS HELP
+        begin
+          SetiSqlHelp.SQLConnection := SetiSqlConnection;
+          SetiSqlHelp.Close;
+          SetiSqlHelp.SQL.Clear;
+          if (idComponent in [5]) then //CDS HELP
+          begin
+            SetiDspHelp.DataSet := SetiSqlHelp;
+            SetiCdsHelp.ProviderName := SetiDspHelp.Name;
+          end;
+        end;
+      end;
+  except on e : exception do
+    SetiMens(0,e.Message+ErrorInf+qFileId);
+  end;
+end;
+
+end.

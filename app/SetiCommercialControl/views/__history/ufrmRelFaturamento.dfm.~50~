@@ -1,0 +1,672 @@
+inherited frmrelFaturamento: TfrmrelFaturamento
+  Caption = 'Controle do faturamento'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    inherited Panel2: TPanel
+      Height = 501
+      ExplicitHeight = 501
+      inherited Panel5: TPanel
+        Top = 436
+        Height = 61
+        ExplicitTop = 444
+        ExplicitHeight = 61
+        inherited sbSair: TSpeedButton
+          Height = 49
+        end
+        inherited sbLimparFiltro: TSpeedButton
+          Height = 49
+        end
+        inherited sbCancelar: TSpeedButton
+          Height = 49
+        end
+        inherited sbListar: TSpeedButton
+          Height = 49
+        end
+      end
+      object PageControl1: TPageControl
+        Left = 1
+        Top = 42
+        Width = 1474
+        Height = 391
+        ActivePage = TabSheet1
+        Align = alClient
+        TabOrder = 2
+        ExplicitHeight = 352
+        object TabSheet1: TTabSheet
+          Caption = 'Filtros'
+          ExplicitHeight = 321
+          object Panel6: TPanel
+            AlignWithMargins = True
+            Left = 3
+            Top = 71
+            Width = 203
+            Height = 286
+            Align = alLeft
+            TabOrder = 0
+            ExplicitHeight = 247
+            object Label1: TLabel
+              Left = 1
+              Top = 82
+              Width = 44
+              Height = 16
+              Caption = 'C'#243'digo:'
+            end
+            object Label2: TLabel
+              Left = 1
+              Top = 114
+              Width = 75
+              Height = 16
+              Caption = 'C'#243'd. interno:'
+            end
+            object lbDtIni: TLabel
+              Left = 1
+              Top = 18
+              Width = 67
+              Height = 16
+              Caption = 'Data inicial:'
+              Enabled = False
+            end
+            object lbDtFim: TLabel
+              Left = 1
+              Top = 50
+              Width = 59
+              Height = 16
+              Caption = 'Data final:'
+              Enabled = False
+            end
+            object edtCodigo: TEdit
+              Left = 82
+              Top = 78
+              Width = 109
+              Height = 24
+              TabOrder = 0
+            end
+            object edtCodInterno: TEdit
+              Left = 82
+              Top = 110
+              Width = 109
+              Height = 24
+              TabOrder = 1
+            end
+            object dtpIni: TDateTimePicker
+              Left = 82
+              Top = 14
+              Width = 109
+              Height = 24
+              Date = 0.081016249998356220
+              Time = 0.081016249998356220
+              Enabled = False
+              TabOrder = 2
+            end
+            object dtpFim: TDateTimePicker
+              Left = 82
+              Top = 46
+              Width = 109
+              Height = 24
+              Date = 0.081016249998356220
+              Time = 0.081016249998356220
+              Enabled = False
+              TabOrder = 3
+            end
+          end
+          object Panel7: TPanel
+            AlignWithMargins = True
+            Left = 3
+            Top = 3
+            Width = 1460
+            Height = 62
+            Align = alTop
+            TabOrder = 1
+            object rgTipoRelatorio: TRadioGroup
+              AlignWithMargins = True
+              Left = 4
+              Top = 4
+              Width = 1452
+              Height = 54
+              Align = alClient
+              Caption = 'Tipo Relat'#243'rio'
+              Columns = 5
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clBlack
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ItemIndex = 0
+              Items.Strings = (
+                'Totalizadores'
+                'Compras'
+                'Venda balc'#227'o'
+                'Servi'#231'os'
+                'Servi'#231'os - Produtos')
+              ParentFont = False
+              TabOrder = 0
+              OnClick = rgTipoRelatorioClick
+              ExplicitLeft = 3
+              ExplicitTop = -3
+              ExplicitWidth = 662
+              ExplicitHeight = 65
+            end
+          end
+          object Panel11: TPanel
+            AlignWithMargins = True
+            Left = 212
+            Top = 71
+            Width = 1251
+            Height = 286
+            Align = alClient
+            TabOrder = 2
+            ExplicitHeight = 247
+            object Panel8: TPanel
+              AlignWithMargins = True
+              Left = 4
+              Top = 4
+              Width = 1243
+              Height = 165
+              Align = alTop
+              Caption = 'Panel8'
+              TabOrder = 0
+              DesignSize = (
+                1243
+                165)
+              object Label3: TLabel
+                Left = 268
+                Top = 5
+                Width = 134
+                Height = 16
+                Caption = 'Compras - Fornecedor:'
+              end
+              object Label5: TLabel
+                Left = 267
+                Top = 37
+                Width = 102
+                Height = 16
+                Caption = 'Compras - N'#186' NF:'
+              end
+              object Label4: TLabel
+                Left = 267
+                Top = 70
+                Width = 166
+                Height = 16
+                Caption = 'Compras - Dta. Fechamento:'
+              end
+              object Label7: TLabel
+                Left = 268
+                Top = 101
+                Width = 44
+                Height = 16
+                Caption = 'Cliente:'
+              end
+              object Label6: TLabel
+                Left = 267
+                Top = 133
+                Width = 53
+                Height = 16
+                Caption = 'Dta. O.S:'
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clBlack
+                Font.Height = -13
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                ParentFont = False
+              end
+              object Label11: TLabel
+                Left = 404
+                Top = 133
+                Width = 110
+                Height = 16
+                Caption = 'Dta. O.S - Entrega:'
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clBlack
+                Font.Height = -13
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                ParentFont = False
+              end
+              object Label10: TLabel
+                Left = 597
+                Top = 133
+                Width = 133
+                Height = 16
+                Caption = 'Dta. O.S - Autoriza'#231#227'o:'
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clBlack
+                Font.Height = -13
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                ParentFont = False
+              end
+              object Label12: TLabel
+                Left = 815
+                Top = 133
+                Width = 130
+                Height = 16
+                Caption = 'Dta. O.S - Desist'#234'ncia:'
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clBlack
+                Font.Height = -13
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                ParentFont = False
+              end
+              object Label13: TLabel
+                Left = 1028
+                Top = 133
+                Width = 108
+                Height = 16
+                Caption = 'Dta. O.S - Cancel.:'
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clBlack
+                Font.Height = -13
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                ParentFont = False
+              end
+              object edtComprasCodFornecedor: TEdit
+                Tag = 99
+                Left = 458
+                Top = 1
+                Width = 83
+                Height = 24
+                TabOrder = 0
+              end
+              object edtComprasFornecedor: TEdit
+                Tag = 99
+                Left = 547
+                Top = 1
+                Width = 680
+                Height = 24
+                Anchors = [akLeft, akTop, akRight]
+                TabOrder = 1
+                ExplicitWidth = 686
+              end
+              object edtComprasNF: TEdit
+                Tag = 99
+                Left = 458
+                Top = 33
+                Width = 769
+                Height = 24
+                Anchors = [akLeft, akTop, akRight]
+                TabOrder = 2
+                ExplicitWidth = 775
+              end
+              object edtComprasFechamento: TEdit
+                Tag = 99
+                Left = 458
+                Top = 65
+                Width = 769
+                Height = 24
+                Anchors = [akLeft, akTop, akRight]
+                TabOrder = 3
+                ExplicitWidth = 775
+              end
+              object edtDtaServicos: TEdit
+                Tag = 99
+                Left = 325
+                Top = 130
+                Width = 69
+                Height = 24
+                Anchors = [akLeft, akTop, akRight]
+                TabOrder = 4
+                Text = '17/04/2017'
+                ExplicitWidth = 75
+              end
+              object edtCodCliente: TEdit
+                Tag = 99
+                Left = 458
+                Top = 97
+                Width = 83
+                Height = 24
+                TabOrder = 5
+                Text = '04/03/1984'
+              end
+              object edtServicosDtaEntrega: TEdit
+                Tag = 99
+                Left = 516
+                Top = 130
+                Width = 69
+                Height = 24
+                Anchors = [akLeft, akTop, akRight]
+                TabOrder = 6
+                ExplicitWidth = 75
+              end
+              object edtCliente: TEdit
+                Tag = 99
+                Left = 547
+                Top = 97
+                Width = 680
+                Height = 24
+                Anchors = [akLeft, akTop, akRight]
+                TabOrder = 7
+                ExplicitWidth = 686
+              end
+              object edtServicosDtaAutorizacao: TEdit
+                Tag = 99
+                Left = 732
+                Top = 130
+                Width = 69
+                Height = 24
+                Anchors = [akLeft, akTop, akRight]
+                TabOrder = 8
+                ExplicitWidth = 75
+              end
+              object edtServicosDtaDesistencia: TEdit
+                Tag = 99
+                Left = 948
+                Top = 130
+                Width = 69
+                Height = 24
+                Anchors = [akLeft, akTop, akRight]
+                TabOrder = 9
+                ExplicitWidth = 75
+              end
+              object edtServicosDtaCancelamento: TEdit
+                Tag = 99
+                Left = 1158
+                Top = 130
+                Width = 69
+                Height = 24
+                Anchors = [akLeft, akTop, akRight]
+                TabOrder = 10
+                ExplicitWidth = 75
+              end
+              object Panel10: TPanel
+                Left = 1
+                Top = 1
+                Width = 260
+                Height = 163
+                Align = alLeft
+                TabOrder = 11
+                ExplicitHeight = 198
+                object rgComprasStatus: TRadioGroup
+                  Tag = 99
+                  AlignWithMargins = True
+                  Left = 4
+                  Top = 4
+                  Width = 125
+                  Height = 155
+                  Align = alLeft
+                  Caption = 'Compras - Status'
+                  ItemIndex = 0
+                  Items.Strings = (
+                    'Todos'
+                    'Em aberto'
+                    'Fechado')
+                  TabOrder = 0
+                  ExplicitHeight = 249
+                end
+                object rgServicosStatus: TRadioGroup
+                  Tag = 99
+                  Left = 132
+                  Top = 1
+                  Width = 125
+                  Height = 161
+                  Align = alLeft
+                  Caption = 'Servi'#231'os - Status'
+                  Items.Strings = (
+                    'Pendente'
+                    'Autorizado'
+                    'Entregue'
+                    'N'#227'o autorizado'
+                    'Cancelado')
+                  TabOrder = 1
+                  ExplicitHeight = 277
+                end
+              end
+            end
+            object Panel12: TPanel
+              AlignWithMargins = True
+              Left = 820
+              Top = 175
+              Width = 427
+              Height = 107
+              Align = alClient
+              TabOrder = 1
+              ExplicitLeft = 4
+              ExplicitWidth = 402
+              object Panel17: TPanel
+                Left = 1
+                Top = 1
+                Width = 425
+                Height = 16
+                Align = alTop
+                Caption = 'Servi'#231'os'
+                Color = clNavy
+                Font.Charset = DEFAULT_CHARSET
+                Font.Color = clWhite
+                Font.Height = -13
+                Font.Name = 'Tahoma'
+                Font.Style = []
+                ParentBackground = False
+                ParentFont = False
+                TabOrder = 0
+                ExplicitWidth = 400
+              end
+            end
+            object Panel13: TPanel
+              AlignWithMargins = True
+              Left = 412
+              Top = 175
+              Width = 402
+              Height = 107
+              Align = alLeft
+              TabOrder = 2
+              ExplicitLeft = 4
+              object Panel16: TPanel
+                Left = 1
+                Top = 1
+                Width = 400
+                Height = 16
+                Align = alTop
+                Caption = 'Vendas'
+                Color = clMoneyGreen
+                ParentBackground = False
+                TabOrder = 0
+              end
+            end
+            object Panel14: TPanel
+              AlignWithMargins = True
+              Left = 4
+              Top = 175
+              Width = 402
+              Height = 107
+              Align = alLeft
+              TabOrder = 3
+              object Panel15: TPanel
+                Left = 1
+                Top = 1
+                Width = 400
+                Height = 16
+                Align = alTop
+                Caption = 'Compras'
+                Color = clSkyBlue
+                ParentBackground = False
+                TabOrder = 0
+              end
+            end
+          end
+        end
+      end
+    end
+    inherited Panel4: TPanel
+      Top = 511
+      Height = 256
+      ExplicitTop = 519
+      ExplicitHeight = 248
+      inherited DBNavigator1: TDBNavigator
+        Height = 248
+        Hints.Strings = ()
+      end
+      inherited dbgPesquisa: TDBGrid
+        Height = 248
+      end
+    end
+  end
+  inherited sqlPadrao: TSQLQuery
+    Left = 376
+    Top = 544
+  end
+  inherited dspPadrao: TDataSetProvider
+    Left = 256
+    Top = 544
+  end
+  inherited cdsPadrao: TClientDataSet
+    Left = 248
+    Top = 600
+  end
+  inherited dsPadrao: TDataSource
+    Left = 240
+    Top = 664
+  end
+  inherited dsAux: TDataSource
+    Left = 360
+    Top = 672
+  end
+  inherited SetiSqlStoredProc: TSQLStoredProc
+    Left = 364
+    Top = 600
+  end
+  inherited ImageList1: TImageList
+    Left = 472
+    Top = 600
+    Bitmap = {
+      494C010101000800240010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      0000000000003600000028000000400000001000000001002000000000000010
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000000000000000D0D3
+      D542B5B9BC690000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000009CA1A58D5560
+      68FF5D6870FF959B9F9600000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000009CA1A58D576269FF7885
+      8EFF7F8C95FF636E76FF999FA390000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000009CA1A58D58636AFF7E8B94FF8592
+      9BFF919EA7FF97A3ADFF556067FFE9EBEB1E0000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000009CA1A58D5A646CFF84919BFF8C98A2FF9DA9
+      B3FFABB7C1FF6A757CFF999FA390000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000E7D9C43CC6A5
+      758EAB7B35D09B610DF99A6A24EA7E6235FF8E8A7DFF929FA8FFA2AEB8FFAFBB
+      C5FF6B767EFF999FA39000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000DAC4A55CAD7C34DCB68A
+      3FFFD0B378FFE8D9ABFFDDC898FFC09B59FFA27531FFA2957CFFB3BEC8FF6D78
+      80FF999FA3900000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000E7D9C43CAC7A30DCB88A3CFFD4B6
+      77FFDEC792FFE6D6A7FFEADCB0FFE6D6A7FFC6A361FFA47731FF797365FF999F
+      A390000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000C6A5758EAA741EFFC69C4FFFD0AD
+      69FFD8BD81FFDEC891FFE1CC98FFDEC891FFD8BD80FFB48437FF997B4CCE0000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000AB7B35D0B27C23FFC4984AFFCFAC
+      6BFFD9BC85FFDEC695FFDEC693FFD9BF87FFD1B171FFBD9144FFAB7B35D00000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000009B610DF9BB8834FFCDA768FFD5B6
+      80FFD9BD8AFFDCC291FFDCC393FFDBC190FFD5B77FFFC59B50FF9B610DF90000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000AB7B35D0BF924AFFD6B783FFD8BB
+      89FFDABE8FFFDBC194FFDCC295FFDBC294FFDABF8FFFC49A57FFAB7B35D00000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000C6A5758EBC904CFFDCC398FFDDC4
+      9AFFDEC59DFFDFC79FFFDFC8A0FFDFC79FFFDEC69DFFBC914EFFC6A5758E0000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000E7D9C43CAE7F37DECEAD78FFE5D2
+      B2FFE5D2B2FFE5D2B2FFE5D2B2FFE5D2B2FFCEAD78FFAE7F37DEE7D9C43C0000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000DAC4A55CB0813BDFC7A2
+      68FFDEC6A1FFEBDDC6FFDEC6A1FFC7A268FFB0813BDFDAC4A55C000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000E7D9C43CC6A5
+      758EAB7B35D09B610DF9AB7B35D0C6A5758EE7D9C43C00000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000424D3E000000000000003E000000
+      2800000040000000100000000100010000000000800000000000000000000000
+      000000000000000000000000FFFFFF00FFE7000000000000FFC3000000000000
+      FF81000000000000FF00000000000000FE01000000000000C003000000000000
+      8007000000000000000F000000000000001F000000000000001F000000000000
+      001F000000000000001F000000000000001F000000000000001F000000000000
+      803F000000000000C07F00000000000000000000000000000000000000000000
+      000000000000}
+  end
+end

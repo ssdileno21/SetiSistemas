@@ -1,0 +1,59 @@
+inherited frmRelEstoque: TfrmRelEstoque
+  Caption = 'frmRelEstoque'
+  ClientHeight = 547
+  ClientWidth = 853
+  ExplicitWidth = 869
+  ExplicitHeight = 586
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    Width = 853
+    Height = 547
+    ExplicitWidth = 120
+    ExplicitHeight = 0
+    inherited Panel2: TPanel
+      Width = 845
+      ExplicitWidth = 112
+      inherited Panel5: TPanel
+        Width = 837
+        ExplicitWidth = 104
+        inherited sbSair: TSpeedButton
+          Left = 712
+        end
+        inherited sbLimparFiltro: TSpeedButton
+          Left = 366
+        end
+        inherited sbCancelar: TSpeedButton
+          Left = 560
+        end
+        inherited sbListar: TSpeedButton
+          Left = 248
+        end
+        inherited sbIniciar: TSpeedButton
+          Left = 130
+        end
+      end
+    end
+    inherited Panel3: TPanel
+      Top = 502
+      Width = 845
+      ExplicitTop = -45
+      ExplicitWidth = 112
+    end
+    inherited Panel4: TPanel
+      Width = 845
+      Height = 217
+      ExplicitWidth = 112
+      inherited DBNavigator1: TDBNavigator
+        Left = 816
+        Height = 209
+        Hints.Strings = ()
+        ExplicitLeft = 83
+      end
+      inherited dbgPesquisa: TDBGrid
+        Width = 806
+        Height = 209
+      end
+    end
+  end
+end

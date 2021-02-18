@@ -1,0 +1,189 @@
+unit ufrmccnCadClientes;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrmStanRec, Data.FMTBcd, Data.DB,
+  Data.SqlExpr, Datasnap.DBClient, Datasnap.Provider, Vcl.Grids, Vcl.DBGrids,
+  uFSPanel, Vcl.DBCtrls, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Mask, Vcl.ComCtrls,
+  Vcl.Buttons;
+
+type
+  TfrmccnCadClientes = class(TfrmStanRec)
+    lbCodUnico: TLabel;
+    dbeCodUnico: TDBEdit;
+    lbNomFantasia: TLabel;
+    dbeNomeFantasia: TDBEdit;
+    Label1: TLabel;
+    DBEdit1: TDBEdit;
+    Label2: TLabel;
+    DBEdit2: TDBEdit;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    dbrTipoCliente: TDBRadioGroup;
+    Label16: TLabel;
+    DBEdit3: TDBEdit;
+    Label18: TLabel;
+    DBEdit4: TDBEdit;
+    Label3: TLabel;
+    dbmDescricao: TDBMemo;
+    Label4: TLabel;
+    dbeEmail: TDBEdit;
+    Label13: TLabel;
+    dbeCpfCnpj: TDBEdit;
+    Label25: TLabel;
+    DBEdit6: TDBEdit;
+    Label14: TLabel;
+    dbeTelefone: TDBEdit;
+    Label15: TLabel;
+    dbeCelular: TDBEdit;
+    TabSheet2: TTabSheet;
+    TabSheet3: TTabSheet;
+    Label5: TLabel;
+    DBEdit5: TDBEdit;
+    Label6: TLabel;
+    DBEdit7: TDBEdit;
+    Label7: TLabel;
+    DBEdit8: TDBEdit;
+    Label8: TLabel;
+    DBEdit9: TDBEdit;
+    Label9: TLabel;
+    DBEdit10: TDBEdit;
+    Label10: TLabel;
+    DBEdit11: TDBEdit;
+    Label11: TLabel;
+    dbeCep: TDBEdit;
+    Label12: TLabel;
+    dbeLogradouro: TDBEdit;
+    Label19: TLabel;
+    dbeNum: TDBEdit;
+    Label20: TLabel;
+    dbeComp: TDBEdit;
+    Label21: TLabel;
+    dbeBairro: TDBEdit;
+    Label22: TLabel;
+    dbeCidade: TDBEdit;
+    Label23: TLabel;
+    dbeRegiao: TDBEdit;
+    Label24: TLabel;
+    dbeUf: TDBEdit;
+    Label26: TLabel;
+    dbeRota: TDBEdit;
+    Label27: TLabel;
+    dbeSetor: TDBEdit;
+    TabSheet4: TTabSheet;
+    Label28: TLabel;
+    DBEdit12: TDBEdit;
+    Label29: TLabel;
+    DBEdit13: TDBEdit;
+    edtRota: TEdit;
+    sbRota: TSpeedButton;
+    edtRegiao: TEdit;
+    sbRegiao: TSpeedButton;
+    edtSetor: TEdit;
+    sbSetor: TSpeedButton;
+    procedure dbeRotaChange(Sender: TObject);
+    procedure dbeRotaKeyPress(Sender: TObject; var Key: Char);
+    procedure dbeRegiaoKeyPress(Sender: TObject; var Key: Char);
+    procedure dbeSetorKeyPress(Sender: TObject; var Key: Char);
+    procedure dbeRegiaoChange(Sender: TObject);
+    procedure dbeSetorChange(Sender: TObject);
+    procedure sbRotaClick(Sender: TObject);
+    procedure sbRegiaoClick(Sender: TObject);
+    procedure sbSetorClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmccnCadClientes: TfrmccnCadClientes;
+
+implementation
+
+{$R *.dfm}
+
+uses ufrmCadRotas, ufrmCadRegioes, ufrmCadSetores;
+
+procedure TfrmccnCadClientes.dbeRegiaoChange(Sender: TObject);
+begin
+  inherited;
+    GetFillDescById(dbeRegiao,
+                    edtRegiao,
+                    'TBCADREGIOES',
+                    'ID',
+                    'DESCRICAO');
+end;
+
+procedure TfrmccnCadClientes.dbeRegiaoKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+    NumberValidate(Sender,Key);
+end;
+
+procedure TfrmccnCadClientes.dbeRotaChange(Sender: TObject);
+begin
+  inherited;
+    GetFillDescById(dbeRota,
+                    edtRota,
+                    'TBCADROTAS',
+                    'ID',
+                    'DESCRICAO');
+end;
+
+procedure TfrmccnCadClientes.dbeRotaKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+    NumberValidate(Sender,Key);
+end;
+
+procedure TfrmccnCadClientes.dbeSetorChange(Sender: TObject);
+begin
+  inherited;
+    GetFillDescById(dbeSetor,
+                    edtSetor,
+                    'TBCADSETORES',
+                    'ID',
+                    'DESCRICAO');
+end;
+
+procedure TfrmccnCadClientes.dbeSetorKeyPress(Sender: TObject; var Key: Char);
+begin
+  inherited;
+    NumberValidate(Sender,Key);
+end;
+
+procedure TfrmccnCadClientes.FormShow(Sender: TObject);
+begin
+    SetFormId(Self.Tag);
+  inherited;
+end;
+
+procedure TfrmccnCadClientes.sbRegiaoClick(Sender: TObject);
+begin
+  inherited;
+    frmCadRegioes := TfrmCadRegioes.Create(Nil);
+    if frmCadRegioes.ShowModal = mrOk then
+      dbeRegiao.Text := IntToStr(frmCadRegioes.qIdSelecionado);
+end;
+
+procedure TfrmccnCadClientes.sbRotaClick(Sender: TObject);
+begin
+  inherited;
+    frmCadRotas := TfrmCadRotas.Create(Nil);
+    if frmCadRotas.ShowModal = mrOk then
+      dbeRota.Text := IntToStr(frmCadRotas.qIdSelecionado);
+end;
+
+procedure TfrmccnCadClientes.sbSetorClick(Sender: TObject);
+begin
+  inherited;
+    frmCadSetores := TfrmCadSetores.Create(Nil);
+    if frmCadSetores.ShowModal = mrOk then
+      dbeSetor.Text := IntToStr(frmCadSetores.qIdSelecionado);
+end;
+
+end.

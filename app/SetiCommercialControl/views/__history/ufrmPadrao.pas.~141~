@@ -1,0 +1,885 @@
+{
+  FORM PADRÃO PARA CADASTRO
+}
+
+unit ufrmPadrao;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.ComCtrls,
+  Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Mask, Vcl.Buttons, Data.DB, IBDatabase, DBXCommon,
+  Midas, Datasnap.DBClient, uLocate, Vcl.Menus, Vcl.ImgList;
+
+type TDynamicstringArray = array of string;
+
+
+type
+  TfrmPadrao = class(TForm)
+    Panel1: TPanel;
+    Panel4: TPanel;
+    sbAbrir: TSpeedButton;
+    dsPadrao: TDataSource;
+    sbInsert: TSpeedButton;
+    sbUpdate: TSpeedButton;
+    sbDel: TSpeedButton;
+    sbSave: TSpeedButton;
+    sbCancel: TSpeedButton;
+    Panel5: TPanel;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    Label1: TLabel;
+    dbeCodigo: TDBEdit;
+    dbcbxAtivo: TDBCheckBox;
+    Panel2: TPanel;
+    DBNavigator1: TDBNavigator;
+    Panel6: TPanel;
+    Image1: TImage;
+    pmSearch: TPopupMenu;
+    Button1: TButton;
+    ImageList1: TImageList;
+    procedure FormCreate(Sender: TObject);
+    procedure sbAbrirClick(Sender: TObject);
+    procedure sbInsertClick(Sender: TObject);
+    procedure sbUpdateClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure sbSaveClick(Sender: TObject);
+    procedure sbCancelClick(Sender: TObject);
+    procedure sbDelClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+    FCaptionForm : string;
+    FQryForm : string;
+    FGroupByForm : string;
+    FOrderByForm : string;
+    FTableForm : string;
+    FGenForm : string;
+    FKeyFieldForm : string;
+    FListProviderForm : string;
+    FListMenuForm: string;
+    FListMenuCaptionForm: string;
+    FListRequiredFields : string;
+    FWarning : Boolean;
+
+    FStatus : string;
+    FLocate : TLocate;
+    FArray : TDynamicstringArray;
+    FCdsProvider : TClientDataSet;
+    FCdsMenu : TClientDataSet;
+    function GetStatus : string;
+    function FieldValidate : Boolean;
+    procedure SetStatus(Const Value : string);
+    procedure ProviderForm;
+    procedure CreateItens;
+    procedure ItemClick(Sender:TObject);
+    procedure pOpen;
+    procedure pInsert;
+    procedure pEdit;
+    procedure pDelete;
+    procedure pSave;
+    procedure pCompControl;
+    procedure pCreate;
+
+  public
+    { Public declarations }
+    function GetCaptionForm : string;
+    function GetQryForm : string;
+    function GetGroupByForm : string;
+    function GetOrderByForm : string;
+    function GetTableForm : string;
+    function GetGenForm : string;
+    function GetKeyFieldForm : string;
+    function GetListProviderForm : string;
+    function GetListMenuForm: string;
+    function GetListMenuCaptionForm: string;
+    function GetListRequiredFields: string;
+    function GetWarning : Boolean;
+
+    procedure SetCaptionForm(Const Value : string);
+    procedure SetQryForm(Const Value : string);
+    procedure SetGroupByForm(Const Value : string);
+    procedure SetOrderByForm(Const Value : string);
+    procedure SetTableForm(Const Value : string);
+    procedure SetGenForm(Const Value : string);
+    procedure SetKeyFieldForm(Const Value : string);
+    procedure SetListProviderForm(Const Value : string);
+    procedure SetListMenuForm(Const Value : string);
+    procedure SetListMenuCaptionForm(Const Value : string);
+    procedure SetListRequiredFields(Const Value : string);
+    procedure SetWarning(Const Value : Boolean);
+
+
+    property qCaptionForm : string read GetCaptionForm write SetCaptionForm;
+    property qQryForm : string read GetQryForm write SetQryForm;
+    property qGroupByForm: string read GetGroupByForm write SetGroupByForm;
+    property qOrderByForm: string read GetOrderByForm write SetOrderByForm;
+    property qTableForm : string read GetTableForm write SetQryForm;
+    property qGenForm : string read GetGenForm write SetGenForm;
+    property qKeyFieldForm : string read GetKeyFieldForm write SetKeyFieldForm;
+    property qListProviderForm : string read GetListProviderForm write
+      SetListProviderForm;
+    property qListMenuForm : string read GetListMenuForm write SetListMenuForm;
+    property qListMenuCaptionForm : string read GetListMenuCaptionForm write
+    SetListMenuCaptionForm;
+    property qListRequiredFields : string read GetListRequiredFields write
+    SetListRequiredFields;
+    property qWarning : Boolean read GetWarning write SetWarning;
+
+    property qStatus : string read GetStatus write SetStatus;
+    property cLocate : TLocate read FLocate write FLocate;
+    property qCdsProvider: TClientDataSet read FCdsProvider write FCdsProvider;
+    property qCdsMenu: TClientDataSet read FCdsMenu write FCdsMenu;
+
+  end;
+
+var
+  frmPadrao: TfrmPadrao;
+  TD : TDBXTransaction;
+
+implementation
+
+{$R *.dfm}
+
+uses udmMasterDataModule, uMess, uSetiConfig, udmGen, uSetiUseful;
+
+procedure TfrmPadrao.CreateItens;
+var
+  i, i2 : Integer;
+  vNameArray : string;
+  vList, vList2 : TStringList;
+  item : TMenuItem;
+begin
+    qCdsMenu := TClientDataSet.Create(Self);
+    qCdsMenu.Close;
+    qCdsMenu.FieldDefs.Clear;
+    qCdsMenu.FieldDefs.add('ID',ftInteger);
+    qCdsMenu.FieldDefs.add('DESCRIPTION',ftString,50);
+    qCdsMenu.CreateDataSet;
+    vList := TStringList.Create;
+    ExtractStrings([';'],[],PChar(qListMenuForm),vList);
+    //TABLE
+    for i := 0 to vList.Count -1 do
+    begin
+      vNameArray := vList[i];
+      qCdsMenu.Append;
+      qCdsMenu.FieldByName('ID').Value := i;
+      qCdsMenu.FieldByName('DESCRIPTION').Value := vNameArray;
+      qCdsMenu.Post;
+    end;
+    vList2 := TStringList.Create;
+    ExtractStrings([';'],[],PChar(qListMenuCaptionForm),vList2);
+    //CAPTION MENU
+    for i2 := 0 to vList2.Count -1 do
+    begin
+      vNameArray := vList2[i2];
+      item := TMenuItem.Create(pmSearch);
+      item.Tag := i2;
+      item.OnClick := ItemClick;
+      item.Caption := vNameArray;
+      pmSearch.Items.Add(item);
+    end;
+end;
+
+procedure TfrmPadrao.pCreate;
+var
+  i : Integer;
+begin
+    try
+      try
+         with (dmMasterDataModule) do
+          begin
+              UseComponentsDmSeti(1);
+              with (SetiSqlQuery) do
+               begin
+                SQL.Add(qQryForm);
+                dsPadrao.DataSet := SetiCds;
+               end
+          end;
+    finally
+
+    end;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TfrmPadrao.pDelete;
+var
+  vRec : Integer;
+begin
+    try
+      if MessageDlg('Confirmar exclusão do registro?',mtConfirmation,
+      [mbYes,mbNo],0) = mrYes then
+      begin
+          dmMasterDataModule.SetiCds.Delete;
+          dmMasterDataModule.SetiCds.ApplyUpdates(0);
+          dmMasterDataModule.SetiCds.Refresh;
+          SetiMens(1,'Registro excluído com sucesso.');
+          vRec := dmMasterDataModule.SetiCds.RecordCount;
+          if vRec > 0 then
+            SetStatus('ABERTO') else
+          SetStatus('INICIAL');
+          pCompControl;
+      end;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+procedure TfrmPadrao.pEdit;
+begin
+    try
+      dmMasterDataModule.SetiCds.Edit;
+      SetStatus('UPDATE');
+      pCompControl;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+function TfrmPadrao.FieldValidate: Boolean;
+var
+  i,i2 : Integer;
+  vList : TStringList;
+  vNameArray : string;
+  vNameComp : string;
+  vMens : string;
+  vval : Boolean;
+begin
+    Result := False;
+    vval := True;
+    vMens := 'Informação obrigatória';
+    try
+      if qListProviderForm <> '' then
+      begin
+        vList := TStringList.Create;
+        ExtractStrings([';'],[],PChar(qListRequiredFields),vList);
+        for i := 0 to vList.Count -1 do
+        begin
+          if vval = False then
+            Break;
+          vNameArray := UpperCase(vList[i]);
+          for i2 := 0 to ComponentCount -1 do
+          begin
+            vNameComp := UpperCase(Components[i2].Name);
+            if vNameComp = vNameArray then
+            begin
+              if Components[i2] is TDBEdit then
+              begin
+                if (TDBEDIT(Components[i2]).Text = '') then
+                begin
+                  SetiMens(2,vMens);
+                  TDBEDIT(Components[i2]).SetFocus;
+                  vval := False;
+                  Break;
+                  Result := False;
+                end;
+              end else
+              if Components[i2] is TMaskEdit then
+              begin
+                if (TMaskEdit(Components[i2]).Text = '') then
+                begin
+                  SetiMens(2,vMens);
+                  TMaskEdit(Components[i2]).SetFocus;
+                  vval := False;
+                  Break;
+                  Result := False;
+                end;
+              end else
+              if Components[i2] is TDBMemo then
+              begin
+                if (TDBMemo(Components[i2]).Text = '') then
+                begin
+                  SetiMens(2,vMens);
+                  TDBMemo(Components[i2]).SetFocus;
+                  vval := False;
+                  Break;
+                  Result := False;
+                end;
+              end else
+              if Components[i2] is TDBComboBox then
+              begin
+                if (TDBComboBox(Components[i2]).Text = '') then
+                begin
+                  SetiMens(2,vMens);
+                  TDBComboBox(Components[i2]).SetFocus;
+                  vval := False;
+                  Break;
+                  Result := False;
+                end;
+              end else
+              if Components[i2] is TDBLookupComboBox then
+              begin
+                if (TDBLookupComboBox(Components[i2]).Text = '') then
+                begin
+                  SetiMens(2,vMens);
+                  TDBLookupComboBox(Components[i2]).SetFocus;
+                  vval := False;
+                  Break;
+                  Result := False;
+                end;
+              end;
+            end;
+          end;
+        end;
+      end;
+      if vval then
+        Result := True;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+procedure TfrmPadrao.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+    Action := caFree;
+    frmPadrao := nil;
+end;
+
+procedure TfrmPadrao.FormCreate(Sender: TObject);
+var
+  vval : Integer;
+begin
+    try
+        SetWarning(False);
+        vval := 0;
+        if qCaptionForm = '' then vval := 1;
+        if qQryForm = '' then vval := 1;
+        if qTableForm = '' then vval := 1;
+        if qGenForm = '' then vval := 1;
+        if qKeyFieldForm = '' then vval := 1;
+        if qListProviderForm = '' then vval := 1;
+        if qListMenuForm = '' then vval := 1;
+        if qListMenuCaptionForm = '' then vval := 1;
+        if qOrderByForm = '' then vval := 1;
+        if vval > 0 then
+        begin
+          SetWarning(True);
+          ShowMessage('Parametros da tela estão incompletos');
+          Exit;
+        end else
+        begin
+          CreateItens;
+          Self.Caption := qCaptionForm;
+          dmMasterDataModule := TdmMasterDataModule.Create(Nil);
+          pCreate;
+          dmMasterDataModule.fnTableInforFS8F1(qTableForm);
+        end;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+procedure TfrmPadrao.FormShow(Sender: TObject);
+begin
+    if qWarning = False then
+    begin
+      SetStatus('INICIAL');
+      pCompControl;
+    end else
+    Close;
+end;
+
+function TfrmPadrao.GetCaptionForm: string;
+begin
+    Result := FCaptionForm;
+end;
+
+function TfrmPadrao.GetGenForm: string;
+begin
+    Result := FGenForm;
+end;
+
+function TfrmPadrao.GetGroupByForm: string;
+begin
+    Result := FGroupByForm;
+end;
+
+function TfrmPadrao.GetKeyFieldForm: string;
+begin
+    Result := FKeyFieldForm;
+end;
+
+function TfrmPadrao.GetListMenuCaptionForm: string;
+begin
+    Result := FListMenuCaptionForm;
+end;
+
+function TfrmPadrao.GetListMenuForm: string;
+begin
+    Result := FListMenuForm;
+end;
+
+function TfrmPadrao.GetListProviderForm: string;
+begin
+    Result := FListProviderForm;
+end;
+
+function TfrmPadrao.GetListRequiredFields: string;
+begin
+    Result := FListRequiredFields;
+end;
+
+function TfrmPadrao.GetOrderByForm: string;
+begin
+    Result := FOrderByForm;
+end;
+
+function TfrmPadrao.GetQryForm: string;
+begin
+    Result := FQryForm;
+end;
+
+function TfrmPadrao.GetStatus: string;
+begin
+    Result := FStatus;
+end;
+
+function TfrmPadrao.GetTableForm: string;
+begin
+    Result := FTableForm;
+end;
+
+function TfrmPadrao.GetWarning: Boolean;
+begin
+    Result := FWarning;
+end;
+
+procedure TfrmPadrao.pSave;
+begin
+  try
+      try
+        if NOT (FieldValidate) then
+          Exit;
+        if (qStatus = 'INSERT') or (qStatus = 'UPDATE') then
+        begin
+          if (qStatus = 'INSERT') then
+          begin
+            if (dbcbxAtivo.Checked = True) then
+              dmMasterDataModule.SetiCds.FieldByName('STATUS').Value := 'S' else
+            dmMasterDataModule.SetiCds.FieldByName('STATUS').Value := 'N';
+          end;
+          dmMasterDataModule.SetiCds.Post;
+          dmMasterDataModule.SetiCds.ApplyUpdates(0);
+          if (qStatus = 'INSERT') then
+            SetiMens(1,'Registro inserido com sucesso.') else
+          if (qStatus = 'UPDATE') then
+            SetiMens(1,'Registro atualizado com sucesso.');
+          dmMasterDataModule.SetiCds.Close;
+        end;
+        SetStatus('INICIAL');
+        pCompControl;
+      finally
+
+      end;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TfrmPadrao.pCompControl;
+var
+  iStatus : Integer;
+  reg : Boolean;
+  i : Integer;
+begin
+    try
+      if (dmMasterDataModule.SetiCds.IsEmpty) then
+        reg := False else reg := True;
+      if (qStatus = 'INICIAL') then iStatus := 1 else
+      if (qStatus = 'ABERTO') then iStatus := 2 else
+      if (qStatus = 'INSERT') then iStatus := 3 else
+      if (qStatus = 'UPDATE') then iStatus := 4;
+      if (iStatus in [2]) and (reg = False) then iStatus := 0;
+
+      for I := 0 to ComponentCount -1 do
+      begin
+        if iStatus = 0 then
+        begin
+          if Components[i] is TDBEdit then
+            TDBEDIT(Components[i]).ReadOnly := True else
+          if Components[i] is TMaskEdit then
+            TMaskEdit(Components[i]).ReadOnly := True else
+          if Components[i] is TDBRadioGroup then
+            TDBRadioGroup(Components[i]).ReadOnly := True else
+          if Components[i] is TDBMemo then
+            TDBMemo(Components[i]).ReadOnly := True else
+          if Components[i] is TDBComboBox then
+            TDBComboBox(Components[i]).ReadOnly := True else
+          if Components[i] is TDBLookupComboBox then
+            TDBLookupComboBox(Components[i]).ReadOnly := True else
+          if Components[i] is TDBCheckBox then
+            TDBCheckBox(Components[i]).ReadOnly := True;
+          if Components[i] is TMaskEdit then
+          begin
+            TMaskEdit(Components[i]).Clear;
+            TMaskEdit(Components[i]).ReadOnly := True;
+          end;
+        end else
+        if iStatus = 1 then
+        begin
+          if Components[i] is TDBEdit then
+            TDBEDIT(Components[i]).ReadOnly := True else
+          if Components[i] is TMaskEdit then
+            TMaskEdit(Components[i]).ReadOnly := True else
+          if Components[i] is TDBRadioGroup then
+            TDBRadioGroup(Components[i]).ReadOnly := True else
+          if Components[i] is TDBMemo then
+            TDBMemo(Components[i]).ReadOnly := True else
+          if Components[i] is TDBComboBox then
+            TDBComboBox(Components[i]).ReadOnly := True else
+          if Components[i] is TDBLookupComboBox then
+            TDBLookupComboBox(Components[i]).ReadOnly := True else
+          if Components[i] is TDBCheckBox then
+            TDBCheckBox(Components[i]).ReadOnly := True;
+          if Components[i] is TMaskEdit then
+          begin
+            TMaskEdit(Components[i]).Clear;
+            TMaskEdit(Components[i]).ReadOnly := True;
+          end;
+        end else
+        if iStatus = 2 then
+        begin
+          if Components[i] is TDBEdit then
+            TDBEDIT(Components[i]).ReadOnly := True else
+          if Components[i] is TMaskEdit then
+            TMaskEdit(Components[i]).ReadOnly := True else
+          if Components[i] is TDBRadioGroup then
+            TDBRadioGroup(Components[i]).ReadOnly := True else
+          if Components[i] is TDBMemo then
+            TDBMemo(Components[i]).ReadOnly := True else
+          if Components[i] is TDBComboBox then
+            TDBComboBox(Components[i]).ReadOnly := True else
+          if Components[i] is TDBLookupComboBox then
+            TDBLookupComboBox(Components[i]).ReadOnly := True else
+          if Components[i] is TDBCheckBox then
+            TDBCheckBox(Components[i]).ReadOnly := True;
+          if Components[i] is TMaskEdit then
+          begin
+            TMaskEdit(Components[i]).ReadOnly := True;
+          end;
+        end else
+        if iStatus = 3 then
+        begin
+          if Components[i] is TDBEdit then
+            TDBEDIT(Components[i]).ReadOnly := False else
+          if Components[i] is TMaskEdit then
+            TMaskEdit(Components[i]).ReadOnly := False else
+          if Components[i] is TDBRadioGroup then
+            TDBRadioGroup(Components[i]).ReadOnly := False else
+          if Components[i] is TDBMemo then
+            TDBMemo(Components[i]).ReadOnly := False else
+          if Components[i] is TDBComboBox then
+            TDBComboBox(Components[i]).ReadOnly := False else
+          if Components[i] is TDBLookupComboBox then
+            TDBLookupComboBox(Components[i]).ReadOnly := False else
+          if Components[i] is TDBCheckBox then
+            TDBCheckBox(Components[i]).ReadOnly := False;
+          if Components[i] is TMaskEdit then
+          begin
+            TMaskEdit(Components[i]).ReadOnly := False;
+          end;
+        end else
+        if iStatus = 4 then
+        begin
+          if Components[i] is TDBEdit then
+            TDBEDIT(Components[i]).ReadOnly := False else
+          if Components[i] is TMaskEdit then
+            TMaskEdit(Components[i]).ReadOnly := False else
+          if Components[i] is TDBRadioGroup then
+            TDBRadioGroup(Components[i]).ReadOnly := False else
+          if Components[i] is TDBMemo then
+            TDBMemo(Components[i]).ReadOnly := False else
+          if Components[i] is TDBComboBox then
+            TDBComboBox(Components[i]).ReadOnly := False else
+          if Components[i] is TDBLookupComboBox then
+            TDBLookupComboBox(Components[i]).ReadOnly := False else
+          if Components[i] is TDBCheckBox then
+            TDBCheckBox(Components[i]).ReadOnly := False;
+          if Components[i] is TMaskEdit then
+          begin
+            TMaskEdit(Components[i]).ReadOnly := False;
+          end;
+        end;
+      end;
+
+      if (iStatus in [0]) then  //INICIAL - SEM REGISTRO
+      begin
+        sbAbrir.Enabled := False;
+        sbInsert.Enabled := True;
+        sbUpdate.Enabled := False;
+        sbDel.Enabled := False;
+        sbSave.Enabled := False;
+        sbCancel.Enabled := True;
+        PageControl1.ActivePageIndex := 0;
+        DBNavigator1.Enabled := False;
+      end else
+      if (iStatus in [1]) then  //INICIAL
+      begin
+        sbAbrir.Enabled := True;
+        sbInsert.Enabled := True;
+        sbUpdate.Enabled := False;
+        sbDel.Enabled := False;
+        sbSave.Enabled := False;
+        sbCancel.Enabled := False;
+        PageControl1.ActivePageIndex := 0;
+        DBNavigator1.Enabled := False;
+      end else
+      if (iStatus in [2]) then //ABERTO
+      begin
+        sbAbrir.Enabled := False;
+        sbInsert.Enabled := True;
+        sbUpdate.Enabled := True;
+        sbDel.Enabled := True;
+        sbSave.Enabled := False;
+        sbCancel.Enabled := True;
+        DBNavigator1.Enabled := True;
+      end else
+      if (iStatus in [3]) then //INSERT
+      begin
+        sbAbrir.Enabled := False;
+        sbInsert.Enabled := False;
+        sbUpdate.Enabled := False;
+        sbDel.Enabled := False;
+        sbSave.Enabled := True;
+        sbCancel.Enabled := True;
+        DBNavigator1.Enabled := False;
+        PageControl1.ActivePageIndex := 0;
+        //dbeNome.SetFocus;
+      end else
+      if (iStatus in [4]) then //UPDATE
+      begin
+        sbAbrir.Enabled := False;
+        sbInsert.Enabled := False;
+        sbUpdate.Enabled := False;
+        sbDel.Enabled := False;
+        sbSave.Enabled := True;
+        sbCancel.Enabled := True;
+        DBNavigator1.Enabled := False;
+        PageControl1.ActivePageIndex := 0;
+        //dbeNome.SetFocus;
+      end;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+procedure TfrmPadrao.pOpen;
+var
+  i : Integer;
+begin
+    try
+      ProviderForm;
+      cLocate := TLocate.Create;
+      dsPadrao.DataSet :=
+        cLocate.GetSearchDataSetProvider(
+                                1,
+                                dmMasterDataModule.SetiCds,
+                                qTableForm,
+                                qKeyFieldForm,
+                                qKeyFieldForm,
+                                qCaptionForm,
+                                qQryForm,
+                                qCdsProvider,
+                                qGroupByForm,
+                                qOrderByForm);
+      DBNavigator1.DataSource := dsPadrao;
+      SetStatus('ABERTO');
+      pCompControl;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TfrmPadrao.pInsert;
+begin
+    try
+      dmMasterDataModule.SetiCds.Open;
+      dmMasterDataModule.SetiCds.Append;
+      dmGen := TdmGen.Create(Nil);
+      dmMasterDataModule.SetiCds.FieldByName('ID').Value :=
+        dmGen.ProximoId(qGenForm);
+      dmGen.Free;
+      dbcbxAtivo.Checked := True;
+      SetStatus('INSERT');
+      pCompControl;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+procedure TfrmPadrao.ItemClick(Sender: TObject);
+var
+  vNameFieldMenu : string;
+begin
+    qCdsMenu.Close;
+    qCdsMenu.Open;
+    if NOT (qCdsMenu.IsEmpty) then
+    begin
+      qCdsMenu.Filtered := False;
+      qCdsMenu.Filter := 'ID = '+IntToStr((Sender as TMenuItem).Tag);
+      qCdsMenu.Filtered := True;
+      vNameFieldMenu := qCdsMenu.FieldByName('DESCRIPTION').AsString;
+      ProviderForm;
+      cLocate := TLocate.Create;
+      dsPadrao.DataSet :=
+        cLocate.GetSearchDataSetProvider(
+                                1,
+                                dmMasterDataModule.SetiCds,
+                                qTableForm,
+                                vNameFieldMenu,
+                                qKeyFieldForm,
+                                qCaptionForm,
+                                qQryForm,
+                                qCdsProvider,
+                                qGroupByForm,
+                                qOrderByForm);
+      DBNavigator1.DataSource := dsPadrao;
+      SetStatus('ABERTO');
+      pCompControl;
+    end;
+end;
+
+procedure TfrmPadrao.ProviderForm;
+var
+  i : Integer;
+  vNameArray : string;
+  vList : TStringList;
+begin
+    qCdsProvider := TClientDataSet.Create(Self);
+    qCdsProvider.Close;
+    qCdsProvider.FieldDefs.Clear;
+    qCdsProvider.FieldDefs.add('DESCRIPTION',ftString,50);
+    qCdsProvider.CreateDataSet;
+    vList := TStringList.Create;
+    ExtractStrings([';'],[],PChar(qListProviderForm),vList);
+    for i := 0 to vList.Count -1 do
+    begin
+      vNameArray := vList[i];
+      qCdsProvider.Append;
+      qCdsProvider.FieldByName('DESCRIPTION').AsString := vNameArray;
+      qCdsProvider.Post;
+    end;
+end;
+
+procedure TfrmPadrao.SetCaptionForm(const Value: string);
+begin
+    FCaptionForm := Value;
+end;
+
+procedure TfrmPadrao.SetGenForm(const Value: string);
+begin
+    FGenForm := Value;
+end;
+
+procedure TfrmPadrao.SetGroupByForm(const Value: string);
+begin
+    FGroupByForm := Value;
+end;
+
+procedure TfrmPadrao.SetKeyFieldForm(const Value: string);
+begin
+    FKeyFieldForm := Value;
+end;
+
+procedure TfrmPadrao.SetListMenuCaptionForm(const Value: string);
+begin
+  FListMenuCaptionForm := Value;
+end;
+
+procedure TfrmPadrao.SetListMenuForm(const Value: string);
+begin
+    FListMenuForm := Value;
+end;
+
+procedure TfrmPadrao.SetListProviderForm(const Value: string);
+begin
+    FListProviderForm := Value;
+end;
+
+procedure TfrmPadrao.SetListRequiredFields(const Value: string);
+begin
+    FListRequiredFields := Value;
+end;
+
+procedure TfrmPadrao.SetOrderByForm(const Value: string);
+begin
+    FOrderByForm := Value;
+end;
+
+procedure TfrmPadrao.SetQryForm(const Value: string);
+begin
+    FQryForm := Value;
+end;
+
+procedure TfrmPadrao.SetStatus(const Value: string);
+begin
+    FStatus := Value;
+end;
+
+procedure TfrmPadrao.SetTableForm(const Value: string);
+begin
+    FTableForm := Value;
+end;
+
+procedure TfrmPadrao.SetWarning(const Value: Boolean);
+begin
+    FWarning := Value;
+end;
+
+procedure TfrmPadrao.sbAbrirClick(Sender: TObject);
+begin
+    try
+      pOpen;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+procedure TfrmPadrao.sbCancelClick(Sender: TObject);
+begin
+    try
+      dmMasterDataModule.SetiCds.Cancel;
+      dmMasterDataModule.SetiCds.Close;
+      SetStatus('INICIAL');
+      pCompControl;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+procedure TfrmPadrao.sbDelClick(Sender: TObject);
+begin
+    try
+      pDelete;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+procedure TfrmPadrao.sbInsertClick(Sender: TObject);
+begin
+    try
+      pInsert;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+procedure TfrmPadrao.sbSaveClick(Sender: TObject);
+begin
+    pSave;
+end;
+
+procedure TfrmPadrao.sbUpdateClick(Sender: TObject);
+begin
+    try
+      pEdit;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end
+end;
+
+end.

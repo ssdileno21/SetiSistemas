@@ -1,0 +1,97 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 513
+  ClientWidth = 739
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object PageControl1: TPageControl
+    Left = 0
+    Top = 0
+    Width = 739
+    Height = 513
+    ActivePage = TabSheet1
+    Align = alClient
+    TabOrder = 0
+    object TabSheet1: TTabSheet
+      Caption = 'Novo Recibo'
+      object Panel1: TPanel
+        Left = 0
+        Top = 0
+        Width = 731
+        Height = 485
+        Align = alClient
+        TabOrder = 0
+        ExplicitWidth = 739
+        ExplicitHeight = 177
+        object Panel2: TPanel
+          Left = 1
+          Top = 1
+          Width = 729
+          Height = 160
+          Align = alTop
+          TabOrder = 0
+          DesignSize = (
+            729
+            160)
+          object Label3: TLabel
+            Left = 12
+            Top = 52
+            Width = 95
+            Height = 13
+            Caption = 'C'#243'd. Cliente (Ficha)'
+          end
+          object Label1: TLabel
+            Left = 12
+            Top = 100
+            Width = 91
+            Height = 13
+            Caption = 'Comprador / Resp.'
+          end
+          object edtComprasCodFornecedor: TEdit
+            Tag = 99
+            Left = 12
+            Top = 71
+            Width = 95
+            Height = 21
+            TabOrder = 0
+          end
+          object Edit1: TEdit
+            Tag = 99
+            Left = 12
+            Top = 119
+            Width = 95
+            Height = 21
+            TabOrder = 1
+          end
+          object edtComprasFornecedor: TEdit
+            Tag = 99
+            Left = 113
+            Top = 71
+            Width = 584
+            Height = 21
+            Anchors = [akLeft, akTop, akRight]
+            TabOrder = 2
+          end
+          object Edit2: TEdit
+            Tag = 99
+            Left = 113
+            Top = 119
+            Width = 584
+            Height = 21
+            Anchors = [akLeft, akTop, akRight]
+            TabOrder = 3
+          end
+        end
+      end
+    end
+  end
+end

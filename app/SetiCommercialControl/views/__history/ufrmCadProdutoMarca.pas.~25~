@@ -1,0 +1,70 @@
+unit ufrmCadProdutoMarca;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrmCadPadraoReduzido, Data.FMTBcd,
+  Datasnap.DBClient, Datasnap.Provider, Data.DB, Data.SqlExpr, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
+
+type
+  TfrmCadProdutoMarca = class(TfrmCadPadraoReduzido)
+    procedure FormCreate(Sender: TObject);
+    procedure sbSelRegistroClick(Sender: TObject);
+  private
+    FqIdSelec: Integer;
+    procedure SetqIdSelec(const Value: Integer);
+    { Private declarations }
+  public
+    { Public declarations }
+  protected
+    property qIdSelec : Integer read FqIdSelec write SetqIdSelec;
+  end;
+
+var
+  frmCadProdutoMarca: TfrmCadProdutoMarca;
+
+implementation
+
+{$R *.dfm}
+
+{ TfrmCadProdutoMarca }
+
+procedure TfrmCadProdutoMarca.FormCreate(Sender: TObject);
+begin
+  inherited;
+    //COMANDO PARA O TITULO DO FORM
+    SetqTituloForm('Produto - Marca');
+    //COMANDO PARA CONSULTA DE ITENS
+    SetqCommandCons('SELECT * FROM TBCADPRODUTOMARCA ');
+    //COMANDO PARA INSERT
+    SetqCommandIns('INSERT INTO TBCADPRODUTOMARCA '+
+                   '(                             '+
+                   '   ID                         '+
+                   '  ,NOME                       '+
+                   ') VALUES                      '+
+                   '(                             '+
+                   '   :ID                        '+
+                   '  ,:NOME                      '+
+                   ')                             ');
+    //NOME DO CAMPO CÓD.
+    SetqNomeCampoCod('ID');
+    //NOME DO CAMPO DESCRIÇÃO
+    SetqNomeCampoDesc('NOME');
+    //COMANDO PARA DELETAR
+    SetqCommandDel('DELETE FROM TBCADPRODUTOMARCA WHERE ID = :ID');
+end;
+
+procedure TfrmCadProdutoMarca.sbSelRegistroClick(Sender: TObject);
+begin
+  inherited;
+    SetqIdSelec(qIdSelecionado);
+end;
+
+procedure TfrmCadProdutoMarca.SetqIdSelec(const Value: Integer);
+begin
+    FqIdSelec := Value;
+end;
+
+end.

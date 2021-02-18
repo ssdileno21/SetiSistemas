@@ -1,0 +1,288 @@
+unit uLocateDAO;
+
+interface
+
+uses uFSDialogs, SysUtils, uSetiConfig, uSetiConnects, SqlExpr,
+ADODB, DB, Provider, DBClient, DBGrids, System.Variants, Dialogs,
+System.Classes, MIDASLIB, uccnUtil;
+
+  type TLocateDAO = class(TProvider)
+    private
+      FDsp : TDataSetProvider;
+      FCds : TClientDataSet;
+      FDts  : TDataSource;
+      FSql : TSQLQuery;
+      FDtsHelp : TDataSource;
+      FConnects : TSetiConnects;
+      FListProvider: string;
+      FCdsProvider: TClientDataSet;
+      FQry: string;
+      FParamValue: string;
+      FTableName: string;
+      FSearch_Type: integer;
+      FSearch4_Field: string;
+      FqSearch13Tag: Integer;
+      FParameterId: Integer;
+      procedure SetCdsProvider(const Value: TClientDataSet);
+
+    public
+      constructor Create;
+      destructor Destroy;Virtual;
+
+      procedure searching;
+
+      procedure SetParameterId(const Value: Integer);
+
+
+      procedure ProviderForm;
+      procedure SetQry(const Value: string);
+      procedure SetParamValue(const Value: string);
+      procedure SetTableName(const Value: string);
+      procedure SetListProvider(const Value: string);
+      procedure UseDataSet;
+      procedure SetSearch_Type(const Value: integer);
+      procedure SetSearch4_Field(const Value: string);
+      procedure SetqSearch13Tag(const Value: Integer);
+
+      property qDsp : TDataSetProvider read FDsp write FDsp;
+      property qCds : TClientDataSet read FCds write FCds;
+      property qDts  : TDataSource read FDts write FDts;
+      property qSql  : TSQLQuery read FSql write FSql;
+      property qDtsHelp  : TDataSource read FDtsHelp write FDtsHelp;
+      property qConnects : TSetiConnects read FConnects write FConnects;
+      property qListProvider : string read FListProvider write SetListProvider;
+      property qCdsProvider : TClientDataSet read FCdsProvider write
+        SetCdsProvider;
+      property qQry : string read FQry write SetQry;
+      property qParamValue : string read FParamValue write SetParamValue;
+      property qTableName : string read FTableName write SetTableName;
+      property qSearch_Type : integer read FSearch_Type write SetSearch_Type;
+      property qSearch4_Field : string read FSearch4_Field write
+        SetSearch4_Field;
+      property qSearch13Tag : Integer read FqSearch13Tag write SetqSearch13Tag;
+
+
+      property qParameterId : Integer read FParameterId write SetParameterId;
+
+  end;
+
+implementation
+
+{ TUsuariosDao }
+
+constructor TLocateDAO.Create;
+begin
+    try
+
+    except on e : exception do
+      SetiMens(e.Message,0);
+    end;
+end;
+
+destructor TLocateDAO.Destroy;
+begin
+    try
+
+
+
+    except on e : exception do
+      SetiMens(e.Message,0);
+    end;
+end;
+
+procedure TLocateDao.ProviderForm;
+var
+  i : Integer;
+  vNameArray : string;
+  vList : TStringList;
+  vCont : Integer;
+  vNameField : string;
+  vval : Boolean;
+begin
+    qCdsProvider := TClientDataSet.Create(Self);
+    qCdsProvider.Close;
+    qCdsProvider.FieldDefs.Clear;
+    qCdsProvider.FieldDefs.add('DESCRIPTION',ftString,50);
+    qCdsProvider.CreateDataSet;
+    vList := TStringList.Create;
+    ExtractStrings([';'],[],PChar(qListProvider),vList);
+    for i := 0 to vList.Count -1 do
+    begin
+      vNameArray := vList[i];
+      qCdsProvider.Append;
+      qCdsProvider.FieldByName('DESCRIPTION').AsString := vNameArray;
+      qCdsProvider.Post;
+    end;
+
+    if (qTableName <> '') then
+    begin
+      if Assigned(qCds) then
+      begin
+        if NOT (qCds.IsEmpty) then
+        begin
+            for i := 0 to Pred(qCds.FieldCount) do
+            begin
+              qCds.Fields[i].DisplayLabel :=
+                fnTableInfor(qTableName,qCds.Fields[i].FieldName,3);
+              if (qCds.Fields[i].DataType = ftSingle) then //FLOAT
+                TFloatField(qCds.Fields[i]).DisplayFormat := '#,##0.00';
+              if (qCds.Fields[i].DataType = ftFMTBcd) then //NUMERIC(15,2)
+                TFloatField(qCds.Fields[i]).currency := True;
+
+              vCont := 0;
+              vval := False;
+              qCdsProvider.Close;
+              qCdsProvider.Open;
+              if qCdsProvider.IsEmpty then
+                Exit;
+
+              qCdsProvider.First;
+              while NOT (qCdsProvider.Eof) do
+              begin
+                vNameField := '';
+                vNameArray := qCdsProvider.FieldByName('DESCRIPTION').AsString;
+                vNameField := qCds.Fields[i].FieldName;
+                 if (vNameField = vNameArray) then
+                  begin
+                    vval := True;
+                    qCds.Fields[i].Visible := True;
+                    if qCds.Fields[i].DataType = ftString then
+                      qCds.Fields[i].DisplayWidth := 20
+                    else
+                    begin
+                      qCds.Fields[i].DisplayWidth := 10;
+                    end;
+                    if qCds.Fields[i].FieldName = 'NOME' then
+                      qCds.Fields[i].DisplayWidth := 40;
+                  end;
+                  vCont := vCont +1;
+                  if (vCont = qCdsProvider.RecordCount)  then
+                  begin
+                    if (vval = False) then
+                      qCds.Fields[i].Visible := False;
+                  end;
+                  qCdsProvider.Next;
+              end;
+            end;
+        end;
+      end;
+    end;
+end;
+
+procedure TLocateDao.SetCdsProvider(const Value: TClientDataSet);
+begin
+    FCdsProvider := Value;
+end;
+
+procedure TLocateDao.SetListProvider(const Value: string);
+begin
+    FListProvider := Value;
+end;
+
+procedure TLocateDAO.SetParameterId(const Value: Integer);
+begin
+    FParameterId := Value;
+end;
+
+procedure TLocateDAO.SetParamValue(const Value: string);
+begin
+    FParamValue := Value;
+end;
+
+procedure TLocateDAO.SetQry(const Value: string);
+begin
+    FQry := Value;
+end;
+
+procedure TLocateDAO.SetqSearch13Tag(const Value: Integer);
+begin
+    FqSearch13Tag := Value;
+end;
+
+procedure TLocateDAO.SetSearch4_Field(const Value: string);
+begin
+    FSearch4_Field := Value;
+end;
+
+procedure TLocateDAO.SetSearch_Type(const Value: integer);
+begin
+    FSearch_Type := Value;
+end;
+
+procedure TLocateDAO.SetTableName(const Value: string);
+begin
+    FTableName := Value;
+end;
+
+procedure TLocateDAO.UseDataSet;
+var
+  i : Integer;
+begin
+    try
+      if (qQry <> '') then
+      begin
+        qConnects := TSetiConnects.Create;
+        qSql := TSQLQuery.Create(Nil);
+        qDsp := TDataSetProvider.Create(Nil);
+        qCds := TClientDataSet.Create(Nil);
+        qCds.AutoCalcFields := True;
+        qCds.FetchOnDemand := True;
+        qCds.ObjectView := True;
+        qDts := TDataSource.Create(Nil);
+
+        qSql.SQL.Clear;
+        qSql.SQLConnection := qConnects.ConnectsFIREBIRD(False);
+        qSql.SQL.Add(qQry);
+        qDsp.DataSet := qSql;
+        qCds.SetProvider(qDsp);
+        qDts.DataSet := qCds;
+        qCds.Close;
+        if (qParamValue <> '') then
+        begin
+          qCds.FetchParams;
+          qCds.Params.ParamByName(qSearch4_Field).Value := 1;//qParamValue;
+          //qCds.Params[qSearch13Tag].Value := 1;
+
+        end;
+        qCds.Open;
+        qCds.First;
+        if NOT (qCds.IsEmpty) then
+        begin
+          if (qListProvider <> '') then
+          begin
+            ProviderForm;
+          end else
+          begin
+            with (qDts.DataSet) do
+            begin
+              qDts.DataSet.First;
+              for i := 0 to qDts.DataSet.FieldCount - 1 do
+                Fields.Fields[i].DisplayWidth := 25;
+              end;
+            end;
+          end;
+      end;
+    except on e : exception do
+      SetiMens(e.Message,0);
+    end;
+end;
+
+procedure TLocateDAO.searching;
+var
+    i : Integer;
+    vqry : TSQLQuery;
+    vConn : TSetiConnects;
+begin
+    try
+        try
+
+
+        finally
+
+        end;
+    except on e : exception do
+      SetiMens(e.Message,0);
+    end;
+end;
+
+end.

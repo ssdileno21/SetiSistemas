@@ -1,0 +1,39 @@
+unit ufrmccnCadFuncionarios;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrmStanRec, Data.FMTBcd, Data.DB,
+  Data.SqlExpr, Datasnap.DBClient, Datasnap.Provider, Vcl.DBCtrls, Vcl.Grids,
+  Vcl.DBGrids, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Mask;
+
+type
+  TfrmccnCadFuncionarios = class(TfrmStanRec)
+    Label1: TLabel;
+    dbeCodigo: TDBEdit;
+    Label2: TLabel;
+    dbeNome: TDBEdit;
+    dbcStatus: TDBCheckBox;
+    Label3: TLabel;
+    dbeCodInterno: TDBEdit;
+    Label16: TLabel;
+    DBEdit1: TDBEdit;
+    Label18: TLabel;
+    DBEdit3: TDBEdit;
+    Label5: TLabel;
+    dbeObservacao: TDBMemo;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmccnCadFuncionarios: TfrmccnCadFuncionarios;
+
+implementation
+
+{$R *.dfm}
+
+end.

@@ -1,0 +1,204 @@
+unit ufrmCadReciboVenda;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrmCadPadrao, Vcl.ImgList, Vcl.Menus,
+  Data.DB, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.StdCtrls, Vcl.Mask, Vcl.ComCtrls,
+  Vcl.Buttons;
+
+type
+  TfrmCadReciboVenda = class(TfrmCadPadrao)
+    Panel14: TPanel;
+    pnPrd01: TPanel;
+    Panel23: TPanel;
+    Panel24: TPanel;
+    Panel25: TPanel;
+    Edit3: TEdit;
+    Edit7: TEdit;
+    Edit8: TEdit;
+    pnPrd05: TPanel;
+    Panel7: TPanel;
+    Edit12: TEdit;
+    Panel8: TPanel;
+    Edit16: TEdit;
+    Panel9: TPanel;
+    Edit20: TEdit;
+    pnPrd09: TPanel;
+    Panel12: TPanel;
+    Edit21: TEdit;
+    Panel13: TPanel;
+    Edit25: TEdit;
+    Panel15: TPanel;
+    Edit29: TEdit;
+    pnPrd13: TPanel;
+    Panel17: TPanel;
+    Edit30: TEdit;
+    Panel18: TPanel;
+    Edit34: TEdit;
+    Panel19: TPanel;
+    Edit38: TEdit;
+    pnPrd14: TPanel;
+    Panel21: TPanel;
+    Edit39: TEdit;
+    Panel22: TPanel;
+    Edit43: TEdit;
+    Panel26: TPanel;
+    Edit47: TEdit;
+    pnPrd10: TPanel;
+    Panel28: TPanel;
+    Edit48: TEdit;
+    Panel29: TPanel;
+    Edit52: TEdit;
+    Panel30: TPanel;
+    Edit56: TEdit;
+    pnPrd06: TPanel;
+    Panel32: TPanel;
+    Edit57: TEdit;
+    Panel33: TPanel;
+    Edit61: TEdit;
+    Panel34: TPanel;
+    Edit65: TEdit;
+    pnPrd02: TPanel;
+    Panel36: TPanel;
+    Edit66: TEdit;
+    Panel37: TPanel;
+    Edit70: TEdit;
+    Panel38: TPanel;
+    Edit74: TEdit;
+    pnPrd15: TPanel;
+    Panel40: TPanel;
+    Edit75: TEdit;
+    Panel41: TPanel;
+    Edit79: TEdit;
+    Panel42: TPanel;
+    Edit83: TEdit;
+    pnPrd11: TPanel;
+    Panel44: TPanel;
+    Edit84: TEdit;
+    Panel45: TPanel;
+    Edit88: TEdit;
+    Panel46: TPanel;
+    Edit92: TEdit;
+    pnPrd07: TPanel;
+    Panel48: TPanel;
+    Edit93: TEdit;
+    Panel49: TPanel;
+    Edit97: TEdit;
+    Panel50: TPanel;
+    Edit101: TEdit;
+    pnPrd03: TPanel;
+    Panel52: TPanel;
+    Edit102: TEdit;
+    Panel53: TPanel;
+    Edit106: TEdit;
+    Panel54: TPanel;
+    Edit110: TEdit;
+    pnPrd16: TPanel;
+    Panel56: TPanel;
+    Edit111: TEdit;
+    Panel57: TPanel;
+    Edit115: TEdit;
+    Panel58: TPanel;
+    Edit119: TEdit;
+    pnPrd12: TPanel;
+    Panel60: TPanel;
+    Edit120: TEdit;
+    Panel61: TPanel;
+    Edit124: TEdit;
+    Panel62: TPanel;
+    Edit128: TEdit;
+    pnPrd08: TPanel;
+    Panel64: TPanel;
+    Edit129: TEdit;
+    Panel65: TPanel;
+    Edit133: TEdit;
+    Panel66: TPanel;
+    Edit137: TEdit;
+    pnPrd04: TPanel;
+    Panel68: TPanel;
+    Edit138: TEdit;
+    Panel69: TPanel;
+    Edit142: TEdit;
+    Panel70: TPanel;
+    Edit146: TEdit;
+    GroupBox1: TGroupBox;
+    edtComprasCodFornecedor: TEdit;
+    edtComprasFornecedor: TEdit;
+    GroupBox2: TGroupBox;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    SpeedButton1: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadReciboVenda: TfrmCadReciboVenda;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmCadReciboVenda.FormCreate(Sender: TObject);
+begin
+{
+    LISTA DE PARAMETROS PARA O FRMFORMPADRAO
+
+    ID    | PROCEDURE               | OBRIG | OBS
+    -------------------------------------------------
+    1     | SetCaptionForm          | S     |
+    2     | SetQryForm              | S     |
+    3     | SetGroupByForm          | N     |
+    4     | SetOrderByForm          | S     |
+    5     | SetTableForm            | S     |
+    6     | SetGenForm              | S     |
+    7     | SetKeyFieldForm         | S     |
+    8     | SetListProviderForm     | S     |
+    9     | SetListMenuForm         | S     |
+    10    | SetListMenuCaptionForm  | S     |
+    11    | SetListRequiredFields   | S     |
+    12    | SetListDateFieldForm    | N     | N COM DATA = ERRO
+}
+    SetCaptionForm('Cadastro de clientes');
+    SetQryForm('SELECT                   '+
+              '   ID                    '+
+              '   ,NOME                 '+
+              '   ,CODIGOINTERNO        '+
+              '   ,EMAIL                '+
+              '   ,TIPOPESSOA           '+
+              '   ,CPFCNPJ              '+
+              '   ,NUMTELEFONE          '+
+              '   ,NUMCELULAR           '+
+              '   ,DATANIVERSARIO       '+
+              '   ,DATCADASTRO          '+
+              '   ,DATULTMOVIMENTACAO   '+
+              '   ,OBSERVACAO           '+
+              '   ,LOGRADOUROCEP        '+
+              '   ,LOGRADOURO           '+
+              '   ,LOGRADOURONUM        '+
+              '   ,LOGRADOUROCOMP       '+
+              '   ,LOGRADOUROBAIRRO     '+
+              '   ,LOGRADOUROUF         '+
+              '   ,LOGRADOUROCIDADE     '+
+              '   ,STATUS               '+
+              'FROM TBCADCLIENTES       '+
+              ' WHERE 1 = 1             ');
+    SetTableForm('TBCADCLIENTES');
+    SetGenForm('GEN_ID_CLIENTE');
+    SetKeyFieldForm('ID');
+    SetListProviderForm('ID;NOME;CODIGOINTERNO;DATCADASTRO');
+    SetListMenuForm('ID;NOME');
+    SetListMenuCaptionForm('Por Codigo;Por Nome');
+    SetOrderByForm('ORDER BY ID');
+    SetListRequiredFields('dbeNome;dbeCpfCnpj');
+    SetListDateFieldForm('dbeAniversario');
+  inherited;
+end;
+
+end.

@@ -1,0 +1,9 @@
+unit uSetiSearchType;
+
+interface
+
+
+
+implementation
+
+end.

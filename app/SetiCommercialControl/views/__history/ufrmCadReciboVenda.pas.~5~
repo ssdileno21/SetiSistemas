@@ -1,0 +1,41 @@
+unit ufrmCadReciboVenda;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrmCadPadrao, Vcl.ImgList, Vcl.Menus,
+  Data.DB, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.StdCtrls, Vcl.Mask, Vcl.ComCtrls,
+  Vcl.Buttons;
+
+type
+  TfrmCadPadrao1 = class(TfrmCadPadrao)
+    Label3: TLabel;
+    edtComprasCodFornecedor: TEdit;
+    edtComprasFornecedor: TEdit;
+    Label2: TLabel;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Shape1: TShape;
+    Panel3: TPanel;
+    Panel7: TPanel;
+    Panel8: TPanel;
+    Panel9: TPanel;
+    Panel10: TPanel;
+    Panel11: TPanel;
+    Panel12: TPanel;
+    Panel13: TPanel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadPadrao1: TfrmCadPadrao1;
+
+implementation
+
+{$R *.dfm}
+
+end.

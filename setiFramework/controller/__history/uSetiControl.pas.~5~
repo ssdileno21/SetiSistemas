@@ -1,0 +1,34 @@
+unit uSetiControl;
+
+interface
+
+uses uSetiFormDAL, uSetiFormModel, uMess, SysUtils;
+
+    type TSetiFormControl = class
+      private
+
+      public
+          constructor Create;
+      published
+
+
+    end;
+
+implementation
+
+{ TSetiControl }
+
+
+
+{ TSetiFormControl }
+
+constructor TSetiFormControl.Create;
+begin
+    try
+
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+end.

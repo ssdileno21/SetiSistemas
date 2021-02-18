@@ -1,0 +1,161 @@
+inherited frmccnCadProdutos: TfrmccnCadProdutos
+  Tag = 3
+  Caption = 'Cadastro de produtos'
+  ClientHeight = 548
+  ClientWidth = 992
+  ExplicitWidth = 1008
+  ExplicitHeight = 587
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    Width = 992
+    Height = 280
+    object lbCodUnico: TLabel
+      Left = 12
+      Top = 6
+      Width = 48
+      Height = 13
+      Caption = 'C'#243'd.'#250'nico'
+    end
+    object lbNomFantasia: TLabel
+      Left = 84
+      Top = 6
+      Width = 27
+      Height = 13
+      Caption = 'Nome'
+    end
+    object Label1: TLabel
+      Left = 449
+      Top = 6
+      Width = 59
+      Height = 13
+      Caption = 'C'#243'd.Interno'
+    end
+    object Label2: TLabel
+      Left = 559
+      Top = 6
+      Width = 82
+      Height = 13
+      Caption = 'C'#243'digo de barras'
+    end
+    object Label3: TLabel
+      Left = 12
+      Top = 48
+      Width = 102
+      Height = 13
+      Caption = 'Descri'#231#227'o do produto'
+    end
+    object dbeCodUnico: TDBEdit
+      Tag = 1
+      Left = 11
+      Top = 25
+      Width = 65
+      Height = 21
+      Color = clSilver
+      DataField = 'ID'
+      DataSource = dsStandard
+      Enabled = False
+      TabOrder = 0
+    end
+    object dbeNomeFantasia: TDBEdit
+      Tag = 1
+      Left = 84
+      Top = 25
+      Width = 357
+      Height = 21
+      DataField = 'NOME'
+      DataSource = dsStandard
+      TabOrder = 1
+    end
+    object DBEdit1: TDBEdit
+      Tag = 1
+      Left = 449
+      Top = 25
+      Width = 104
+      Height = 21
+      DataField = 'NOME'
+      DataSource = dsStandard
+      TabOrder = 2
+    end
+    object DBEdit2: TDBEdit
+      Tag = 1
+      Left = 559
+      Top = 25
+      Width = 421
+      Height = 21
+      DataField = 'NOME'
+      DataSource = dsStandard
+      TabOrder = 3
+    end
+    object DBCheckBox1: TDBCheckBox
+      Left = 933
+      Top = 4
+      Width = 44
+      Height = 17
+      Caption = 'Ativo'
+      TabOrder = 4
+      ValueChecked = 'True'
+      ValueUnchecked = 'False'
+    end
+    object dbmDescricao: TDBMemo
+      Left = 12
+      Top = 64
+      Width = 968
+      Height = 50
+      Anchors = [akLeft, akTop, akRight, akBottom]
+      DataField = 'DESCRICAO'
+      TabOrder = 5
+      ExplicitHeight = 31
+    end
+  end
+  inherited Panel4: TPanel
+    Width = 992
+    inherited DBNavigator1: TDBNavigator
+      Width = 984
+      Hints.Strings = ()
+    end
+  end
+  inherited SFPanel1: TSFPanel
+    Top = 517
+    Width = 992
+  end
+  inherited Panel2: TPanel
+    Top = 312
+    Width = 992
+    Height = 205
+    ExplicitTop = 312
+    ExplicitWidth = 992
+    ExplicitHeight = 205
+    inherited DBGrid1: TDBGrid
+      Width = 986
+      Height = 199
+    end
+  end
+  inherited dsStandard: TDataSource
+    Left = 552
+    Top = 312
+  end
+  inherited sqlStandard: TSQLQuery
+    SQL.Strings = (
+      'SELECT * FROM TBCADPRODUTOS'
+      'ORDER BY ID DESC')
+    Left = 296
+    Top = 312
+  end
+  inherited dspStandard: TDataSetProvider
+    Left = 384
+    Top = 312
+  end
+  inherited cdsStandard: TClientDataSet
+    Left = 464
+    Top = 312
+  end
+  inherited ConnStandard: TSQLConnection
+    Left = 216
+    Top = 312
+  end
+  inherited dsAux: TDataSource
+    Left = 88
+    Top = 312
+  end
+end

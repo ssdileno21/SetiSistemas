@@ -1,0 +1,318 @@
+inherited frmccnCadProdutos: TfrmccnCadProdutos
+  Tag = 3
+  Caption = 'Cadastro de produtos'
+  ClientHeight = 548
+  ClientWidth = 992
+  ExplicitWidth = 1008
+  ExplicitHeight = 587
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    Width = 992
+    Height = 336
+    object lbCodUnico: TLabel
+      Left = 12
+      Top = 6
+      Width = 48
+      Height = 13
+      Caption = 'C'#243'd.'#250'nico'
+    end
+    object lbNomFantasia: TLabel
+      Left = 84
+      Top = 6
+      Width = 27
+      Height = 13
+      Caption = 'Nome'
+    end
+    object Label1: TLabel
+      Left = 449
+      Top = 6
+      Width = 59
+      Height = 13
+      Anchors = [akTop, akRight]
+      Caption = 'C'#243'd.Interno'
+    end
+    object Label2: TLabel
+      Left = 559
+      Top = 6
+      Width = 82
+      Height = 13
+      Anchors = [akTop, akRight]
+      Caption = 'C'#243'digo de barras'
+    end
+    object Label3: TLabel
+      Left = 12
+      Top = 48
+      Width = 102
+      Height = 13
+      Caption = 'Descri'#231#227'o do produto'
+    end
+    object dbeCodUnico: TDBEdit
+      Tag = 1
+      Left = 11
+      Top = 25
+      Width = 65
+      Height = 21
+      Color = clSilver
+      DataField = 'ID'
+      DataSource = dsStandard
+      Enabled = False
+      TabOrder = 0
+    end
+    object dbeNomeFantasia: TDBEdit
+      Tag = 1
+      Left = 84
+      Top = 25
+      Width = 357
+      Height = 21
+      Anchors = [akLeft, akTop, akRight]
+      DataField = 'NOME'
+      DataSource = dsStandard
+      TabOrder = 1
+    end
+    object DBEdit1: TDBEdit
+      Tag = 1
+      Left = 449
+      Top = 25
+      Width = 104
+      Height = 21
+      Anchors = [akTop, akRight]
+      DataField = 'CODIGOINTERNO'
+      DataSource = dsStandard
+      TabOrder = 2
+    end
+    object DBEdit2: TDBEdit
+      Tag = 1
+      Left = 559
+      Top = 25
+      Width = 421
+      Height = 21
+      Anchors = [akTop, akRight]
+      DataField = 'CODIGOBARRAS'
+      DataSource = dsStandard
+      TabOrder = 3
+    end
+    object DBCheckBox1: TDBCheckBox
+      Left = 933
+      Top = 4
+      Width = 44
+      Height = 17
+      Anchors = [akTop, akRight]
+      Caption = 'Ativo'
+      DataField = 'STATUS'
+      DataSource = dsStandard
+      TabOrder = 6
+      ValueChecked = #39'S'#39
+      ValueUnchecked = #39'N'#39
+    end
+    object dbmDescricao: TDBMemo
+      Left = 12
+      Top = 64
+      Width = 968
+      Height = 32
+      Anchors = [akLeft, akTop, akRight]
+      DataField = 'DESCRICAO'
+      DataSource = dsStandard
+      TabOrder = 4
+    end
+    object GroupBox1: TGroupBox
+      Left = 12
+      Top = 103
+      Width = 968
+      Height = 218
+      Anchors = [akLeft, akTop, akRight, akBottom]
+      Caption = 'Valores'
+      TabOrder = 5
+      object Label6: TLabel
+        Left = 14
+        Top = 21
+        Width = 68
+        Height = 13
+        Caption = 'Valor de custo'
+      end
+      object Label7: TLabel
+        Left = 14
+        Top = 72
+        Width = 163
+        Height = 13
+        Caption = 'Despesas (Frete/Seguros/Outros)'
+      end
+      object Label8: TLabel
+        Left = 14
+        Top = 123
+        Width = 81
+        Height = 13
+        Caption = 'Outras despesas'
+      end
+      object Label9: TLabel
+        Left = 15
+        Top = 166
+        Width = 51
+        Height = 13
+        Caption = 'Custo final'
+      end
+      object Label10: TLabel
+        Left = 446
+        Top = 21
+        Width = 97
+        Height = 13
+        Caption = 'Lucro requerido (%)'
+      end
+      object Label11: TLabel
+        Left = 446
+        Top = 72
+        Width = 116
+        Height = 13
+        Caption = 'Valor de venda sugerido'
+      end
+      object Label12: TLabel
+        Left = 446
+        Top = 123
+        Width = 114
+        Height = 13
+        Caption = 'Valor de venda utilizado'
+      end
+      object Label17: TLabel
+        Left = 446
+        Top = 166
+        Width = 134
+        Height = 13
+        Caption = 'Percentual de comiss'#227'o (%)'
+        Color = clInfoBk
+        Enabled = False
+        ParentColor = False
+      end
+      object dbeVlrCusto: TDBEdit
+        Left = 14
+        Top = 42
+        Width = 409
+        Height = 21
+        DataField = 'VLRCUSTO'
+        DataSource = dsStandard
+        TabOrder = 0
+        OnExit = dbeVlrCustoExit
+      end
+      object dbeVlrDespesas: TDBEdit
+        Left = 15
+        Top = 91
+        Width = 409
+        Height = 21
+        DataField = 'VLRDESPESAS'
+        DataSource = dsStandard
+        TabOrder = 1
+        OnExit = dbeVlrDespesasExit
+      end
+      object dbeVlrOutrasDespesas: TDBEdit
+        Left = 15
+        Top = 138
+        Width = 409
+        Height = 21
+        DataField = 'VLRDESPESASOUTROS'
+        DataSource = dsStandard
+        TabOrder = 2
+        OnExit = dbeVlrOutrasDespesasExit
+      end
+      object dbeVlrCustoFinal: TDBEdit
+        Left = 14
+        Top = 182
+        Width = 409
+        Height = 21
+        Color = clInfoBk
+        DataField = 'VLRCUSTOFINAL'
+        DataSource = dsStandard
+        Enabled = False
+        TabOrder = 3
+      end
+      object dbePercLucroRequerido: TDBEdit
+        Left = 446
+        Top = 42
+        Width = 409
+        Height = 21
+        DataField = 'VLRLUCROREQUERIDO'
+        DataSource = dsStandard
+        TabOrder = 4
+        OnExit = dbePercLucroRequeridoExit
+      end
+      object dbeVlrVendaSugerido: TDBEdit
+        Left = 446
+        Top = 91
+        Width = 409
+        Height = 21
+        Color = clInfoBk
+        DataField = 'VLRVENDASUGERIDO'
+        DataSource = dsStandard
+        Enabled = False
+        TabOrder = 5
+      end
+      object dbeVlrVendaUtilizado: TDBEdit
+        Left = 447
+        Top = 138
+        Width = 409
+        Height = 21
+        DataField = 'VLRVENDAUTILIZADO'
+        DataSource = dsStandard
+        TabOrder = 6
+      end
+      object dbePercComissao: TDBEdit
+        Left = 446
+        Top = 182
+        Width = 409
+        Height = 21
+        Color = clInfoBk
+        DataSource = dsStandard
+        Enabled = False
+        TabOrder = 7
+      end
+    end
+  end
+  inherited Panel4: TPanel
+    Width = 992
+    inherited DBNavigator1: TDBNavigator
+      Width = 984
+      Hints.Strings = ()
+    end
+  end
+  inherited SFPanel1: TSFPanel
+    Top = 517
+    Width = 992
+  end
+  inherited Panel2: TPanel
+    Top = 368
+    Width = 992
+    Height = 149
+    ExplicitTop = 368
+    ExplicitWidth = 992
+    ExplicitHeight = 149
+    inherited DBGrid1: TDBGrid
+      Width = 986
+      Height = 143
+    end
+  end
+  inherited dsStandard: TDataSource
+    Left = 616
+    Top = 400
+  end
+  inherited sqlStandard: TSQLQuery
+    SQL.Strings = (
+      'SELECT * FROM TBCADPRODUTOS'
+      'ORDER BY ID DESC')
+    Left = 360
+    Top = 400
+  end
+  inherited dspStandard: TDataSetProvider
+    Left = 448
+    Top = 400
+  end
+  inherited cdsStandard: TClientDataSet
+    Left = 528
+    Top = 400
+  end
+  inherited ConnStandard: TSQLConnection
+    Left = 280
+    Top = 400
+  end
+  inherited dsAux: TDataSource
+    Left = 152
+    Top = 400
+  end
+end

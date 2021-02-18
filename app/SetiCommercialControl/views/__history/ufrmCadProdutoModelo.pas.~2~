@@ -1,0 +1,56 @@
+unit ufrmCadProdutoModelo;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrmCadPadraoReduzido, Data.FMTBcd,
+  Datasnap.DBClient, Datasnap.Provider, Data.DB, Data.SqlExpr, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
+
+type
+  TfrmCadProdutoModelo = class(TfrmCadPadraoReduzido)
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadProdutoModelo: TfrmCadProdutoModelo;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmCadProdutoModelo.FormCreate(Sender: TObject);
+begin
+    //COMANDO PARA O TITULO DO FORM
+    SetqTituloForm('Produto - Modelo');
+    //COMANDO PARA CONSULTA DE ITENS
+    SetqCommandCons('SELECT * FROM TBCADPRODUTOMODELO ');
+    //COMANDO PARA INSERT
+    SetqCommandIns('INSERT INTO TBCADPRODUTOMODELO '+
+                   '(                             '+
+                   '   ID                         '+
+                   '  ,NOME                       '+
+                   '  ,OBS                        '+
+                   ') VALUES                      '+
+                   '(                             '+
+                   '   :ID                        '+
+                   '  ,:NOME                      '+
+                   '  ,:OBS                       '+
+                   ')                             ');
+    //NOME DO CAMPO CÓD.
+    SetqNomeCampoCod('ID');
+    //NOME DO CAMPO DESCRIÇÃO
+    SetqNomeCampoDesc('NOME');
+    //NOME DO CAMPO OBSERVAÇÃO
+    SetqNomeCampoObs('OBS');
+    //COMANDO PARA DELETAR
+    SetqCommandDel('DELETE FROM TBCADPRODUTOMODELO WHERE ID = :ID');
+  inherited;
+end;
+
+end.

@@ -1,0 +1,123 @@
+unit uccnUtil;
+
+interface
+
+uses
+  Winsock, Forms, dbctrls, Dialogs, System.SysUtils, Windows, dbgrids, DB,
+  Graphics, Classes, ComObj, ADODB, Variants, ComCtrls, DateUtils,Excel2000,
+  Math,Grids, Types, Registry, Controls, StrUtils,IdBaseComponent, IdComponent,
+  IdIPWatch, ShellAPI, DBClient, IniFiles, MIDASLIB, Messages, StdCtrls,
+  Buttons, XMLIntf, XMLDoc, WordXP, System.UITypes, Vcl.Menus, Winapi.Imm,
+  Vcl.ActnList, Winapi.MultiMon, System.HelpIntfs, Winapi.DwmApi, Vcl.Themes,
+  Vcl.ExtCtrls, Datasnap.Provider, Data.SqlExpr, System.Character, IdHTTP,
+  WinInet;
+
+  {conection}
+  function GetDataBase : string;
+  {grids}
+  procedure gridorders(pGrid:TDBGrid; pColumnSel: TColumn);
+  {dataset}
+  function ValidatedFields(pds:TDataSet): Boolean;
+
+implementation
+
+uses uMess;
+
+function GetDataBase: string;
+var
+    vPath : string;
+    vIniFile : TIniFile;
+begin
+    Result := '';
+    try
+        vPath := ExtractFilePath(Application.ExeName);
+        vPath := vPath + 'conn.ini';
+        vIniFile := TIniFile.Create(vPath);
+        Result := vIniFile.ReadString('PARAMETROS','PATHCONN','Erro ao ler '+
+              'arquivo de conexão');
+        vIniFile := nil;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure gridorders(pGrid:TDBGrid; pColumnSel: TColumn);
+var
+    i:Integer;
+    indice: string;
+    existe: boolean;
+    clientdataset_idx: tclientdataset;
+    Cor:TColor;
+begin
+    try
+      Cor := pGrid.Columns[0].Title.Font.Color;
+      for i := 0 to pGrid.Columns.Count-1 do
+        pGrid.Columns[i].Title.Font.Color := Cor;
+      pColumnSel.Title.Font.Color := clRed;
+      clientdataset_idx := TClientDataset(
+        pColumnSel.Grid.DataSource.DataSet);
+      if clientdataset_idx.IndexFieldNames =
+          pColumnSel.FieldName then begin
+        indice := AnsiUpperCase(pColumnSel.FieldName+'_INV');
+        try
+          clientdataset_idx.IndexDefs.Find(indice);
+          existe := true;
+          except
+            existe := false;
+          end;
+        if not existe then
+          with clientdataset_idx.IndexDefs.AddIndexDef do begin
+            Name := indice;
+            Fields := pColumnSel.FieldName;
+            Options := [ixDescending];
+          end;
+        clientdataset_idx.IndexName := indice;
+      end else
+      clientdataset_idx.IndexFieldNames := pColumnSel.FieldName;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+function ValidatedFields(pds:TDataSet): Boolean;
+var
+  i :Integer;
+  Fields :TStrings;
+  count : Integer;
+  countflast : Integer;
+  countEmp : Integer;
+
+begin
+    Result := False;
+  try
+    Fields := TStringList.Create;
+    count := 0;
+    countflast := 0;
+    countEmp := 0;
+    countflast := pds.FieldCount;
+    Fields.Insert(0, 'Preencha os campos obrigatórios:');
+    for i := 0 to pds.Fields.Count-1 do
+    begin
+      count := count + 1;
+      if (pds.Fields[i].Tag=1) then
+        if (pds.Fields[i].AsString = EmptyStr) then
+        begin
+          if count = 1 then
+            Fields.Add('* ' + pds.Fields[i].DisplayName)
+          else
+            Fields.Add('* ' + pds.Fields[i].DisplayName+';');
+          countEmp := countEmp + 1;
+        end;
+    end;
+  finally
+    if countEmp > 0 then
+    begin
+      ShowMessage(Fields.Text);
+    end else
+    Result := True;
+    Fields.Free;
+  end;
+end;
+
+
+end.

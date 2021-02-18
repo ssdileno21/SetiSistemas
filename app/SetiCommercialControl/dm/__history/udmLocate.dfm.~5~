@@ -1,0 +1,25 @@
+object dmLocate: TdmLocate
+  OldCreateOrder = False
+  Height = 340
+  Width = 391
+  object LocConnection: TSQLConnection
+    Left = 40
+    Top = 16
+  end
+  object LocQuery: TSQLQuery
+    Params = <>
+    Left = 33
+    Top = 89
+  end
+  object LocDsp: TDataSetProvider
+    Left = 32
+    Top = 148
+  end
+  object LocCds: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'SetiDsp'
+    Left = 33
+    Top = 196
+  end
+end

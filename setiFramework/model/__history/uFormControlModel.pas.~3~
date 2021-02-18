@@ -1,0 +1,40 @@
+unit uFormControlModel;
+
+interface
+
+uses uMess, SysUtils, MIDASLIB;
+
+    type TFormControlModel = class
+      private
+        FState : string;
+      public
+        function GetFormControlState : string;
+        procedure SetFormControlState(Const Value : string);
+      published
+        property qFormControlState : string read GetFormControlState write
+          SetFormControlState;
+    end;
+
+implementation
+
+{ TFormControlModel }
+
+function TFormControlModel.GetFormControlState: string;
+begin
+    try
+        Result := FState;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TFormControlModel.SetFormControlState(const Value: string);
+begin
+    try
+        FState := Value;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+end.

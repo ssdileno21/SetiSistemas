@@ -1,0 +1,833 @@
+unit uLocate;
+
+interface
+
+uses uMess, SysUtils, Data.DB, MIDASLIB, Datasnap.Provider, Vcl.Controls, ADODB,
+SqlExpr, DBClient, Dialogs, System.Classes;
+
+    type TLocate = class(TProvider)
+      private
+        FType : Integer;
+        FCds : TClientDataSet;
+        FTable : string;
+        FField : string;
+        FKey : string;
+        FFieldReturn : string;
+        FTitle : string;
+        FComm : string;
+        FWhereAnd : string;
+        FOrder : string;
+        FGroupBy : string;
+        FReturnType : string;
+        FReturnDataSet : TDataSet;
+        FReturn : Variant;
+        FFieldCaption : string;
+        FIdConnect : Integer; //0 : Client; 1 : Framework;
+        FCdsArray : TClientDataSet;
+
+        FSearch1_Type: integer;
+        FSearch2_ComSql: string;
+        FSearch3_TableName: string;
+        FSearch4_Field: string;
+        FSearch5_KeyField: string;
+        FSearch6_WhereComplement: string;
+        FSearch7_OrderBy: string;
+        FSearch8_GroupBy: string;
+        FSearch9_SearchLabel: string;
+        FSearch10_FormTitleSearch: string;
+        FSearch11_GetFieldReturn: string;
+        FSearch12_ListFieldProvider: string;
+        FSearch13_Tag: Integer;
+        FSearch0_ReturnType: integer;
+        FSearchRetFieldValue: string;
+        FSearchRetDataSet: TDataSet;
+        FSearchType: Integer;
+        FSearch14_SearchComSql: string;
+        procedure Search;
+        procedure SetParam(pType : Integer;
+                           pCds:TClientDataSet;
+                           pTable:string;
+                           pField:string;
+                           pKey:string;
+                           pFieldReturn:string;
+                           pTitle:string;
+                           pComm:string;
+                           pWhereAnd : string;
+                           pGroupBy:string;
+                           pOrder:string;
+                           pFieldCaption:string;
+                           pIdConnect:Integer;
+                           pCdsArray : TClientDataSet);
+        function GetType : Integer;
+        function GetCds : TClientDataSet;
+        function GetTable : string;
+        function GetField : string;
+        function GetKey : string;
+        function GetFieldReturn : string;
+        function GetTitle : string;
+        function GetComm : string;
+        function GetWhereAnd : string;
+        function GetOrder : string;
+        function GetGroupBy : string;
+        function GetReturnType : string;
+        function GetReturnDataSet : TDataSet;
+        function GetReturn : Variant;
+        function GetFieldCaption : string;
+        function GetIdConnect : Integer;
+        function GetCdsArray : TClientDataSet;
+
+        procedure SetType(Const Value : Integer);
+        procedure SetCds(Const Value : TClientDataSet);
+        procedure SetTable(Const Value  : string);
+        procedure SetField(Const Value : string);
+        procedure SetKey(Const Value : string);
+        procedUre SetFieldReturn(Const Value : string);
+        procedure SetTitle(Const Value : string);
+        procedure SetComm(Const Value : string);
+        procedure SetWhereAnd(Const Value : string);
+        procedure SetOrder(Const Value : string);
+        procedure SetGroupBy(Const Value : string);
+        procedure SetReturnType(Const Value: string);
+        procedure SetReturnDataSet(Const Value : TDataSet);
+        procedure SetReturn(Const Value : Variant);
+        procedure SetFieldCaption(Const Value : string);
+        procedure SetIdConnect(Const Value : Integer);
+        procedure SetCdsArray(Const Value : TClientDataSet);
+
+        procedure SetSearch1_Type(const Value: integer);
+        procedure SetSearch2_ComSql(const Value: string);
+        procedure SetSearch3_TableName(const Value: string);
+        procedure SetSearch4_Field(const Value: string);
+        procedure SetSearch5_KeyField(const Value: string);
+        procedure SetSearch6_WhereComplement(const Value: string);
+        procedure SetSearch7_OrderBy(const Value: string);
+        procedure SetSearch8_GroupBy(const Value: string);
+        procedure SetSearch9_SearchLabel(const Value: string);
+        procedure SetSearch10_FormTitleSearch(const Value: string);
+        procedure SetSearch11_GetFieldReturn(const Value: string);
+        procedure SetSearch12_ListFieldProvider(const Value: string);
+        procedure SetSearch13_Tag(const Value: Integer);
+        procedure SetSearch14_SearchComSql(const Value: string);
+        procedure SetSearch0_ReturnType(const Value: integer);
+
+        procedure SetSearchRetFieldValue(const Value: string);
+        procedure SetSearchRetDataSet(const Value: TDataSet);
+
+      public
+        constructor Create;
+        destructor Destroy;Virtual;
+        procedure SetSearchType(const Value: Integer);
+        function GetSearch(   pType : Integer = -1;
+                              pCds:TClientDataSet = NIL;
+                              pTable:string = '';
+                              pField:String = '';
+                              pKey:String = '';
+                              pFieldReturn:string = '';
+                              pTitle:String = '';
+                              pComm:string = '';
+                              pWhereAnd:string = '';
+                              pGroupBy:string = '';
+                              pOrder:string = '';
+                              pFieldCaption:string = '';
+                              pIdConnect:Integer = 0;
+                              pCdsArray : TClientDataSet = NIL) : Variant;
+        function GetSearchDataSet(pType : Integer = -1;
+                              pCds:TClientDataSet = NIL;
+                              pTable:string = '';
+                              pField:String = '';
+                              pKey:String = '';
+                              pTitle:String = '';
+                              pComm:string = '';
+                              pWhereAnd : string = '';
+                              pGroupBy:string = '';
+                              pOrder:string = '';
+                              pFieldCaption:string = '';
+                              pIdConnect:Integer = 0) : TDataSet;
+        function GetSearchDataSetProvider(pType : Integer = -1;
+                              pCds:TClientDataSet = NIL;
+                              pTable:string = '';
+                              pField:String = '';
+                              pKey:String = '';
+                              pTitle:String = '';
+                              pComm:string = '';
+                              pCdsArray : TClientDataSet = nil;
+                              pWhereAnd: string = '';
+                              pGroupBy:string = '';
+                              pOrder:string = '';
+                              pFieldCaption:string = '';
+                              pIdConnect:Integer = 0) : TDataSet;
+
+        procedure SearchSetParams(
+                                      pSearch0_ReturnType : Integer = -1;
+                                      pSearch1_Type : Integer = -1;
+                                      pSearch2_ComSql : string = '';
+                                      pSearch3_TableName : string = '';
+                                      pSearch4_Field : string = '';
+                                      pSearch5_KeyField : string = '';
+                                      pSearch6_WhereComplement : string = '';
+                                      pSearch7_OrderBy : string = '';
+                                      pSearch8_GroupBy : string = '';
+                                      pSearch9_SearchLabel : string = '';
+                                      pSearch10_FormTitleSearch : string = '';
+                                      pSearch11_GetFieldReturn : string = '';
+                                      pSearch12_ListFieldProvider : string = '';
+                                      pSearch13_Tag: Integer = -1;
+                                      pSearch14_SearchComSql : string = ''
+                                  );
+        procedure Mountsearch;{Montar pesquisa}
+
+        property qType : Integer read GetType write SetType;
+        property qCds : TClientDataSet read GetCds write SetCds;
+        property qTable : string read GetTable write SetTable;
+        property qField : string read GetField write SetField;
+        property qKey : string read GetKey write SetKey;
+        property qFieldReturn : string read GetFieldReturn write SetFieldReturn;
+        property qTitle : string read GetTitle write SetTitle;
+        property qComm : string read GetComm write SetComm;
+        property qWhereAnd : string read GetWhereAnd write SetWhereAnd;
+        property qOrder : string read GetOrder write SetOrder;
+        property qGroupBy : string read GetGroupBy write SetGroupBy;
+        property qReturnType: string read GetReturnType write SetReturnType;
+        property qFieldCaption: string read GetFieldCaption write
+        SetFieldCaption;
+        property qIdConnect: Integer read GetIdConnect write SetIdConnect;
+        property qCdsArray: TClientDataSet read GetCdsArray write SetCdsArray;
+        property qSearchType : Integer read FSearchType write SetSearchType;
+
+        //Tipo de retorno - 1 : FieldValue;2 : DataSet; 3 : DataSetProvider
+        property qSearch0_ReturnType : integer read FSearch0_ReturnType
+        write SetSearch0_ReturnType;
+        //0 : Por comando sql; 1 : Por tabela
+        property qSearch1_Type : integer read FSearch1_Type
+        write SetSearch1_Type;
+        //Somente se o parametro 1 for 0
+        property qSearch2_ComSql : string read FSearch2_ComSql
+        write SetSearch2_ComSql;
+        //Somente se o parametro 1 for 1
+        property qSearch3_TableName : string read FSearch3_TableName
+        write SetSearch3_TableName;
+        //Campo para pesquisa
+        property qSearch4_Field : string read FSearch4_Field
+        write SetSearch4_Field;
+        //Campo chave para filtro
+        property qSearch5_KeyField : string read FSearch5_KeyField
+        write SetSearch5_KeyField;
+        //Adicionais para cláusula where
+        property qSearch6_WhereComplement : string read FSearch6_WhereComplement
+        write SetSearch6_WhereComplement;
+        //Incluir também as palavras 'ORDER BY'
+        property qSearch7_OrderBy : string read FSearch7_OrderBy
+        write SetSearch7_OrderBy;
+        //Incluir também as palavras 'GROUP BY'
+        property qSearch8_GroupBy : string read FSearch8_GroupBy
+        write SetSearch8_GroupBy;
+        //Caption para a label de pesquisa
+        property qSearch9_SearchLabel : string read FSearch9_SearchLabel
+        write SetSearch9_SearchLabel;
+        //Nome para a tela de pesquisa
+        property qSearch10_FormTitleSearch : string
+        read FSearch10_FormTitleSearch write SetSearch10_FormTitleSearch;
+        //Informar somente se o retorno for por valor de um determinado campo
+        property qSearch11_GetFieldReturn : string
+        read FSearch11_GetFieldReturn write SetSearch11_GetFieldReturn;
+        //Lista de fields separadas por virgula, p/ configuração dos providers
+        property qSearch12_ListFieldProvider : string
+        read FSearch12_ListFieldProvider write SetSearch12_ListFieldProvider;
+        //Tag ref ao botão selecionado
+        property qSearch13Tag : Integer read FSearch13_Tag
+        write SetSearch13_Tag;
+        //Comando sql para pesquisa - Com o nome do field informado
+        property qSearch14_SearchComSql : string read FSearch14_SearchComSql
+        write SetSearch14_SearchComSql;
+
+        property qSearchRetFieldValue : string read FSearchRetFieldValue
+        write SetSearchRetFieldValue;
+        property qSearchRetDataSet : TDataSet read FSearchRetDataSet
+        write SetSearchRetDataSet;
+      published
+        property qReturnDataSet : TDataSet read GetReturnDataSet write
+        SetReturnDataSet;
+        property qReturn: Variant read GetReturn write SetReturn;
+
+    end;
+
+implementation
+
+{ TLocate }
+
+uses ufrmToLocate, uLocateDAO;
+
+constructor TLocate.Create;
+begin
+    try
+
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+destructor TLocate.Destroy;
+begin
+    try
+
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+function TLocate.GetCds: TClientDataSet;
+begin
+    try
+      Result := FCds;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+function TLocate.GetCdsArray: TClientDataSet;
+begin
+    Result := FCdsArray;
+end;
+
+function TLocate.GetComm: string;
+begin
+    try
+      Result := FComm;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+function TLocate.GetField: string;
+begin
+    try
+      Result := FField;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+function TLocate.GetFieldCaption: string;
+begin
+    Result := FFieldCaption;
+end;
+
+function TLocate.GetFieldReturn: string;
+begin
+    try
+      Result := FFieldReturn;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+function TLocate.GetGroupBy: string;
+begin
+    try
+      Result := FGroupBy;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+function TLocate.GetIdConnect: Integer;
+begin
+    try
+      Result := FIdConnect;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+function TLocate.GetKey: string;
+begin
+    try
+      Result := FKey;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+function TLocate.GetOrder: string;
+begin
+    try
+        Result := FOrder;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+function TLocate.GetReturn: Variant;
+begin
+    try
+        Result := FReturn;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+function TLocate.GetReturnDataSet: TDataSet;
+begin
+    try
+      Result := FReturnDataSet;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+function TLocate.GetReturnType: string;
+begin
+    try
+      Result := FReturnType;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+function TLocate.GetSearch(pType: Integer; pCds: TClientDataSet; pTable, pField,
+  pKey, pFieldReturn, pTitle, pComm, pWhereAnd, pGroupBy, pOrder: string;
+  pFieldCaption : string; pIdConnect:Integer; pCdsArray : TClientDataSet
+   ) : Variant;
+begin
+    try
+      { pType:pCds:pTable:pField:pKey:pFieldReturn:pTitle:pComm:pOrder:
+      pIdConnect}
+      SetParam(pType,pCds,pTable,pField,pKey,pFieldReturn,pTitle,pComm,
+      pWhereAnd, pGroupBy, pOrder, pFieldCaption, pIdConnect,pCdsArray);
+      Search;
+      Result := qReturn;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+function TLocate.GetSearchDataSet(pType : Integer; pCds: TClientDataSet;
+pTable, pField, pKey, pTitle, pComm, pWhereAnd, pGroupBy, pOrder, pFieldCaption:
+String; pIdConnect: Integer): TDataSet;
+begin
+    try
+      { pType:pCds:pTable:pField:pKey:pFieldReturn:pTitle:pComm:pOrder:
+      pIdConnect}
+      SetParam(pType,pCds,pTable,pField,pKey,'',pTitle,pComm,pWhereAnd,pGroupBy,
+      pOrder, pFieldCaption, pIdConnect,Nil);
+      SetReturnType('DATASET');
+      Search;
+      Result := qReturnDataSet;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+function TLocate.GetSearchDataSetProvider(pType : Integer; pCds:TClientDataSet;
+pTable:string; pField:String; pKey:String; pTitle:String; pComm:string;
+pCdsArray : TClientDataSet; pWhereAnd, pGroupBy:string; pOrder:string;
+pFieldCaption: string; pIdConnect:Integer
+): TDataSet;
+var
+  i : Integer;
+  c : Integer;
+  name : string;
+  co : Integer;
+begin
+      Result := nil;
+      SetParam(pType,pCds,pTable,pField,pKey,'',pTitle,pComm,pWhereAnd,pGroupBy,
+      pOrder, pFieldCaption, pIdConnect,pCdsArray);
+      SetReturnType('DATASET');
+      Search;
+      Result := qReturnDataSet;
+end;
+
+function TLocate.GetTable: string;
+begin
+    try
+      Result := FTable;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+function TLocate.GetTitle: string;
+begin
+    try
+      Result := FTitle;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+function TLocate.GetType: Integer;
+begin
+    try
+      Result := FType;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+function TLocate.GetWhereAnd: string;
+begin
+    Result := FWhereAnd;
+end;
+
+procedure TLocate.Mountsearch;
+begin
+    frmToLocate := TfrmToLocate.Create(Self);
+    frmToLocate.SetSearchType(qSearchType);
+    {Tipo de retorno - 1 : FieldValue; 2 : DataSet; 3 : DataSetProvider}
+    frmToLocate.SetSearchP0_ReturnType(qSearch0_ReturnType);
+    {0 : Por comando sql; 1 : Por tabela}
+    frmToLocate.SetSearchP1_Type(qSearch1_Type);
+    {Somente se o parametro 1 for 0}
+    frmToLocate.SetSearchP2_ComSql(qSearch2_ComSql);
+    {Somente se o parametro 1 for 1}
+    frmToLocate.SetSearchP3_TableName(qSearch3_TableName);
+    {Campo para pesquisa}
+    frmToLocate.SetSearchP4_Field(qSearch4_Field);
+    {Campo chave para filtro}
+    frmToLocate.SetSearchP5_KeyField(qSearch5_KeyField);
+    {Adicionais para cláusula where}
+    frmToLocate.SetSearchP6_WhereComplement(qSearch6_WhereComplement);
+    {Incluir também as palavras 'ORDER BY'}
+    frmToLocate.SetSearchP7_OrderBy(qSearch7_OrderBy);
+    {Incluir também as palavras 'GROUP BY'}
+    frmToLocate.SetSearchP8_GroupBy(qSearch8_GroupBy);
+    {Caption para a label de pesquisa}
+    frmToLocate.SetSearchP9_SearchLabel(qSearch9_SearchLabel);
+    {Nome para a tela de pesquisa}
+    frmToLocate.SetSearchP10_TitleSearch(qSearch10_FormTitleSearch);
+    {Informar somente se o retorno for  por valor de um determinado campo}
+    frmToLocate.SetSearchP11_GetFieldReturn(qSearch11_GetFieldReturn);
+    {Lista de fields separadas por virgula, para configuração dos providers}
+    frmToLocate.SetSearchP12_ListFieldProv(qSearch12_ListFieldProvider);
+    {Tag referente ao item selecionado para pesquisa}
+    frmToLocate.SetSearch13_Tag(qSearch13Tag);
+    {Comando sql para pesquisa - Com o nome do field informado}
+    frmToLocate.SetSearch14_SearchComSql(qSearch14_SearchComSql);
+    frmToLocate.SetCaptions;
+
+    if (frmToLocate.ShowModal = mrOk) then
+    begin
+        if NOT (frmToLocate.dbgLocate.DataSource.DataSet.IsEmpty) then
+        begin
+          if (qSearch0_ReturnType = 1) then
+          begin
+            SetReturn(
+            frmToLocate.dbgLocate.DataSource.DataSet.FieldByName(
+              qSearch11_GetFieldReturn).Value);
+          end else
+          if (qSearch0_ReturnType = 2) then
+          begin
+            SetReturnDataSet(frmToLocate.dbgLocate.DataSource.DataSet);
+          end;
+        end;
+    end;
+end;
+
+procedure TLocate.Search;
+begin
+    try
+        frmToLocate := TfrmToLocate.Create(Self);
+        frmToLocate.SetSearch(
+          qType,qTable,qField,qKey,qFieldReturn,qTitle,qComm,qWhereAnd,qOrder,
+          qGroupBy,qFieldCaption,qIdConnect,qCdsArray);
+        frmToLocate.SetSearchType(0);
+        if (frmToLocate.ShowModal = mrOk) then
+        begin
+            if (qReturnType = 'DATASET') then
+            begin
+                SetReturnDataSet(frmToLocate.dbgLocate.DataSource.DataSet);
+            end else
+               SetReturn(
+                frmToLocate.dbgLocate.DataSource.DataSet.FieldByName(
+                  qFieldReturn).Value);
+        end;
+        FreeAndNil(frmToLocate);
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TLocate.SearchSetParams(pSearch0_ReturnType, pSearch1_Type: Integer;
+  pSearch2_ComSql, pSearch3_TableName, pSearch4_Field, pSearch5_KeyField,
+  pSearch6_WhereComplement, pSearch7_OrderBy, pSearch8_GroupBy,
+  pSearch9_SearchLabel, pSearch10_FormTitleSearch, pSearch11_GetFieldReturn,
+  pSearch12_ListFieldProvider: string; pSearch13_Tag: Integer;
+  pSearch14_SearchComSql: string);
+begin
+    if (qSearchType = 1) then
+    begin
+      SetSearch0_ReturnType(pSearch0_ReturnType);
+      SetSearch1_Type(pSearch1_Type);
+      SetSearch2_ComSql(pSearch2_ComSql);
+      SetSearch3_TableName(pSearch3_TableName);
+      SetSearch4_Field(pSearch4_Field);
+      SetSearch5_KeyField(pSearch5_KeyField);
+      SetSearch6_WhereComplement(pSearch6_WhereComplement);
+      SetSearch7_OrderBy(pSearch7_OrderBy);
+      SetSearch8_GroupBy(pSearch8_GroupBy);
+      SetSearch9_SearchLabel(pSearch9_SearchLabel);
+      SetSearch10_FormTitleSearch(pSearch10_FormTitleSearch);
+      SetSearch11_GetFieldReturn(pSearch11_GetFieldReturn);
+      SetSearch12_ListFieldProvider(pSearch12_ListFieldProvider);
+      SetSearch13_Tag(pSearch13_Tag);
+      SetSearch14_SearchComSql(pSearch14_SearchComSql);
+      Mountsearch;
+    end;
+end;
+
+procedure TLocate.SetCds(const Value: TClientDataSet);
+begin
+    try
+        FCds := Value;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TLocate.SetCdsArray(const Value: TClientDataSet);
+begin
+    FCdsArray := Value;
+end;
+
+procedure TLocate.SetComm(const Value: string);
+begin
+    try
+        FComm := Value;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TLocate.SetField(const Value: string);
+begin
+    try
+        FField := Value;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TLocate.SetFieldCaption(const Value: string);
+begin
+    FFieldCaption := Value;
+end;
+
+procedure TLocate.SetFieldReturn(const Value: string);
+begin
+    try
+        FFieldReturn := Value;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TLocate.SetGroupBy(const Value: string);
+begin
+    try
+        FGroupBy := Value;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TLocate.SetIdConnect(const Value: Integer);
+begin
+    try
+        FIdConnect := Value;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TLocate.SetKey(const Value: string);
+begin
+    try
+        FKey := Value;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TLocate.SetOrder(const Value: string);
+begin
+    try
+        FOrder := Value;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TLocate.SetParam(pType : Integer; pCds: TClientDataSet; pTable,
+pField, pKey, pFieldReturn, pTitle, pComm, pWhereAnd, pGroupBy, pOrder :string;
+pFieldCaption : string; pIdConnect:Integer; pCdsArray : TClientDataSet);
+begin
+    try
+        SetType(pType);
+        SetCds(pCds);
+        SetTable(pTable);
+        SetField(pField);
+        SetKey(pKey);
+        SetFieldReturn(pFieldReturn);
+        SetTitle(pTitle);
+        SetComm(pComm);
+        SetWhereAnd(pWhereAnd);
+        SetGroupBy(pGroupBy);
+        SetOrder(pOrder);
+        SetFieldCaption(pFieldCaption);
+        SetIdConnect(pIdConnect);
+        SetCdsArray(pCdsArray);
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TLocate.SetReturn(const Value: Variant);
+begin
+    try
+        FReturn := Value;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TLocate.SetReturnDataSet(const Value: TDataSet);
+begin
+    try
+        FReturnDataSet := Value;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TLocate.SetReturnType(const Value: string);
+begin
+    try
+        FReturnType := Value;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TLocate.SetSearch0_ReturnType(const Value: integer);
+begin
+    FSearch0_ReturnType := Value;
+end;
+
+procedure TLocate.SetSearch10_FormTitleSearch(const Value: string);
+begin
+    FSearch10_FormTitleSearch := Value;
+end;
+
+procedure TLocate.SetSearch11_GetFieldReturn(const Value: string);
+begin
+    FSearch11_GetFieldReturn := Value;
+end;
+
+procedure TLocate.SetSearch12_ListFieldProvider(const Value: string);
+begin
+    FSearch12_ListFieldProvider := Value;
+end;
+
+procedure TLocate.SetSearch1_Type(const Value: integer);
+begin
+    FSearch1_Type := Value;
+end;
+
+procedure TLocate.SetSearch2_ComSql(const Value: string);
+begin
+    FSearch2_ComSql := Value;
+end;
+
+procedure TLocate.SetSearch3_TableName(const Value: string);
+begin
+    FSearch3_TableName := Value;
+end;
+
+procedure TLocate.SetSearch4_Field(const Value: string);
+begin
+    FSearch4_Field := Value;
+end;
+
+procedure TLocate.SetSearch5_KeyField(const Value: string);
+begin
+    FSearch5_KeyField := Value;
+end;
+
+procedure TLocate.SetSearch6_WhereComplement(const Value: string);
+begin
+    FSearch6_WhereComplement := Value;
+end;
+
+procedure TLocate.SetSearch7_OrderBy(const Value: string);
+begin
+    FSearch7_OrderBy := Value;
+end;
+
+procedure TLocate.SetSearch8_GroupBy(const Value: string);
+begin
+    FSearch8_GroupBy := Value;
+end;
+
+procedure TLocate.SetSearch9_SearchLabel(const Value: string);
+begin
+    FSearch9_SearchLabel := Value;
+end;
+
+procedure TLocate.SetSearchRetDataSet(const Value: TDataSet);
+begin
+    FSearchRetDataSet := Value;
+end;
+
+procedure TLocate.SetSearchRetFieldValue(const Value: string);
+begin
+    FSearchRetFieldValue := Value;
+end;
+
+procedure TLocate.SetSearch13_Tag(const Value: Integer);
+begin
+    FSearch13_Tag := Value;
+end;
+
+procedure TLocate.SetSearch14_SearchComSql(const Value: string);
+begin
+    FSearch14_SearchComSql := Value;
+end;
+
+procedure TLocate.SetSearchType(const Value: Integer);
+begin
+    FSearchType := Value;
+end;
+
+procedure TLocate.SetTable(const Value: string);
+begin
+    try
+        FTable := Value;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TLocate.SetTitle(const Value: string);
+begin
+    try
+        FTitle := Value;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TLocate.SetType(const Value: Integer);
+begin
+    try
+        FType := Value;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TLocate.SetWhereAnd(const Value: string);
+begin
+    FWhereAnd := Value;
+end;
+
+end.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

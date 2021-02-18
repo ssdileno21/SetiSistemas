@@ -1,0 +1,17 @@
+***************************************************************************************************************************
+******************************************************* SETI FRAMEWORK ****************************************************
+***************************************************************************************************************************
+
+>>> CLASSES
+
+1:	TPROJECT : PREENCHER OBJETOS REFERENTE A CARACTERISTICAS DO SISTEMA.
+
+*	PROPERTY PROJECT : RETORNAR NOME DO 'EXE', 'APLICAÇÃO'; O VALOR É PREENCHIDO NO ONCREATE DA CLASSE TPROJECT;
+*	PROCEDURE NEWTABSHEET(mmMenuName:string=''); CRIAR OS FORMS NA PAGCONTROL DO FORM PRINCIPAL, PARA UTILIZAÇÃO
+												 NO TREEVIEW, NÃO PASSAR PARAMETROS, CASO SEJA UTILIZADO NO MAINMENU, 
+												 PASSAR O NOME DO MESMO;
+*	PROCEDURE DESTRUIRTABSHEET(FormPai:TForm=nil;PgC:TPageControl=nil;Tv:TTreeView=nil);
+												DESTRUIR OS FORMS CRIADOS NO PAGONTROL DO FORM PRINCIPAL, PARA UTILIZAÇÃO,
+												PASSAR O NAME DO FORM, NAME DO PAGECONTROL E NAME DO TREEVIEW; (PARAMETROS
+												NÃO OBRIGATORIOS); 
+

@@ -1,0 +1,39 @@
+unit udraftModel;
+
+interface
+
+uses uMess, SysUtils, MIDASLIB;
+
+    type TdraftModel = class
+      private
+        FId : Integer;
+      public
+        function GetId : Integer;
+        procedure SetId(Const Value : Integer);
+      published
+        property qId : Integer read GetId write SetId;
+    end;
+
+implementation
+
+{ TdraftModel }
+
+function TdraftModel.GetId: Integer;
+begin
+    try
+        Result := FId;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure TdraftModel.SetId(const Value: Integer);
+begin
+    try
+      FId := Value;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+end.

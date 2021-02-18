@@ -1,0 +1,43 @@
+unit ufrmRelReciboVenda;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls,
+  Vcl.Buttons;
+
+type
+  TForm1 = class(TForm)
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Label3: TLabel;
+    Label1: TLabel;
+    edtComprasCodFornecedor: TEdit;
+    Edit1: TEdit;
+    edtComprasFornecedor: TEdit;
+    Edit2: TEdit;
+    Panel4: TPanel;
+    sbInsert: TSpeedButton;
+    sbUpdate: TSpeedButton;
+    sbDel: TSpeedButton;
+    sbSave: TSpeedButton;
+    sbCancel: TSpeedButton;
+    sbAbrir: TButton;
+    SpeedButton1: TSpeedButton;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+end.

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2019/05/26 22:06:58.000.491,=C:\Users\Dileno\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/12/27 16:26:36.000.024,=C:\Users\Dileno\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/12/27 16:27:16.000.663,C:\SetiSistemas\app\sfLp\forms\ufrmMain.pas=C:\Users\Dileno\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/12/27 16:27:16.000.663,C:\SetiSistemas\app\sfLp\forms\ufrmMain.dfm=C:\Users\Dileno\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2020/12/27 16:27:59.000.357,C:\SetiSistemas\app\sfLp\LancamentosPessoais.dproj=C:\Users\Dileno\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2020/12/27 16:32:20.000.738,=C:\SetiSistemas\app\sfCls\uSetiConfig.pas</Transaction>
+    <Transaction>2020/12/27 16:33:01.000.678,C:\SetiSistemas\app\sfCls\uSetiConfig.pas=</Transaction>
+    <Transaction>2020/12/27 16:33:38.000.678,=C:\SetiSistemas\app\sfLp\classes\uSetiConfig.pas</Transaction>
+    <Transaction>2020/12/27 16:46:13.000.819,=C:\SetiSistemas\app\sfCls\uSetiConnects.pas</Transaction>
+    <Transaction>2020/12/27 16:57:21.000.826,=C:\SetiSistemas\app\sfCls\uMess.pas</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,45 @@
+program TwigBreak;
+
+uses
+  Vcl.Forms,
+  ufrmMain in 'views\ufrmMain.pas' {frmMain},
+  udmGen in 'dm\udmGen.pas' {dmGen: TDataModule},
+  uSetiConnects in 'class\uSetiConnects.pas',
+  uMess in 'class\uMess.pas',
+  uSetiConfig in 'class\uSetiConfig.pas',
+  udmMasterDataModule in 'dm\udmMasterDataModule.pas' {dmMasterDataModule: TDataModule},
+  uSetiUseful in 'class\uSetiUseful.pas',
+  Vcl.Themes,
+  Vcl.Styles,
+  ufrmToLocate in 'views\ufrmToLocate.pas' {frmToLocate},
+  uLocate in 'class\uLocate.pas',
+  ufrmCadPadrao in 'views\ufrmCadPadrao.pas' {frmCadPadrao},
+  ufrmCadProdutos in 'views\ufrmCadProdutos.pas' {frmCadProdutos},
+  ufrmCadClientes in 'views\ufrmCadClientes.pas' {frmCadClientes},
+  ufrmCadFornecedores in 'views\ufrmCadFornecedores.pas' {frmCadFornecedores},
+  ufrmCadFuncionarios in 'views\ufrmCadFuncionarios.pas' {frmCadFuncionarios},
+  ufrmCadCompras in 'views\ufrmCadCompras.pas' {frmCadCompras},
+  ufrmCadCompras_Itens in 'views\ufrmCadCompras_Itens.pas' {frmCadCompras_Itens},
+  ufrmVendas in 'views\ufrmVendas.pas' {frmVendas},
+  ufrmVendasFinalizar in 'views\ufrmVendasFinalizar.pas' {frmVendasFinalizar},
+  ufrmRelatorioPadrao in 'views\ufrmRelatorioPadrao.pas' {frmRelatorioPadrao},
+  ufrmCadOrdemServicos in 'views\ufrmCadOrdemServicos.pas' {frmCadOrdemServicos},
+  ufrmCadOrdemServicos_Detalhes in 'views\ufrmCadOrdemServicos_Detalhes.pas' {frmOrdemServicos_Detalhes},
+  ufrmCadPadraoReduzido in 'views\ufrmCadPadraoReduzido.pas' {frmCadPadraoReduzido},
+  ufrmCadProdutoMarca in 'views\ufrmCadProdutoMarca.pas' {frmCadProdutoMarca},
+  ufrmCadProdutoModelo in 'views\ufrmCadProdutoModelo.pas' {frmCadProdutoModelo},
+  ufrmCadProdutoDefeito in 'views\ufrmCadProdutoDefeito.pas' {frmCadProdutoDefeito},
+  ufrmCadOrdemServicos_ProdutosAcessorios in 'views\ufrmCadOrdemServicos_ProdutosAcessorios.pas' {frmCadOrdemServicos_ProdutosAcessorios},
+  ufrmRelControleEstoque in 'views\ufrmRelControleEstoque.pas' {frmRelControleEstoque},
+  ufrmRelFaturamento in 'views\ufrmRelFaturamento.pas' {frmrelFaturamento},
+  ufrmFaturamentoPainel in 'views\ufrmFaturamentoPainel.pas' {frmFaturamentoPainel};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TfrmFaturamentoPainel, frmFaturamentoPainel);
+  Application.Run;
+end.

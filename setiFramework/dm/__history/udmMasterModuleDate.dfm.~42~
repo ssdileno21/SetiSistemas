@@ -1,0 +1,54 @@
+object dmMasterModuleDate: TdmMasterModuleDate
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
+  Height = 426
+  Width = 699
+  object SetiSqlConnection: TSQLConnection
+    Left = 56
+    Top = 16
+  end
+  object SetiSqlDataSet: TSQLDataSet
+    DbxCommandType = 'Dbx.SQL'
+    Params = <>
+    Left = 56
+    Top = 64
+  end
+  object SetiSqlQuery: TSQLQuery
+    Params = <>
+    Left = 55
+    Top = 113
+  end
+  object SetiDs: TDataSource
+    Left = 128
+    Top = 24
+  end
+  object SetiCds: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'SetiDsp'
+    Left = 128
+    Top = 88
+  end
+  object SetiDsp: TDataSetProvider
+    Left = 128
+    Top = 160
+  end
+  object SetiSqlHelp: TSQLQuery
+    Params = <>
+    Left = 192
+    Top = 24
+  end
+  object SetiCdsHelp: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'SetiDspHelp'
+    Left = 192
+    Top = 152
+  end
+  object SetiDspHelp: TDataSetProvider
+    DataSet = SetiSqlHelp
+    Left = 192
+    Top = 88
+  end
+end

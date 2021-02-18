@@ -1,0 +1,17 @@
+unit uSetiControl;
+
+interface
+
+    type TSetiControl = class
+      private
+        F : Integer;
+      public
+
+      published
+
+
+    end;
+
+implementation
+
+end.

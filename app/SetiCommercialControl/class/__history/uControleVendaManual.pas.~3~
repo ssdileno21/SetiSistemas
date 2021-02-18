@@ -1,0 +1,9 @@
+unit uControleVendaManual;
+
+uses MIDASLIB;
+
+interface
+
+implementation
+
+end.

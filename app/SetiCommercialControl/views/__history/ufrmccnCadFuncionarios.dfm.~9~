@@ -1,0 +1,376 @@
+inherited frmccnCadFuncionarios: TfrmccnCadFuncionarios
+  Caption = 'Cadastro de funcion'#225'rios'
+  ClientHeight = 569
+  ClientWidth = 878
+  ExplicitWidth = 894
+  ExplicitHeight = 608
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    Width = 878
+    Height = 537
+    ExplicitTop = 32
+    ExplicitWidth = 878
+    ExplicitHeight = 537
+    object Label1: TLabel [0]
+      Left = 15
+      Top = 29
+      Width = 33
+      Height = 13
+      Caption = 'C'#243'digo'
+    end
+    object Label2: TLabel [1]
+      Left = 143
+      Top = 29
+      Width = 27
+      Height = 13
+      Caption = 'Nome'
+    end
+    object Label3: TLabel [2]
+      Left = 502
+      Top = 29
+      Width = 70
+      Height = 13
+      Anchors = [akTop, akRight]
+      Caption = 'C'#243'digo interno'
+    end
+    object Label16: TLabel [3]
+      Left = 631
+      Top = 29
+      Width = 85
+      Height = 13
+      Anchors = [akTop, akRight]
+      Caption = 'Data do Cadastro'
+    end
+    object Label18: TLabel [4]
+      Left = 750
+      Top = 29
+      Width = 95
+      Height = 13
+      Anchors = [akTop, akRight]
+      Caption = 'Data movimenta'#231#227'o'
+    end
+    object Label5: TLabel [5]
+      Left = 14
+      Top = 307
+      Width = 58
+      Height = 13
+      Caption = 'Observa'#231#227'o'
+    end
+    object Label4: TLabel [6]
+      Left = 15
+      Top = 85
+      Width = 24
+      Height = 13
+      Caption = 'Email'
+    end
+    object Label13: TLabel [7]
+      Left = 397
+      Top = 82
+      Width = 19
+      Height = 13
+      Caption = 'CPF'
+    end
+    object Label14: TLabel [8]
+      Left = 514
+      Top = 82
+      Width = 42
+      Height = 13
+      Caption = 'Telefone'
+    end
+    object Label15: TLabel [9]
+      Left = 632
+      Top = 82
+      Width = 33
+      Height = 13
+      Caption = 'Celular'
+    end
+    object Label17: TLabel [10]
+      Left = 749
+      Top = 82
+      Width = 79
+      Height = 13
+      Caption = 'Data anivers'#225'rio'
+    end
+    object Label6: TLabel [11]
+      Left = 14
+      Top = 127
+      Width = 19
+      Height = 13
+      Caption = 'CEP'
+    end
+    object Label7: TLabel [12]
+      Left = 132
+      Top = 127
+      Width = 55
+      Height = 13
+      Caption = 'Logradouro'
+    end
+    object Label8: TLabel [13]
+      Left = 558
+      Top = 127
+      Width = 12
+      Height = 13
+      Anchors = [akTop, akRight]
+      Caption = 'N'#186
+    end
+    object Label9: TLabel [14]
+      Left = 15
+      Top = 183
+      Width = 65
+      Height = 13
+      Caption = 'Complemento'
+    end
+    object Label10: TLabel [15]
+      Left = 336
+      Top = 183
+      Width = 28
+      Height = 13
+      Caption = 'Bairro'
+    end
+    object Label11: TLabel [16]
+      Left = 11
+      Top = 239
+      Width = 33
+      Height = 13
+      Caption = 'Cidade'
+    end
+    object Label12: TLabel [17]
+      Left = 808
+      Top = 239
+      Width = 13
+      Height = 13
+      Anchors = [akTop, akRight]
+      Caption = 'UF'
+    end
+    inherited Panel2: TPanel
+      Top = 400
+      Width = 876
+      Height = 136
+      TabOrder = 10
+      ExplicitTop = 400
+      ExplicitWidth = 876
+      ExplicitHeight = 136
+      inherited DBGrid1: TDBGrid
+        Width = 870
+        Height = 130
+      end
+    end
+    object dbeCodigo: TDBEdit
+      Left = 14
+      Top = 48
+      Width = 123
+      Height = 21
+      Color = clInfoBk
+      DataField = 'ID'
+      Enabled = False
+      ReadOnly = True
+      TabOrder = 0
+    end
+    object dbeNome: TDBEdit
+      Left = 143
+      Top = 48
+      Width = 351
+      Height = 21
+      Anchors = [akLeft, akTop, akRight]
+      DataField = 'NOME'
+      TabOrder = 1
+    end
+    object dbcStatus: TDBCheckBox
+      Left = 810
+      Top = 3
+      Width = 57
+      Height = 17
+      Anchors = [akTop, akRight]
+      Caption = 'Ativo'
+      DataField = 'STATUS'
+      TabOrder = 11
+      ValueChecked = 'S'
+      ValueUnchecked = 'N'
+    end
+    object dbeCodInterno: TDBEdit
+      Left = 503
+      Top = 48
+      Width = 111
+      Height = 21
+      Anchors = [akTop, akRight]
+      DataField = 'CODIGOINTERNO'
+      TabOrder = 2
+    end
+    object DBEdit1: TDBEdit
+      Left = 631
+      Top = 48
+      Width = 111
+      Height = 21
+      Anchors = [akTop, akRight]
+      Color = clInfoBk
+      DataField = 'DATCADASTRO'
+      Enabled = False
+      TabOrder = 3
+    end
+    object DBEdit3: TDBEdit
+      Left = 750
+      Top = 48
+      Width = 111
+      Height = 21
+      Anchors = [akTop, akRight]
+      Color = clInfoBk
+      DataField = 'DATULTMOVIMENTACAO'
+      Enabled = False
+      TabOrder = 4
+    end
+    object dbeObservacao: TDBMemo
+      Left = 14
+      Top = 326
+      Width = 843
+      Height = 59
+      DataField = 'OBSERVACAO'
+      TabOrder = 12
+    end
+    object dbeEmail: TDBEdit
+      Left = 14
+      Top = 101
+      Width = 362
+      Height = 21
+      Anchors = [akLeft, akTop, akRight]
+      DataField = 'EMAIL'
+      TabOrder = 5
+    end
+    object dbeCpfCnpj: TDBEdit
+      Left = 397
+      Top = 101
+      Width = 111
+      Height = 21
+      DataField = 'CPFCNPJ'
+      MaxLength = 11
+      TabOrder = 6
+    end
+    object dbeTelefone: TDBEdit
+      Left = 514
+      Top = 101
+      Width = 111
+      Height = 21
+      DataField = 'NUMTELEFONE'
+      MaxLength = 11
+      TabOrder = 7
+    end
+    object dbeCelular: TDBEdit
+      Left = 633
+      Top = 101
+      Width = 111
+      Height = 21
+      DataField = 'NUMCELULAR'
+      MaxLength = 11
+      TabOrder = 8
+    end
+    object dbeAniversario: TDBEdit
+      Left = 751
+      Top = 101
+      Width = 111
+      Height = 21
+      Hint = 'Deixar a data neste formato: ex: 01/01/2001'
+      DataField = 'DATANIVERSARIO'
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 9
+    end
+    object dbeCep: TDBEdit
+      Left = 14
+      Top = 144
+      Width = 111
+      Height = 21
+      DataField = 'LOGRADOUROCEP'
+      MaxLength = 8
+      TabOrder = 13
+    end
+    object dbeLogradouro: TDBEdit
+      Left = 132
+      Top = 144
+      Width = 376
+      Height = 21
+      Anchors = [akLeft, akTop, akRight]
+      DataField = 'LOGRADOURO'
+      TabOrder = 14
+    end
+    object dbeNum: TDBEdit
+      Left = 516
+      Top = 144
+      Width = 111
+      Height = 21
+      Anchors = [akTop, akRight]
+      DataField = 'LOGRADOURONUM'
+      MaxLength = 8
+      TabOrder = 15
+    end
+    object dbeComp: TDBEdit
+      Left = 14
+      Top = 200
+      Width = 274
+      Height = 21
+      DataField = 'LOGRADOUROCOMP'
+      TabOrder = 16
+    end
+    object dbeBairro: TDBEdit
+      Left = 294
+      Top = 200
+      Width = 584
+      Height = 21
+      Anchors = [akLeft, akTop, akRight]
+      DataField = 'LOGRADOUROBAIRRO'
+      TabOrder = 17
+    end
+    object dbeCidade: TDBEdit
+      Left = 11
+      Top = 256
+      Width = 790
+      Height = 21
+      Anchors = [akLeft, akTop, akRight]
+      DataField = 'LOGRADOUROCIDADE'
+      TabOrder = 18
+    end
+    object dbeUf: TDBEdit
+      Left = 767
+      Top = 256
+      Width = 111
+      Height = 21
+      Anchors = [akTop, akRight]
+      DataField = 'LOGRADOUROUF'
+      TabOrder = 19
+    end
+  end
+  inherited Panel4: TPanel
+    Width = 878
+    ExplicitWidth = 878
+    inherited DBNavigator1: TDBNavigator
+      Width = 870
+      Hints.Strings = ()
+      ExplicitLeft = 4
+      ExplicitTop = 4
+      ExplicitWidth = 870
+    end
+  end
+  inherited dsStandard: TDataSource
+    Left = 936
+    Top = 528
+  end
+  inherited sqlStandard: TSQLQuery
+    Left = 680
+    Top = 528
+  end
+  inherited dspStandard: TDataSetProvider
+    Left = 768
+    Top = 528
+  end
+  inherited cdsStandard: TClientDataSet
+    Left = 848
+    Top = 528
+  end
+  inherited ConnStandard: TSQLConnection
+    Left = 600
+    Top = 528
+  end
+  inherited dsAux: TDataSource
+    Left = 472
+    Top = 528
+  end
+end

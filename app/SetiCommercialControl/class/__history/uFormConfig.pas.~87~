@@ -1,0 +1,460 @@
+unit uFormConfig;
+
+interface
+
+uses ADODB, Dialogs, SysUtils, Forms, MIDASLIB, uMess, WinInet, Winapi.Windows,
+Graphics;
+    type TFormConfig = class
+      private
+        FParam10: Integer;
+        FParam2: Integer;
+        FParam3: Integer;
+        FParam1: Integer;
+        FParam6: Integer;
+        FParam7: Integer;
+        FParam4: Integer;
+        FParam5: Integer;
+        FParam8: Integer;
+        FParam9: Integer;
+        FParam0: Integer;
+        FParam11: Integer;
+        procedure SetParam1(const Value: Integer);
+        procedure SetParam10(const Value: Integer);
+        procedure SetParam2(const Value: Integer);
+        procedure SetParam3(const Value: Integer);
+        procedure SetParam4(const Value: Integer);
+        procedure SetParam5(const Value: Integer);
+        procedure SetParam6(const Value: Integer);
+        procedure SetParam7(const Value: Integer);
+        procedure SetParam8(const Value: Integer);
+        procedure SetParam9(const Value: Integer);
+        procedure SetParam0(const Value: Integer);
+        procedure SetParam11(const Value: Integer);
+      public
+        procedure ForSearchParameters(pFormTag,pParamsId:Integer);
+        function ForSearch1GetFieldName(pType:Integer=0) : string;
+        function ForSearch2SqlCommand : string;
+        function ForSearch3SqlSPCommand(pType:Integer=0) : string;
+        function ForSearch4GetNumParamsSP : Integer;
+        function ForSearch5GetTableName : string;
+        function ForSearch6KeyFieldSearch : string;
+        function ForSearch7GetWhere : string;
+        function ForSearch8GetOrderBy : string;
+        function ForSearch9GetGroupBy : string;
+        function ForSearch10GetReturnFieldName : string;
+        function ForSearch11GetProviderParams : Integer;
+
+        property qParam0 : Integer read FParam0 write SetParam0;
+        property qParam1 : Integer read FParam1 write SetParam1;
+        property qParam2 : Integer read FParam2 write SetParam2;
+        property qParam3 : Integer read FParam3 write SetParam3;
+        property qParam4 : Integer read FParam4 write SetParam4;
+        property qParam5 : Integer read FParam5 write SetParam5;
+        property qParam6 : Integer read FParam6 write SetParam6;
+        property qParam7 : Integer read FParam7 write SetParam7;
+        property qParam8 : Integer read FParam8 write SetParam8;
+        property qParam9 : Integer read FParam9 write SetParam9;
+        property qParam10 : Integer read FParam10 write SetParam10;
+        property qParam11 : Integer read FParam11 write SetParam11;
+    end;
+
+Const
+   FormTag1 = 1; //frmControleVendaManual
+
+
+implementation
+
+
+{ TFormConfig }
+
+procedure TFormConfig.ForSearchParameters(pFormTag, pParamsId: Integer);
+var
+  p0,p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11 : Integer;
+begin
+    try
+      if (pFormTag > 0) then
+      begin
+        if (pFormTag = FormTag1) then
+        begin
+          if (pParamsId >= 0) then
+          begin
+            p0:=pFormTag;
+            if (pParamsId = 0) then
+            begin
+              p1:=0;p2:=1;p3:=1;p4:=1;p5:=1;p6:=1;
+              p7:=1;p8:=1;p9:=1;p10:=0;p11:=1;
+            end else
+            if (pParamsId = 1) then
+            begin
+              p1:=1;p2:=1;p3:=1;p4:=1;p5:=1;p6:=1;
+              p7:=1;p8:=1;p9:=1;p10:=1;p11:=1;
+            end else
+            if (pParamsId = 2) then
+            begin
+              p1:=2;p2:=1;p3:=1;p4:=1;p5:=1;p6:=1;
+              p7:=1;p8:=1;p9:=1;p10:=2;p11:=1;
+            end else
+            if (pParamsId = 3) then
+            begin
+              p1:=3;p2:=1;p3:=1;p4:=1;p5:=1;p6:=1;
+              p7:=1;p8:=1;p9:=1;p10:=3;p11:=1;
+            end else
+            if (pParamsId = 4) then
+            begin
+              p1:=4;p2:=1;p3:=1;p4:=1;p5:=1;p6:=1;
+              p7:=1;p8:=1;p9:=1;p10:=4;p11:=1;
+            end else
+            if (pParamsId = 5) then
+            begin
+              p1:=5;p2:=1;p3:=1;p4:=1;p5:=1;p6:=1;
+              p7:=1;p8:=1;p9:=1;p10:=5;p11:=1;
+            end else
+
+            if (pParamsId = 10) then
+            begin
+              p1:=30;p2:=2;p3:=0;p4:=0;p5:=2;p6:=2;
+              p7:=2;p8:=3;p9:=0;p10:=30;p11:=2;
+            end;
+          end;
+        end;
+      end;
+      SetParam0(p0);
+      SetParam1(p1);
+      SetParam2(p2);
+      SetParam3(p3);
+      SetParam4(p4);
+      SetParam5(p5);
+      SetParam6(p6);
+      SetParam7(p7);
+      SetParam8(p8);
+      SetParam9(p9);
+      SetParam10(p10);
+      SetParam11(p11);
+    finally
+
+    end;
+end;
+
+procedure TFormConfig.SetParam11(const Value: Integer);
+begin
+    FParam11 := Value;
+end;
+
+procedure TFormConfig.SetParam0(const Value: Integer);
+begin
+    FParam0 := Value;
+end;
+
+procedure TFormConfig.SetParam1(const Value: Integer);
+begin
+    FParam1 := Value;
+end;
+
+procedure TFormConfig.SetParam10(const Value: Integer);
+begin
+    FParam10 := Value;
+end;
+
+procedure TFormConfig.SetParam2(const Value: Integer);
+begin
+    FParam2 := Value;
+end;
+
+procedure TFormConfig.SetParam3(const Value: Integer);
+begin
+    FParam3 := Value;
+end;
+
+procedure TFormConfig.SetParam4(const Value: Integer);
+begin
+    FParam4 := Value;
+end;
+
+procedure TFormConfig.SetParam5(const Value: Integer);
+begin
+    FParam5 := Value;
+end;
+
+procedure TFormConfig.SetParam6(const Value: Integer);
+begin
+    FParam6 := Value;
+end;
+
+procedure TFormConfig.SetParam7(const Value: Integer);
+begin
+    FParam7 := Value;
+end;
+
+procedure TFormConfig.SetParam8(const Value: Integer);
+begin
+    FParam8 := Value;
+end;
+
+procedure TFormConfig.SetParam9(const Value: Integer);
+begin
+    FParam9 := Value;
+end;
+
+function TFormConfig.ForSearch11GetProviderParams: Integer;
+var
+  vReturn : Integer;
+  vId : Integer;
+begin
+    vReturn := 0;
+    if (qParam0 > 0) then
+    begin
+      if (qParam0 = FormTag1) then
+      begin
+          if (qParam11 > 0) then
+          begin
+            case qParam11 of
+              1   : vReturn := 1;                   //SP_LISTA_VENDAS_MANUAIS
+              2   : vReturn := 2;                   //TBCADCLIENTES
+              end;
+          end;
+      end;
+    end;
+    Result := vReturn;
+end;
+
+function TFormConfig.ForSearch1GetFieldName(pType:Integer) : string;
+var
+  vReturn : string;
+  vId : Integer;
+begin
+    if (pType = 0) then //FIELD OF SEARCH
+      vId := qParam1 else
+    if (pType = 1) then //FIELD OF RETURN
+      vId := qParam10;
+
+    vReturn := '';
+    if (qParam0 > 0) then
+    begin
+      if (qParam0 = FormTag1) then
+      begin
+          case vId of
+            0   : vReturn := 'VENDA_CODIGO';
+            1   : vReturn := 'CLIENTE_CODIGO';
+            2   : vReturn := 'CLIENTE_NOME';
+            3   : vReturn := 'FUNCIONARIO_CODIGO';
+            4   : vReturn := 'FUNCIONARIO_NOME';
+            5   : vReturn := 'ROTA_CODIGO';
+            6   : vReturn := 'ROTA_NOME';
+            7   : vReturn := 'DT_CADASTRO';
+            8   : vReturn := 'FORMA_PAGAMENTO';
+            9   : vReturn := 'DT_PAGAMENTO';
+
+            30  : vReturn := 'ID';
+          end;
+      end;
+      {acrescentar aqui as outras condições de outros forms...}
+
+    end;
+    Result := vReturn;
+end;
+
+function TFormConfig.ForSearch2SqlCommand : string;
+var
+  vReturn : string;
+begin
+    vReturn := '';
+    if (qParam2 > 0) then
+    begin
+      if (qParam0 = FormTag1) then
+      begin
+        case qParam2 of
+          1   : vReturn := 'SELECT * FROM TBVENDAMANUAL ';
+          2   : vReturn := 'SELECT * FROM TBCADCLIENTES '+
+                           'WHERE STATUS = ''S''';
+        end;
+      end;
+      {acrescentar aqui as outras condições de outros forms...}
+
+    end;
+    Result := vReturn;
+end;
+
+function TFormConfig.ForSearch3SqlSPCommand(pType:Integer) : string;
+var
+  vReturn : string;
+  vNumP : Integer;
+  vSearchParam : string;
+  vIniCommand : string;
+  vSearchCommand : string;
+  i : Integer;
+begin
+    vSearchCommand := '';
+    if (qParam3 > 0) then
+    begin
+      if (qParam0 = FormTag1) then
+      begin
+        case qParam3 of
+          1   : vIniCommand := ' SELECT * FROM SP_LISTA_VENDAS_MANUAIS ';
+        end;
+      end;
+      {acrescentar aqui as outras condições...}
+
+    end;
+
+    if (vIniCommand <> '') then
+    begin
+      vNumP := (ForSearch4GetNumParamsSP -1);
+      vSearchParam := ':'+ForSearch1GetFieldName;
+      vIniCommand := vIniCommand + '(';
+      vSearchCommand := vIniCommand;
+      for i := 0 to vNumP do
+      begin
+          if (i < vNumP) then
+          begin
+             vIniCommand := vIniCommand + 'NULL,';
+            if (qParam1 = i) then
+              vSearchCommand := vSearchCommand + vSearchParam+','
+            else
+              vSearchCommand := vSearchCommand + 'NULL,';
+          end else
+          begin
+             vIniCommand := vIniCommand + 'NULL) ';
+             if (qParam1 = i) then
+               vSearchCommand := vSearchCommand +vSearchParam+') '
+             else
+               vSearchCommand := vSearchCommand + 'NULL) ';
+          end;
+      end;
+    end;
+    if pType = 0 then
+      Result := vIniCommand else
+    Result := vSearchCommand;
+end;
+
+function TFormConfig.ForSearch4GetNumParamsSP : Integer;
+var
+  vReturn : Integer;
+begin
+    vReturn := 0;
+    if (qParam4 > 0) then
+    begin
+      if (qParam0 = FormTag1) then
+      begin
+        case qParam4 of
+          1   : vReturn := 10;  //SP_LISTA_VENDAS_MANUAIS
+        end;
+      end;
+      {acrescentar aqui as outras condições de outros forms...}
+
+    end;
+    Result := vReturn;
+end;
+
+function TFormConfig.ForSearch5GetTableName : string;
+var
+  vReturn : string;
+begin
+    vReturn := '';
+    if (qParam5 > 0) then
+    begin
+      if (qParam0 = FormTag1) then
+      begin
+        case qParam5 of
+          1   : vReturn := 'TBVENDAMANUAL';
+          2   : vReturn := 'TBCADCLIENTES';
+        end;
+      end;
+      {acrescentar aqui as outras condições de outros forms...}
+
+    end;
+    Result := vReturn;
+end;
+
+function TFormConfig.ForSearch6KeyFieldSearch : string;
+var
+  vReturn : string;
+begin
+    vReturn := '';
+    if (qParam6 > 0) then
+    begin
+      if (qParam0 = FormTag1) then
+      begin
+        case qParam6 of
+          1   : vReturn := 'VENDA_CODIGO';
+          2   : vReturn := 'ID';
+        end;
+      end;
+      {acrescentar aqui as outras condições de outros forms...}
+
+    end;
+    Result := vReturn;
+
+end;
+
+function TFormConfig.ForSearch7GetWhere : string;
+var
+  vReturn : string;
+begin
+    vReturn := '';
+    if (qParam7 > 0) then
+    begin
+      if (qParam0 = FormTag1) then
+      begin
+        case qParam7 of
+          2   : vReturn := ' AND ID = :ID';
+        end;
+      end;
+      {acrescentar aqui as outras condições de outros forms...}
+
+    end;
+    Result := vReturn;
+
+end;
+
+function TFormConfig.ForSearch8GetOrderBy : string;
+var
+  vReturn : string;
+begin
+    vReturn := '';
+    if (qParam8 > 0) then
+    begin
+      if (qParam0 = FormTag1) then
+      begin
+        case qParam8 of
+          1   : vReturn := 'ORDER BY VENDA_CODIGO, CLIENTE_CODIGO';
+          2   : vReturn := 'ORDER BY ID, ID_CLIENTE';
+          3   : vReturn := 'ORDER BY ID';
+        end;
+      end;
+      {acrescentar aqui as outras condições de outros forms...}
+
+    end;
+    Result := vReturn;
+
+end;
+
+function TFormConfig.ForSearch9GetGroupBy : string;
+var
+  vReturn : string;
+begin
+    vReturn := '';
+    if (qParam9 > 0) then
+    begin
+      if (qParam0 = FormTag1) then
+      begin
+        case qParam9 of
+          1   : vReturn := '';
+        end;
+      end;
+      {acrescentar aqui as outras condições de outros forms...}
+
+    end;
+    Result := vReturn;
+end;
+
+function TFormConfig.ForSearch10GetReturnFieldName : string;
+var
+  vReturn : string;
+begin
+    vReturn := '';
+    if (qParam10 >= 0) then
+        vReturn := ForSearch1GetFieldName(1);
+    Result := vReturn;
+end;
+
+end.

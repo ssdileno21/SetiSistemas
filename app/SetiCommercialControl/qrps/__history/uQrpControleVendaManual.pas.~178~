@@ -1,0 +1,234 @@
+unit uQrpControleVendaManual;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, MIDASLIB,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.FMTBcd, Datasnap.DBClient,
+  Datasnap.Provider, Data.DB, Data.SqlExpr, Vcl.ExtCtrls, QuickRpt,
+
+  uSetiConnects, QRCtrls;
+
+type
+  TQrpControleVendaManual = class(TForm)
+    QuickRep1: TQuickRep;
+    TITULO: TQRBand;
+    QRLabel1: TQRLabel;
+    SQLPrincipal: TSQLQuery;
+    Master: TQRBand;
+    QRLabel2: TQRLabel;
+    QRLabel3: TQRLabel;
+    QRLabel5: TQRLabel;
+    SQLDetalhe: TSQLQuery;
+    QRDBText5: TQRDBText;
+    QRLabel6: TQRLabel;
+    QRLabel8: TQRLabel;
+    QRLabel9: TQRLabel;
+    qrlRotaDesc: TQRLabel;
+    qrlSetorDesc: TQRLabel;
+    gFooter: TQRBand;
+    Detail: TQRSubDetail;
+    QRDBText2: TQRDBText;
+    QRDBText1: TQRDBText;
+    QRDBText4: TQRDBText;
+    QRLabel7: TQRLabel;
+    qrlTotalPorRegiao: TQRLabel;
+    QRBand1: TQRBand;
+    QRLabel10: TQRLabel;
+    qrlTotalGeral: TQRLabel;
+    //procedure GRUPOAfterPrint(Sender: TQRCustomBand; BandPrinted: Boolean);
+    //procedure SUBTOTALAfterPrint(Sender: TQRCustomBand; BandPrinted: Boolean);
+    procedure QuickRep1BeforePrint(Sender: TCustomQuickRep;
+      var PrintReport: Boolean);
+    procedure MasterAfterPrint(Sender: TQRCustomBand; BandPrinted: Boolean);
+    procedure SQLDetalheAfterOpen(DataSet: TDataSet);
+  private
+    FDataIni: string;
+    FSetorId: Integer;
+    FRegiaoId: Integer;
+    FDataFim: string;
+    FRotaId: Integer;
+    FConnAux: TSQLConnection;
+    FqConn: TSQLConnection;
+    FConnectAux: TSetiConnects;
+    FqConnect: TSetiConnects;
+    FSetorDesc: string;
+    FRotaDesc: string;
+    FTotalGeral: string;
+    procedure SetqConn(const Value: TSQLConnection);
+    procedure SetqConnect(const Value: TSetiConnects);
+    { Private declarations }
+    procedure Abrir;
+
+    property qConn : TSQLConnection read FqConn write SetqConn;
+    property qConnect : TSetiConnects read FqConnect write SetqConnect;
+    property qConnAux : TSQLConnection read FConnAux write FConnAux;
+    property qConnectAux : TSetiConnects read FConnectAux write FConnectAux;
+  public
+    { Public declarations }
+
+    procedure AbrirRelatorio;
+
+    procedure SetDataFim(const Value: string);
+    procedure SetDataIni(const Value: string);
+    procedure SetRegiaoId(const Value: Integer);
+    procedure SetRotaId(const Value: Integer);
+    procedure SetSetorId(const Value: Integer);
+    procedure SetRotaDesc(const Value: string);
+    procedure SetSetorDesc(const Value: string);
+    procedure SetTotalGeral(const Value: string);
+
+    property qRegiaoId : Integer read FRegiaoId write SetRegiaoId;
+    property qRotaId : Integer read FRotaId write SetRotaId;
+    property qSetorId : Integer read FSetorId write SetSetorId;
+    property qRotaDesc : string read FRotaDesc write SetRotaDesc;
+    property qSetorDesc : string read FSetorDesc write SetSetorDesc;
+    property qDataIni : string read FDataIni write SetDataIni;
+    property qDataFim : string read FDataFim write SetDataFim;
+    property qTotalGeral : string read FTotalGeral write SetTotalGeral;
+
+  end;
+
+var
+  QrpControleVendaManual: TQrpControleVendaManual;
+
+implementation
+
+{$R *.dfm}
+
+uses udmMasterDataModule, uSetiUseful;
+
+{ TQrpControleVendaManual }
+
+procedure TQrpControleVendaManual.Abrir;
+begin
+    try
+      //PRINCIPAL
+      SQLPrincipal.SQLConnection := qConn;;
+      SQLPrincipal.Close;
+      SQLPrincipal.SQL.Clear;
+      SQLPrincipal.SQL.Add('SELECT * FROM SP_REL_CONTROLEVM_RET_REG(:ID)');
+      SQLPrincipal.Params.ParamByName('ID').Value := qRegiaoId;
+      SQLPrincipal.Open;
+      //DETALHE
+      SQLDetalhe.SQLConnection := qConn;
+      SQLDetalhe.Close;
+      SQLDetalhe.SQL.Clear;
+      SQLDetalhe.SQL.Add('SELECT * FROM SP_REL_CONTROLEVM('+
+                            ':ID_REGIAO,:DTINI,:DTFIM,:ID_ROTA,:ID_SETOR)');
+
+      SQLDetalhe.Params.ParamByName('DTINI').Value := qDataIni;
+      SQLDetalhe.Params.ParamByName('DTFIM').Value := qDataFim;
+
+      SQLDetalhe.Params.ParamByName('ID_ROTA').Value := qRotaId;
+      SQLDetalhe.Params.ParamByName('ID_SETOR').Value := qSetorId;
+
+      if (qRotaId > 0) then
+      begin
+        qrlRotaDesc.Caption := qRotaDesc;
+      end else qrlRotaDesc.Caption := 'Todas';
+
+      if (qSetorId > 0) then
+      begin
+        qrlSetorDesc.Caption := qSetorDesc;
+      end else qrlSetorDesc.Caption := 'Todos';
+
+    finally
+
+    end;
+end;
+
+procedure TQrpControleVendaManual.AbrirRelatorio;
+begin
+    try
+      qConn := TSQLConnection.Create(Nil);
+      qConnect := TSetiConnects.Create;
+      qConn := qConnect.ConnectsFIREBIRD;
+      Abrir;
+      QuickRep1.Preview;
+    finally
+      qConn := NIL;
+      qConnect := Nil;
+      qConn := Nil;
+
+    end;
+end;
+
+procedure TQrpControleVendaManual.MasterAfterPrint(Sender: TQRCustomBand;
+  BandPrinted: Boolean);
+begin
+      SQLDetalhe.Close;
+      SQLDetalhe.Params.ParamByName('ID_REGIAO').Value :=
+        SQLPrincipal.FieldByName('ID').Value;
+      SQLDetalhe.Open;
+
+end;
+
+procedure TQrpControleVendaManual.QuickRep1BeforePrint(Sender: TCustomQuickRep;
+  var PrintReport: Boolean);
+begin
+      SQLDetalhe.Close;
+      SQLDetalhe.Params.ParamByName('ID_REGIAO').Value :=
+        SQLPrincipal.FieldByName('ID').Value;
+      SQLDetalhe.Open;
+      qrlTotalGeral.Caption := qTotalGeral;
+end;
+
+procedure TQrpControleVendaManual.SetDataFim(const Value: string);
+begin
+  FDataFim := Value;
+end;
+
+procedure TQrpControleVendaManual.SetDataIni(const Value: string);
+begin
+  FDataIni := Value;
+end;
+
+procedure TQrpControleVendaManual.SetqConn(const Value: TSQLConnection);
+begin
+  FqConn := Value;
+end;
+
+procedure TQrpControleVendaManual.SetqConnect(const Value: TSetiConnects);
+begin
+  FqConnect := Value;
+end;
+
+procedure TQrpControleVendaManual.SetRegiaoId(const Value: Integer);
+begin
+  FRegiaoId := Value;
+end;
+
+procedure TQrpControleVendaManual.SetRotaDesc(const Value: string);
+begin
+  FRotaDesc := Value;
+end;
+
+procedure TQrpControleVendaManual.SetRotaId(const Value: Integer);
+begin
+  FRotaId := Value;
+end;
+
+procedure TQrpControleVendaManual.SetSetorDesc(const Value: string);
+begin
+  FSetorDesc := Value;
+end;
+
+procedure TQrpControleVendaManual.SetSetorId(const Value: Integer);
+begin
+  FSetorId := Value;
+end;
+
+procedure TQrpControleVendaManual.SetTotalGeral(const Value: string);
+begin
+  FTotalGeral := Value;
+end;
+
+procedure TQrpControleVendaManual.SQLDetalheAfterOpen(DataSet: TDataSet);
+begin
+    qrlTotalPorRegiao.Caption :=
+      formatfloat('#,##0.00', (SQLDetalhe.FieldByName('TOTALGERAL').AsFloat));
+end;
+
+end.

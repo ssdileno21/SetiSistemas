@@ -1,0 +1,40 @@
+unit ufrmPattern;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  Vcl.StdCtrls, uMess;
+
+type
+  TfrmPattern = class(TForm)
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPattern: TfrmPattern;
+  cSFCR : TSetiComponentRegisters;
+
+implementation
+
+{$R *.dfm}
+
+uses ufrmMain;
+
+procedure TfrmPattern.FormShow(Sender: TObject);
+begin
+    try
+      {cSFCR := TSetiComponentRegisters.Create(Self);
+      cSFCR.FormRecording;
+      cSFCR.ComponnentRecording;}
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+end.

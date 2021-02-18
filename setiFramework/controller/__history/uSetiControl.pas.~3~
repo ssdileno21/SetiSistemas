@@ -1,0 +1,24 @@
+unit uSetiControl;
+
+interface
+
+uses uSetiFormDAL, uSetiFormModel;
+
+    type TSetiControl = class
+      private
+        FId : Integer;
+
+      public
+
+      published
+
+
+    end;
+
+implementation
+
+{ TSetiControl }
+
+
+
+end.

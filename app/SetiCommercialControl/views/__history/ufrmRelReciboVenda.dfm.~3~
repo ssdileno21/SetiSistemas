@@ -1,0 +1,283 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 513
+  ClientWidth = 739
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object PageControl1: TPageControl
+    Left = 0
+    Top = 0
+    Width = 739
+    Height = 513
+    ActivePage = TabSheet1
+    Align = alClient
+    TabOrder = 0
+    object TabSheet1: TTabSheet
+      object Panel1: TPanel
+        Left = 0
+        Top = 0
+        Width = 731
+        Height = 485
+        Align = alClient
+        TabOrder = 0
+        ExplicitWidth = 739
+        ExplicitHeight = 177
+        object Panel2: TPanel
+          Left = 1
+          Top = 1
+          Width = 729
+          Height = 160
+          Align = alTop
+          TabOrder = 0
+          DesignSize = (
+            729
+            160)
+          object Label3: TLabel
+            Left = 12
+            Top = 52
+            Width = 95
+            Height = 13
+            Caption = 'C'#243'd. Cliente (Ficha)'
+          end
+          object Label1: TLabel
+            Left = 12
+            Top = 100
+            Width = 91
+            Height = 13
+            Caption = 'Comprador / Resp.'
+          end
+          object edtComprasCodFornecedor: TEdit
+            Tag = 99
+            Left = 12
+            Top = 71
+            Width = 95
+            Height = 21
+            TabOrder = 0
+          end
+          object Edit1: TEdit
+            Tag = 99
+            Left = 12
+            Top = 119
+            Width = 95
+            Height = 21
+            TabOrder = 1
+          end
+          object edtComprasFornecedor: TEdit
+            Tag = 99
+            Left = 113
+            Top = 71
+            Width = 584
+            Height = 21
+            Anchors = [akLeft, akTop, akRight]
+            TabOrder = 2
+          end
+          object Edit2: TEdit
+            Tag = 99
+            Left = 113
+            Top = 119
+            Width = 584
+            Height = 21
+            Anchors = [akLeft, akTop, akRight]
+            TabOrder = 3
+          end
+          object Panel4: TPanel
+            Left = 1
+            Top = 1
+            Width = 727
+            Height = 31
+            Align = alTop
+            TabOrder = 4
+            ExplicitWidth = 949
+            object sbInsert: TSpeedButton
+              AlignWithMargins = True
+              Left = 127
+              Top = 4
+              Width = 97
+              Height = 23
+              Align = alLeft
+              Caption = 'Novo'
+              Flat = True
+              Glyph.Data = {
+                DE010000424DDE01000000000000760000002800000024000000120000000100
+                0400000000006801000000000000000000001000000010000000000000000000
+                80000080000000808000800000008000800080800000C0C0C000808080000000
+                FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00666666666666
+                6666666666666666666666660000666660000000000666666668888888888666
+                00006666687777777706666666687777777786660000666668FFFFFFF7066666
+                6668F7F7F7F786660000666668FFFFFFF706666666687F7F7F77866600006666
+                68FFFFFFF70666666668F7F7F7F786660000666668FFFFFFF706666666687F7F
+                7F7786660000666668FFFFFFF70666666668F7F7F7F786660000666668FFFFFF
+                F706666666687F7F7F778666000066F668FFFFFFF7066666F668F7F7F7F78666
+                0000668F88FF8FF0000666668F887F8F7888866600006668B8F8FFF7F8666666
+                6878F8F7F7F86666000066FF8FBFFFF786666666FF8F7F7F7786666600006668
+                8BFF8888666666666887FF888866666600006668B8B8F66666666666687878F6
+                666666660000668F68F66666666666668F68F66666666666000066F668F668F6
+                66666666F668F668F66666660000666668F66666666666666668F66666666666
+                0000}
+              NumGlyphs = 2
+              ExplicitLeft = 5
+              ExplicitTop = 2
+            end
+            object sbUpdate: TSpeedButton
+              AlignWithMargins = True
+              Left = 230
+              Top = 4
+              Width = 97
+              Height = 23
+              Align = alLeft
+              Caption = 'Alterar'
+              Enabled = False
+              Flat = True
+              Glyph.Data = {
+                DE010000424DDE01000000000000760000002800000024000000120000000100
+                0400000000006801000000000000000000001000000010000000000000000000
+                80000080000000808000800000008000800080800000C0C0C000808080000000
+                FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00666666666666
+                6666666666666666666666660000666666666666666666666666666666666666
+                0000666666666666666666666666666666666666000066666666666666666666
+                6666666666666666000066666666666666666666666666666666666600006666
+                6666666666666666666666666666666600006666FFFFFFFFFFF6666666FFFFFF
+                FFFFF666000066684444444444F66666688888888888F6660000666844444444
+                44F66666688888888888F66600006666844444444F66666666888888888F6666
+                0000666668444444F66666666668888888F66666000066666684444F66666666
+                666688888F66666600006666666844F66666666666666888F666666600006666
+                6666886666666666666666886666666600006666666666666666666666666666
+                6666666600006666666666666666666666666666666666660000666666666666
+                6666666666666666666666660000666666666666666666666666666666666666
+                0000}
+              NumGlyphs = 2
+              ExplicitLeft = 225
+              ExplicitTop = 2
+            end
+            object sbDel: TSpeedButton
+              AlignWithMargins = True
+              Left = 333
+              Top = 4
+              Width = 97
+              Height = 23
+              Align = alLeft
+              Caption = 'Deletar'
+              Enabled = False
+              Flat = True
+              Glyph.Data = {
+                DE010000424DDE01000000000000760000002800000024000000120000000100
+                0400000000006801000000000000000000001000000010000000000000000000
+                80000080000000808000800000008000800080800000C0C0C000808080000000
+                FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00666666666666
+                6666666666666666666666660000666666666666666666666666666666666666
+                0000666666666666666666666666666666666666000066666666666666666666
+                6666666666666666000066666666666666666666666666666666666600006666
+                6666666666666666666666666666666600006666666666666666666666666666
+                6666666600006666FFFFFFFFFFF6666666FFFFFFFFFFF6660000666800000000
+                00F66666687777777777F666000066680000000000F66666687777777777F666
+                0000666888888888886666666888888888886666000066666666666666666666
+                6666666666666666000066666666666666666666666666666666666600006666
+                6666666666666666666666666666666600006666666666666666666666666666
+                6666666600006666666666666666666666666666666666660000666666666666
+                6666666666666666666666660000666666666666666666666666666666666666
+                0000}
+              NumGlyphs = 2
+              ExplicitLeft = 332
+              ExplicitTop = 8
+            end
+            object sbSave: TSpeedButton
+              AlignWithMargins = True
+              Left = 436
+              Top = 4
+              Width = 97
+              Height = 23
+              Align = alLeft
+              Caption = 'Gravar'
+              Enabled = False
+              Flat = True
+              Glyph.Data = {
+                DE010000424DDE01000000000000760000002800000024000000120000000100
+                0400000000006801000000000000000000001000000000000000000000000000
+                80000080000000808000800000008000800080800000C0C0C000808080000000
+                FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00666666666666
+                6666666666666666666666660000666666666666666666666666666666666666
+                0000666000000000000066666888888888888866000066044074477704406666
+                88887FF77788886600006604407447770440666688887FF77788886600006604
+                407447770440666688887FF77788886600006604447777774440666688887777
+                7788886600006604444444444440666688888888888888660000660440000000
+                044066668888888888888866000066040FFFFFFFF0406666888FFFFFFFF88866
+                000066040FFFFFFFF0406666888FFFFFFFF88866000066040F888888F0406666
+                888F888888F88866000066040FFFFFFFF0406666888FFFFFFFF8886600006607
+                0F888888F0006666878F888888F88866000066040FFFFFFFF0406666888FFFFF
+                FFF8886600006600000000000000666688888888888888660000666666666666
+                6666666666666666666666660000666666666666666666666666666666666666
+                0000}
+              NumGlyphs = 2
+              ExplicitLeft = 449
+              ExplicitTop = 2
+            end
+            object sbCancel: TSpeedButton
+              AlignWithMargins = True
+              Left = 539
+              Top = 4
+              Width = 97
+              Height = 23
+              Align = alLeft
+              Caption = 'Cancelar'
+              Enabled = False
+              Flat = True
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clRed
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              Glyph.Data = {
+                DE010000424DDE01000000000000760000002800000024000000120000000100
+                0400000000006801000000000000000000001000000010000000000000000000
+                80000080000000808000800000008000800080800000C0C0C000808080000000
+                FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00666666666666
+                6666666666666666666666660000666666666666666666666666666666666666
+                0000666666111116666666666666888886666666000066661199999116666666
+                6688888888866666000066619999999991666666688888888888666600006619
+                99999999991666668888888888888666000066199FF999FF9916666688866888
+                66888666000061999FFF9FFF9991666888866686668888660000619999FFFFF9
+                99916668888866666888886600006199999FFF99999166688888866688888866
+                0000619999FFFFF9999166688888666668888866000061999FFF9FFF99916668
+                8886668666888866000066199FF999FF99166666888668886688866600006619
+                9999999999166666888888888888866600006661999999999166666668888888
+                8888666600006666119999911666666666888888888666660000666666111116
+                6666666666668888866666660000666666666666666666666666666666666666
+                0000}
+              NumGlyphs = 2
+              ParentFont = False
+              ExplicitLeft = 552
+              ExplicitTop = 2
+            end
+            object sbAbrir: TButton
+              AlignWithMargins = True
+              Left = 4
+              Top = 4
+              Width = 117
+              Height = 23
+              Align = alLeft
+              Caption = 'Pesquisar'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clNavy
+              Font.Height = -13
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ImageIndex = 0
+              ParentFont = False
+              Style = bsSplitButton
+              TabOrder = 0
+            end
+          end
+        end
+      end
+    end
+  end
+end

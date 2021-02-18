@@ -1,0 +1,251 @@
+unit ufrmMain;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, MIDASLIB, uFSUF,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
+  VCLTee.TeCanvas, VCLTee.TeePenDlg, Vcl.ImgList, Vcl.Buttons, Vcl.Menus,
+  Vcl.Imaging.pngimage, Vcl.ComCtrls, EAppProt, Vcl.CategoryButtons, uFSPanel,
+  uSetiUseful;
+
+type
+  TfrmMain = class(TForm)
+    Panel1: TPanel;
+    imgButtons: TImageList;
+    Panel2: TPanel;
+    ImageList1: TImageList;
+    MainMenu1: TMainMenu;
+    mCad: TMenuItem;
+    mCad_Funcionarios: TMenuItem;
+    mCad_Clientes: TMenuItem;
+    mMov: TMenuItem;
+    mCad_Prod_Produto: TMenuItem;
+    mCad_Usuarios: TMenuItem;
+    mCad_Empresa: TMenuItem;
+    StatusBar1: TStatusBar;
+    Panel3: TPanel;
+    Panel6: TPanel;
+    mMov_Sai_ControlVendamanual: TMenuItem;
+    mCad_Loc: TMenuItem;
+    mCad_Loc_Reg: TMenuItem;
+    mCad_Loc_Rot: TMenuItem;
+    mCad_Loc_Set: TMenuItem;
+    Panel4: TPanel;
+    sbControleVendaManual: TSpeedButton;
+    sbRelControleVendas: TSpeedButton;
+    sbClientes: TSpeedButton;
+    sbProdutos: TSpeedButton;
+    sbEmpresa: TSpeedButton;
+    Panel5: TPanel;
+    sbFuncionarios: TSpeedButton;
+    sbUsuarios: TSpeedButton;
+    mCad_Fin: TMenuItem;
+    mCad_Fin_FormPg: TMenuItem;
+    SFPanel1: TSFPanel;
+    Panel8: TPanel;
+    Panel7: TPanel;
+    SFPanel2: TSFPanel;
+    procedure sbProdutosClick(Sender: TObject);
+    procedure sbClientesClick(Sender: TObject);
+    procedure sbFuncionariosClick(Sender: TObject);
+    procedure mCad_FuncionariosClick(Sender: TObject);
+    procedure mCad_ClientesClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure mCad_EmpresaClick(Sender: TObject);
+    procedure sbReciboVendaClick(Sender: TObject);
+    procedure sbEmpresaClick(Sender: TObject);
+    procedure mCad_Loc_RotClick(Sender: TObject);
+    procedure mCad_Loc_RegClick(Sender: TObject);
+    procedure mCad_Loc_SetClick(Sender: TObject);
+    procedure sbUsuariosClick(Sender: TObject);
+    procedure mCad_UsuariosClick(Sender: TObject);
+    procedure mCad_Fin_FormPgClick(Sender: TObject);
+    procedure sbRelControleVendasClick(Sender: TObject);
+    procedure mCad_Prod_ProdutoClick(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure mMov_Sai_ControlVendamanualClick(Sender: TObject);
+  private
+    FqUsuNome: string;
+    FqUsuId: integer;
+    FqUsuLogin: string;
+    FqUsuSenha: string;
+    FqConnPath: string;
+    procedure SetqUsuId(const Value: integer);
+    procedure SetqUsuNome(const Value: string);
+    procedure SetqUsuLogin(const Value: string);
+    procedure SetqUsuSenha(const Value: string);
+    procedure SetqConnPath(const Value: string);
+    { Private declarations }
+  public
+    { Public declarations }
+    property qUsuId : integer read FqUsuId write SetqUsuId;
+    property qUsuLogin : string read FqUsuLogin write SetqUsuLogin;
+    property qUsuNome : string read FqUsuNome write SetqUsuNome;
+    property qUsuSenha : string read FqUsuSenha write SetqUsuSenha;
+    property qConnPath : string read FqConnPath write SetqConnPath;
+
+  end;
+
+var
+  frmMain: TfrmMain;
+
+implementation
+
+{$R *.dfm}
+
+uses uFSDialogs, uSetiConfig, ufrmLogin, ufrmCadRotas,
+  ufrmCadRegioes, ufrmCadSetores,
+  ufrmControleVendaManual, ufrmCadFormaPagto, uRepVendaManual,
+  ufrmccnCadEmpresa, ufrmccnCadUsuarios, ufrmStanRec,
+  ufrmccnCadProdutos, ufrmccnCadClientes, ufrmccnCadFuncionarios;
+
+procedure TfrmMain.sbProdutosClick(Sender: TObject);
+begin
+    frmccnCadProdutos := TfrmccnCadProdutos.Create(Nil);
+    frmccnCadProdutos.ShowModal;
+end;
+
+procedure TfrmMain.sbReciboVendaClick(Sender: TObject);
+begin
+    frmControleVendaManual := TfrmControleVendaManual.Create(Nil);
+    frmControleVendaManual.ShowModal;
+end;
+
+procedure TfrmMain.sbRelControleVendasClick(Sender: TObject);
+begin
+    RepVendaManual := TRepVendaManual.Create(Nil);
+    RepVendaManual.ShowModal;
+end;
+
+procedure TfrmMain.sbEmpresaClick(Sender: TObject);
+begin
+    frmccnCadEmpresa := TfrmccnCadEmpresa.Create(Nil);
+    frmccnCadEmpresa.ShowModal;
+end;
+
+procedure TfrmMain.SetqConnPath(const Value: string);
+begin
+  FqConnPath := Value;
+end;
+
+procedure TfrmMain.SetqUsuId(const Value: integer);
+begin
+    FqUsuId := Value;
+end;
+
+procedure TfrmMain.SetqUsuLogin(const Value: string);
+begin
+    FqUsuLogin := Value;
+end;
+
+procedure TfrmMain.SetqUsuNome(const Value: string);
+begin
+    FqUsuNome := Value;
+end;
+
+procedure TfrmMain.SetqUsuSenha(const Value: string);
+begin
+    FqUsuSenha := Value;
+end;
+
+procedure TfrmMain.SpeedButton1Click(Sender: TObject);
+begin
+  frmStanRec := TfrmStanRec.Create(Nil);
+  frmStanRec.ShowModal;
+end;
+
+procedure TfrmMain.sbUsuariosClick(Sender: TObject);
+begin
+    frmccnCadUsuarios := TfrmccnCadUsuarios.Create(Nil);
+    frmccnCadUsuarios.ShowModal;
+end;
+
+procedure TfrmMain.sbFuncionariosClick(Sender: TObject);
+begin
+    frmccnCadFuncionarios := TfrmccnCadFuncionarios.Create(Nil);
+    frmccnCadFuncionarios.ShowModal;
+end;
+
+procedure TfrmMain.mCad_UsuariosClick(Sender: TObject);
+begin
+    sbUsuariosClick(Self);
+end;
+
+procedure TfrmMain.mMov_Sai_ControlVendamanualClick(Sender: TObject);
+begin
+    sbReciboVendaClick(Self);
+end;
+
+procedure TfrmMain.mCad_ClientesClick(Sender: TObject);
+begin
+    sbClientesClick(Self);
+end;
+
+procedure TfrmMain.mCad_EmpresaClick(Sender: TObject);
+begin
+  frmccnCadEmpresa := TfrmccnCadEmpresa.Create(Nil);
+  frmccnCadEmpresa.ShowModal;
+end;
+
+procedure TfrmMain.FormCreate(Sender: TObject);
+begin
+    try
+      SetqConnPath(GetDataBase);
+      frmLogin := TfrmLogin.Create(Application);
+      if (frmLogin.ShowModal = mrOk) then
+      begin
+          SetqUsuLogin(frmLogin.qLoginUsu);
+          qUsuId := frmLogin.qIdUsu;
+          qUsuNome := frmLogin.qNomeUsu;
+          qUsuSenha := frmLogin.qSenhaUsu;
+          frmLogin.Hide;
+          StatusBar1.Panels[0].Text := 'Usuário: '+qUsuNome;
+      end;
+    finally
+
+    end;
+end;
+
+procedure TfrmMain.mCad_Fin_FormPgClick(Sender: TObject);
+begin
+    frmCadFormaPagto := TfrmCadFormaPagto.Create(Nil);
+    frmCadFormaPagto.ShowModal;
+end;
+
+procedure TfrmMain.mCad_Loc_RegClick(Sender: TObject);
+begin
+    frmCadRegioes := TfrmCadRegioes.Create(Nil);
+    frmCadRegioes.ShowModal;
+end;
+
+procedure TfrmMain.mCad_Loc_RotClick(Sender: TObject);
+begin
+    frmCadRotas := TfrmCadRotas.Create(Nil);
+    frmCadRotas.ShowModal;
+end;
+
+procedure TfrmMain.mCad_Loc_SetClick(Sender: TObject);
+begin
+    frmCadSetores := TfrmCadSetores.Create(Nil);
+    frmCadSetores.ShowModal;
+end;
+
+procedure TfrmMain.mCad_FuncionariosClick(Sender: TObject);
+begin
+    sbFuncionariosClick(Self);
+end;
+
+procedure TfrmMain.mCad_Prod_ProdutoClick(Sender: TObject);
+begin
+    sbProdutosClick(Self);
+end;
+
+procedure TfrmMain.sbClientesClick(Sender: TObject);
+begin
+  frmccnCadClientes := TfrmccnCadClientes.Create(Nil);
+  frmccnCadClientes.ShowModal;
+end;
+
+end.

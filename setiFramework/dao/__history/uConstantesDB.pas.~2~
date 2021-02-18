@@ -1,0 +1,21 @@
+unit uConstantesDB;
+
+interface
+
+Const
+      scdbQueryFormsADO = 'SELECT [ID]                                '#13+
+                          '      ,[FORMNAME]                          '#13+
+                          '      ,[FORMCAPTION]                       '#13+
+                          '      ,[FORMTAG]                           '#13+
+                          '      ,[FORMSTATUS]                        '#13+
+                          '  FROM [dbo].[TBFORMS] WITH(NOLOCK)        '#13+
+                          '  WHERE 1 = 1                              ';
+
+
+
+
+
+
+implementation
+
+end.

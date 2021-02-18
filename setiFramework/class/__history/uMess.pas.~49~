@@ -1,0 +1,83 @@
+unit uMess;
+
+interface
+
+uses Dialogs, SysUtils, MIDASLIB, Controls;
+{
+procedure SetiMensagens(Id:Integer=-1;Val:String='');
+function SetiMensagensConfGetMens(Id:Integer=-1;Val:String='') : string;}
+function SetiMens(Id:Integer=-1;Mess:String='';Typ:string='') : string;
+function SetiMensQuestions(Id:Integer=-1;Mess:string='') : Boolean;
+
+Const
+    SetiTel = ' Tel: 31996282104';
+    SetiEmail = ' Email: dileno.ssantos@gmail.com';
+    {ErrorAlert = 'Ocorreu um erro!!! Favor entrar em contato com '+
+      'Seti Sistemas: ('+
+      SetiEmail +','+ SetiTel + ' e informe o seguinte erro: ';}
+    ErrorAlert =
+    'Atenção!!! Ocorreu um erro ao executar esse procedimento, gentileza ' +
+    'entrar em contato com o administrador do sistema e relatar a seguinte ' +
+    'mensagem: ';
+    ErrorMens = ' Pedimos desculpas pelos transtornos, aguardamos o seu '+
+    ' contato para que esse problema seja resolvido o mais breve possivel.';
+    ErrorInf = ' | Código do erro: ';
+    Contato = ' Contato: Seti Sistemas: '+SetiTel +' | '+SetiEmail;
+    Mess1 = 'Registro inserido com sucesso.';
+    Mess2 = 'As informações para o registro estão incompletas.';
+    Mess3 = 'Registro excluído com sucesso.';
+    Mess4 = 'Login não informado.';
+    Mess5 = 'Senha não informada.';
+    Mess6 = 'Login incorreto.';
+    Mess7 = 'Senha incorreta.';
+    Mess8 = 'O login ou a senha estão incorretos.';
+    Mess9 = 'Nenhum regitro encontrado.';
+    Mess10 = 'Confirma inclusão do registro?';
+    Mess11 = 'Confirma alteração do registro?';
+    Mess12 = 'Confirma exclusão do registro?';
+    Mess13 = 'A consulta será realizada sem filtro, deseja continuar?';
+    Mess14 = 'Internet conectada!';
+    Mess15 = 'Sem conexão com a Internet!';
+    Mess16 = 'Login já existente';
+    Mess17 = 'Registro atualizado com sucesso.';
+    Mess18 = 'Nome do arquivo não informado.';
+    Mess19 = 'Formato do arquivo inválido.';
+    Mess20 = 'Arquivo já existe, Deseja substituí-lo?';
+    Mess21 = 'Atenção, o arquivo que será substituído, esta em uso, todas '+
+             'as alterações serão perdidas, deseja realmente substituí-lo?';
+    Mess22 = 'Operação cancelada! Informação obrigatória do campo: ';
+    Mess23 = 'Atenção! Ocorreu um erro ao executar esta operação, gentileza '+
+             'procurar o administrador do sistema e informar o seguinte '+
+             'código: ';
+
+implementation
+
+function SetiMens(Id:Integer;Mess:String;Typ:string) : string;
+begin
+    try
+        if (Id = 0) then //ERROR
+          MessageDlg(ErrorAlert +#13+ Mess +#13+ ErrorMens + Contato,mtError,
+          [mbOK],0) else
+        if (Id = 1) then //NORMAL
+          MessageDlg(Mess,mtInformation,[mbOK],0) else
+        if (Id = 2) then //WARNING
+          MessageDlg(Mess,mtWarning,[mbOK],0);
+    finally
+
+    end;
+end;
+
+function SetiMensQuestions(Id:Integer=-1;Mess:string='') : Boolean;
+begin
+    try
+        Result := False;
+        if (Id = 0) then //Compare answer with the true;
+          Result :=  (MessageDlg(Mess,mtConfirmation,[mbYes,mbNo],0) = mrYes)
+        else
+        if (Id = 1) then //Compare answer with the false;
+          Result :=  (MessageDlg(Mess,mtConfirmation,[mbYes,mbNo],0) = mrNo);
+    finally
+
+    end;
+end;
+end.

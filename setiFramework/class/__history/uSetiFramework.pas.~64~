@@ -1,0 +1,444 @@
+unit uSetiFramework;
+
+interface
+
+uses Forms, Vcl.ComCtrls, Vcl.Dialogs, Vcl.Controls, System.SysUtils, StrUtils,
+MIDASLIB, Classes, StdCtrls, Buttons, Types, Themes, windows,
+System.Math, Provider, DBClient, DB, ExtCtrls, Variants, uMess,
+Graphics, Mask, DBCtrls, VclTee.TeePenDlg, uSetiConfig;
+
+type TSetiFramework = class(TProvider)
+    private
+      FProject : string;
+      FLicense : Boolean;
+      FName : String;
+      FWidth : Integer;
+      FHeight : Integer;
+      FTop : Integer;
+      FLeft : Integer;
+      FCdsComponents : TClientDataSet;
+    protected
+    public
+      constructor Create();
+      destructor Destroy;
+
+      //Procedure para gravar informações dos componentes
+      procedure SetiFramComponentsInfo(Sender:TObject);
+
+      //Function for search screen..
+    {  function SetiFramGetInfoField(CompTypeName: String = '';CompName:
+      String = ''; Returning: String = '') : String;  }
+
+      procedure SetiFramNewTabSheet(frm : TForm=Nil);
+      procedure SetiFramCloseTabSheet(Pg:TPageControl);
+
+      function SetiFramGetProject : string;
+      procedure SetiFramSetProject(Const Value : string);
+
+      function SetiFramGetComponentsInfo(pFormName:String;pFieldName:string;
+      pReturnField:string) : Integer;
+    published
+      property SetiFrampProject : string read SetiFramGetProject
+        write SetiFramSetProject;
+      property SetiFrampCdsComponents : TClientDataSet read FCdsComponents
+        write FCdsComponents;
+
+end;
+
+  TSetiCustumBtnTab  = class(TSpeedButton)
+    private
+      FbtnTab: TTabSheet;
+      procedure SetbtnTab(const Value: TTabSheet);
+    published
+    public
+      procedure Click;Override;
+      property btnTab:TTabSheet read FbtnTab write SetbtnTab;
+  end;
+
+  TSetiTabSheetBtn  = class(TTabSheet)
+    private
+       FBtn: TSetiCustumBtnTab;
+       procedure SetupInternalBtn;
+       procedure SetBtnPosition;
+    protected
+      procedure SetParent(AParent: TWinControl);override;
+      procedure DoShow;override;
+      procedure Notification(AComponent: TComponent; Operation: TOperation);
+        Virtual;// override;
+    public
+      constructor Create(AOwner: TComponent);Virtual;//override;
+      procedure SetiFramSetBounds(ALeft: Integer; ATop: Integer;
+        AWidth: Integer; AHeight: Integer);Virtual;//override;
+  end;
+
+Const
+    cProject = 'SetiFramework';
+    TabCompCaption = '      ';
+
+var
+    ipag : TTabSheet;
+    pForm : TForm;
+
+implementation
+
+{ TSetiFramework }
+
+uses ufrmMain, uSetiUseful;
+
+constructor TSetiFramework.Create();
+begin
+    try
+      //
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+destructor TSetiFramework.Destroy;
+begin
+    try
+      if (Assigned(pForm)) then
+        pForm.Free;
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+{function TSetiFramework.SetiFramGetInfoField(CompTypeName: string;
+  CompName: String; Returning: String): String;
+var
+  Size : Integer;
+  SizeFieldType : String;
+  SizeFieldPos : Integer;
+  FieldName : String;
+  ActiveValue : String;
+  InactiveValue : String;
+begin
+{
+    COMPTYPENAME:
+      TEDIT       : EDT;
+      TDBEDIT     : EDT;
+      COMBOBOX    : CBX;
+      DBCOMBOBOX  : CBX;
+      CHECKBOX    : CHB;
+
+    FIELDS TYPE:
+      STRING FIELD  : S;
+      CHAR FIELD    : C;
+      NUMBER FIELD  : N;
+
+    COMPONENT NAME EXAMPLE:
+      TEDIT : EDTSNAME;
+      TCHECKBOX : CBXSSNSTATUS;
+}
+
+{    try
+      Result := '';
+      if (CompTypeName = '') or (CompName = '') or (Returning = '') then
+        Exit;
+      Size := Length(CompName);
+      SizeFieldPos := (Size - 4);
+      if (SizeFieldPos = 0) then
+        Exit;
+      if (copy(UpperCase(CompName), 1, 3) <> 'EDT') and
+         (copy(UpperCase(CompName), 1, 3) <> 'CBX') then
+        Exit;
+      SizeFieldType := copy(UpperCase(CompName), 4, 1);
+      if  (SizeFieldType <> 'S') and            //STRING
+          (SizeFieldType <> 'C') and            //CHAR
+          (SizeFieldType <> 'N') and            //NUMBER
+          (SizeFieldType <> 'D') then           //DATE
+        Exit
+      else
+      begin
+        if (SizeFieldType = 'S') then
+          SizeFieldType := 'STRING'
+        else
+        if (SizeFieldType = 'C') then
+          SizeFieldType := 'CHAR'
+        else
+        if (SizeFieldType = 'N') then
+          SizeFieldType := 'NUMBER'
+        else
+        if (SizeFieldType = 'D') then
+          SizeFieldType := 'DATE'
+        else
+      end;
+
+      if (UpperCase(CompTypeName) <> 'TCHECKBOX') then
+        FieldName := copy(UpperCase(CompName), 5, SizeFieldPos)
+      else
+        FieldName := copy(UpperCase(CompName), 7, SizeFieldPos);
+
+      if (UpperCase(Returning) = 'NAME') then
+        Result := FieldName
+      else
+      if (UpperCase(Returning) = 'TYPE') then
+        Result := SizeFieldType;
+
+      if (UpperCase(CompTypeName) = 'TCHECKBOX') then begin
+        if (UpperCase(Returning) = 'ACTIVEVALUE') then begin
+            ActiveValue := copy(UpperCase(CompName), 5, 1);
+            Result := ActiveValue;
+        end
+        else
+        if (UpperCase(Returning) = 'INACTIVEVALUE') then
+            InactiveValue := copy(UpperCase(CompName), 6, 1);
+            Result := InactiveValue;
+      end;
+
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;          }
+
+procedure TSetiFramework.SetiFramCloseTabSheet(Pg:TPageControl);
+var
+    Tab: TTabSheet;
+    iTab: Integer;
+begin
+    try
+      Tab := Pg.ActivePage;
+      iTab := Pg.ActivePageIndex;
+      if (iTab <> 0) then begin
+        Tab.Parent := Nil;
+        Tab.PageControl := Nil;
+        FreeAndNil(Tab);
+        Pg.ActivePageIndex := iTab - 1;
+      end;
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+procedure TSetiFramework.SetiFramComponentsInfo(Sender: TObject);
+var
+  i : Integer;
+begin
+    try
+      for I := 0 to TForm(Sender).ComponentCount -1 do begin
+          if TForm(Sender).Components[i] is TPanel then begin
+              if Assigned(SetiFrampCdsComponents) then begin
+                  SetiFrampCdsComponents.Insert;
+                  SetiFrampCdsComponents.FieldByName('FORMNAME').Value :=
+                    TForm(Sender).Name;
+                  SetiFrampCdsComponents.FieldByName('NAME').Value :=
+                    TPanel(TForm(Sender).Components[i]).Name;
+                  SetiFrampCdsComponents.FieldByName('HEIGHT').Value :=
+                    TPanel(TForm(Sender).Components[i]).Height;
+                  SetiFrampCdsComponents.FieldByName('TOP').Value :=
+                    TPanel(TForm(Sender).Components[i]).Top;
+                  SetiFrampCdsComponents.FieldByName('LEFT').Value :=
+                    TPanel(TForm(Sender).Components[i]).Left;
+                  SetiFrampCdsComponents.FieldByName('WIDTH').Value :=
+                    TPanel(TForm(Sender).Components[i]).Width;
+                  SetiFrampCdsComponents.Post;
+              end;
+          end;
+      end;
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+function TSetiFramework.SetiFramGetComponentsInfo(pFormName, pFieldName,
+  pReturnField: string): Integer;
+var
+    RetName : string;
+begin
+    Result := 0;
+    RetName := '';
+    try
+        if (pFormName <> '') and (pFieldName <> '') and (pReturnField <> '')
+          then begin
+            RetName := UpperCase(pReturnField);
+          if Assigned(SetiFrampCdsComponents) then begin
+              with (SetiFrampCdsComponents) do begin
+                  Open;
+                  Locate('FORMNAME;NAME',VarArrayOf(
+                    [pFormName,pFieldName]),[]);
+                  Result := FieldByName(UpperCase(pReturnField)).AsInteger;
+              end;
+          end;
+        end;
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+function TSetiFramework.SetiFramGetProject: string;
+begin
+    Result := FProject;
+end;
+
+procedure TSetiFramework.SetiFramNewTabSheet(frm: TForm);
+var
+    ThereIsFlap : Boolean;
+    i           : Integer;
+    rec: TRect;
+begin
+    try
+      with frmMain do begin
+          ThereIsFlap := False;
+
+          if (SConfigLimitedForm) then
+          begin
+              if (pgcMain.PageCount = 8) then
+              begin
+                  MessageDlg('Atenção, para esta versão, só é permitido a '+
+                  ' abertura de 8 (oito) telas simultâneas.'
+                  ,mtInformation,[mbOK],0);
+                  Exit;
+              end;
+
+          end;
+
+          for i := 0 to pgcMain.PageCount -1 do begin
+            if (pgcMain.Pages[i].Tag = frm.Tag) then
+            begin
+                ipag := pgcMain.Pages[i];
+                ThereIsFlap := True;
+                Break;
+            end;
+          end;
+          if ThereIsFlap then begin
+            pgcMain.ActivePage := ipag;
+            Exit;
+          end else begin
+            ipag := TSetiTabSheetBtn.Create(pgcMain);
+            if (frm <> NIL) then begin
+              ipag.PageControl := pgcMain;
+              frm.Parent := ipag;
+              frm.Align := alClient;
+              frm.Visible := True;
+              ipag.Caption := frm.Caption;
+              ipag.Name := frm.Name;
+              ipag.Tag := frm.Tag;
+              frm.BorderStyle := bsNone;
+              pgcMain.ActivePage := ipag;
+            end;
+          end;
+      end;
+    except on e : exception do
+      SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+procedure TSetiFramework.SetiFramSetProject(const Value: string);
+begin
+    FProject := Value;
+end;
+
+{ TSetiCustumTabBtn }
+
+procedure TSetiCustumBtnTab.Click;
+var
+  count : Integer;
+begin
+  inherited;
+    try
+      if Assigned(FbtnTab) then
+        FbtnTab.Free;
+      count := frmMain.pgcMain.PageCount;
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+procedure TSetiCustumBtnTab.SetbtnTab(const Value: TTabSheet);
+begin
+    try
+      FbtnTab := Value;
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+{ TSetiTabSheetBtn }
+
+constructor TSetiTabSheetBtn.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+    SetupInternalBtn;
+end;
+
+procedure TSetiTabSheetBtn.DoShow;
+begin
+  inherited;
+    try
+      if Pos(TabCompCaption, Caption)=0 then
+        Caption := Caption+TabCompCaption;
+      SetBtnPosition;
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+procedure TSetiTabSheetBtn.Notification(AComponent: TComponent;
+  Operation: TOperation);
+begin
+  inherited Notification(AComponent, Operation);
+    try
+      if (AComponent = FBtn) and (Operation = opRemove) then
+        FBtn := nil;
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+procedure TSetiTabSheetBtn.SetiFramSetBounds(ALeft, ATop, AWidth, AHeight:
+Integer);
+begin
+  inherited;
+    inherited SetBounds(ALeft, ATop, AWidth, AHeight);
+      SetBtnPosition;
+end;
+
+procedure TSetiTabSheetBtn.SetBtnPosition;
+var
+    rec: TRect;
+begin
+    try
+      if not Assigned(PageControl) then
+        exit;
+      Rec := self.PageControl.TabRect(self.PageIndex);
+      Fbtn.SetBounds(rec.Right-FBtn.Width, rec.Top, Fbtn.Width, Fbtn.Height);
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+procedure TSetiTabSheetBtn.SetParent(AParent: TWinControl);
+begin
+  inherited;
+    inherited SetParent(AParent);
+    try
+      if FBtn = nil then
+         exit;
+      FBtn.Parent  := AParent;
+      FBtn.Visible := False;
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+procedure TSetiTabSheetBtn.SetupInternalBtn;
+begin
+    try
+       if Assigned(FBtn) then
+         exit;
+        FBtn := TSetiCustumBtnTab.Create(Self);
+        FBtn.FreeNotification(Self);
+        FBtn.Height  := frmMain.sbClose.Height;
+        FBtn.Width   := frmMain.sbClose.Width;
+        FBtn.Flat    := True;
+        FBtn.btnTab  := Self;
+        FBtn.Name    := 'TabBtnSeti';
+        FBtn.Glyph   := frmMain.sbClose.Glyph;
+        FBtn.Layout  := blGlyphRight;
+    except on e : exception do
+        SetiMens(0,e.Message,'Error');
+    end;
+end;
+
+end.

@@ -1,0 +1,74 @@
+unit udraftControl;
+interface
+
+uses udraftDao, udraftModel, uMess, SysUtils, Forms, Buttons, StdCtrls,
+Vcl.Graphics,Windows,Messages,Variants,Classes,Controls,Dialogs, DBGrids,
+uFormControlModel;
+
+    type Tdraftontrol = class
+      private
+          FcModel : TdraftModel;
+          FcDao : TdraftDao;
+          FFcm : TFormControlModel;
+          procedure ParamSet(Form:TObject;State:Integer);
+      public
+          constructor Create(Form:TObject);
+
+      published
+          property cModel : TdraftModel read FcModel write FcModel;
+          property cDao : TdraftDao read FcDao write FcDao;
+          property cFcm : TFormControlModel read FFcm write FFcm;
+    end;
+
+implementation
+
+{ Tdraftontrol }
+
+constructor Tdraftontrol.Create(Form: TObject);
+begin
+    try
+
+        cModel := TdraftModel.Create;
+        cDao := TdraftDao.Create;
+        cFcm := TFormControlModel.Create;
+        cFcm.SetFormControlState(0);
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+procedure Tdraftontrol.ParamSet(Form: TObject;State:Integer);
+var
+    pStatus : string;
+begin
+   { 0 : INITIAL; 1 : INSERT; 2 : UPDATE; 3 : DELETE;}
+    try
+        with (Form as TForm) do
+        begin
+            if (FFcm.qFormControlState in [1,2]) then
+            begin
+                if (rgTipoPessoa.ItemIndex = 0) then
+                  cModel.SetTIPOPESSOA('F') else
+                if (rgTipoPessoa.ItemIndex = 1) then
+                  cModel.SetTIPOPESSOA('J') else
+                cModel.SetNomeFantasia(edtNomeFantasia.Text);
+                cModel.SetRazaoSocial(edtRazaoSocial.Text);
+                cModel.SetNumCpfCnpj(edtCpfCnpj.Text);
+                cModel.SetEmail(edtEmail.Text);
+                cModel.SetNumTelefone(StrToIntDef(edtTelefone.Text,0));
+                cModel.SetNumCelular(StrToIntDef(edtCelular.Text,0));
+                cModel.SetSite(edtSite.Text);
+                cModel.SetLogradouroCep(StrToIntDef(edtCep.Text,0));
+                cModel.SetLogradouro(edtLogradouro.Text);
+                cModel.SetLogradouroNum(StrToIntDef(edtLogradouroNum.Text,0));
+                cModel.SetLogradouroBairro(edtBairro.Text);
+                cModel.SetLogradouroUf(edtUf.Text);
+                cModel.SetLogradouroCidade(edtCidade.Text);
+            end;
+        end;
+    except on e : exception do
+        SetiMens(0,e.Message);
+    end;
+end;
+
+end.

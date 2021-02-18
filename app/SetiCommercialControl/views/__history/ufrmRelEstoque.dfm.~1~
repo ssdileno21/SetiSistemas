@@ -1,0 +1,20 @@
+inherited frmRelEstoque: TfrmRelEstoque
+  Caption = 'frmRelEstoque'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    inherited Panel2: TPanel
+      inherited Panel5: TPanel
+        ExplicitTop = 205
+      end
+    end
+    inherited Panel4: TPanel
+      ExplicitTop = 279
+      ExplicitHeight = 488
+      inherited DBNavigator1: TDBNavigator
+        Hints.Strings = ()
+        ExplicitHeight = 480
+      end
+    end
+  end
+end

@@ -1,0 +1,48 @@
+object dmLocate: TdmLocate
+  OldCreateOrder = False
+  Height = 200
+  Width = 85
+  object LocConnection: TSQLConnection
+    ConnectionName = 'FBConnection'
+    DriverName = 'Firebird'
+    GetDriverFunc = 'getSQLDriverINTERBASE'
+    LibraryName = 'dbxfb.dll'
+    LoginPrompt = False
+    Params.Strings = (
+      'DriverName=Firebird'
+      'Database=database.fdb'
+      'RoleName=RoleName'
+      'User_Name=sysdba'
+      'Password=masterkey'
+      'ServerCharSet='
+      'SQLDialect=3'
+      'ErrorResourceFile='
+      'LocaleCode=0000'
+      'BlobSize=-1'
+      'CommitRetain=False'
+      'WaitOnLocks=True'
+      'IsolationLevel=ReadCommitted'
+      'Trim Char=False')
+    VendorLib = 'fbclient.dll'
+    Left = 27
+    Top = 5
+  end
+  object LocQuery: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = LocConnection
+    Left = 28
+    Top = 52
+  end
+  object LocDsp: TDataSetProvider
+    Left = 28
+    Top = 99
+  end
+  object LocCds: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'SetiDsp'
+    Left = 29
+    Top = 147
+  end
+end
